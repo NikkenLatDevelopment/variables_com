@@ -93,6 +93,42 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'SQL73' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_SQL73', 'localhost'),
+            'port' => env('DB_PORT_SQL73', '1433'),
+            'database' => env('DB_DATABASE_SQL73', 'forge'),
+            'username' => env('DB_USERNAME_SQL73', 'forge'),
+            'password' => env('DB_PASSWORD_SQL73', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'trust_server_certificate' => true,
+            'options' => [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+            ]
+        ],
+
+        'nikkenla_office' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL_OFFICE'),
+            'host' => env('DB_HOST_OFFICE', '127.0.0.1'),
+            'port' => env('DB_PORT_OFFICE', '3306'),
+            'database' => env('DB_DATABASE_OFFICE', 'forge'),
+            'username' => env('DB_USERNAME_OFFICE', 'forge'),
+            'password' => env('DB_PASSWORD_OFFICE', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
     ],
 
     /*
