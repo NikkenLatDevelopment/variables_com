@@ -1,8 +1,14 @@
 <?php require_once("../../functions.php"); //Funciones
 
-//Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+$prod = $_POST["prod"];
+
+if(trim($prod) === 'NO'){
+	$serverName75 = "172.24.16.75";
+}
+else{
+	$serverName75 = "104.130.46.73";
+}
+
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -108,7 +114,7 @@ $dataVolumenesVoldpys = array();
 ?>
 
 <!-- Mostrar logo -->
-<img src="custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="https://mi.nikkenlatam.com/custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->

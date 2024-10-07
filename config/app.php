@@ -5,7 +5,7 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
-    'PROD' => env('PROD'),
+    'PROD' => env('PROD', 'SI'),
     /*
     |--------------------------------------------------------------------------
     | Application Name
