@@ -41,7 +41,7 @@ $nivelesProfundidad = 0;
 $comprasUltimoAno = 0;
 
 //$sql = "EXEC ConteoComercialD1_test $codeUser, $periodoPost";
-$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $codeUser, $periodoPost";
+$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa_24m $codeUser, $periodoPost";
 $recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 $periodotoShow = "";
 $monthToShow = [];
@@ -56,11 +56,11 @@ if($rowSap > 0) {
 	$avancesPlatino = trim($rowSap[6]) == "0" ? "" : trim($rowSap[6]);
 	$avancesDiamante = trim($rowSap[7]) == "0" ? "" : trim($rowSap[7]);
 	$avancesDiamanteReal = trim($rowSap[8]) == "0" ? "" : trim($rowSap[8]);
-	$lideresPlata = trim($rowSap[9]);
-	$lideresOro = trim($rowSap[10]);
-	$lideresPlatino = trim($rowSap[11]);
-	$lideresDiamante = trim($rowSap[12]);
-	$lideresDiamanteReal = trim($rowSap[13]);
+	$lideresPlata = $rowSap[9];
+	$lideresOro = $rowSap[10];
+	$lideresPlatino = $rowSap[11];
+	$lideresDiamante = $rowSap[12];
+	$lideresDiamanteReal = $rowSap[13];
 	$numeroInfluencers = trim($rowSap[14]);
 	$numeroClientesPreferentes = trim($rowSap[15]);
 	$activosMensuales = trim($rowSap[16]);
@@ -158,60 +158,6 @@ if(str_replace(" ", "-", strtolower($rankUser)) == "plata"){ $color = imagecolor
 
 $color = imagecolorallocate($template, 255, 255, 255);
 
-// if($widthBox > 457){
-// 	$nameFirst = "";
-// 	$nameLast = "";
-// 	$name = explode(" ", $nameUser);
-// 	$nameTemp = "";
-
-// 	$count = 0;
-// 	$countVal = 0;
-// 	$countName = 0;
-// 	while($countVal == 0){
-// 		if(isset($name[$count])){
-// 			$nameTemp = $nameTemp . $name[$count] . " ";
-
-// 			$boundingBox = imagettfbbox(25, 0, $templateFontLatoBold, $nameTemp);
-// 			// $widthBox = $boundingBox[2] - $boundingBox[0];
-// 			$widthBox = $boundingBox[2];
-
-// 			if($widthBox <= 457 && $countName == 0){
-// 				$nameFirst = $nameFirst . $name[$count] . " ";
-// 			}else{
-// 				$nameLast = $nameLast . $name[$count] . " ";
-// 				$countName++;
-// 			}
-
-// 		}else{ $countVal++; }
-
-// 		$count++;
-// 	}
-
-// 	$boundingBox = imagettfbbox(25, 0, $templateFontLatoBold, $nameFirst);
-// 	$widthBoxNameFirst = $boundingBox[2] - $boundingBox[0];
-// 	$widthBoxNameFirst = (457 - $widthBoxNameFirst) / 2;
-
-// 	$boundingBox = imagettfbbox(25, 0, $templateFontLatoBold, $nameLast);
-// 	$widthBoxNameLast = $boundingBox[2] - $boundingBox[0];
-// 	$widthBoxNameLast = (457 - $widthBoxNameLast) / 2;
-
-// 	//Doble
-// 	imagettftext($template, 25, 0, $widthBoxNameFirst, 27, $color, $templateFontLatoBold, $nameFirst);
-// 	imagettftext($template, 25, 0, $widthBoxNameLast, 60, $color, $templateFontLatoBold, $nameLast);
-// 	//Doble
-// }
-// else{
-// 	@$boundingBox = imagettfbbox(25, 0, $templateFontLatoBold, $nameUser);
-// 	@$widthBoxNameFirst = $boundingBox[2] - $boundingBox[0];
-// 	$widthBoxNameFirst = (457 - $widthBoxNameFirst) / 2;
-
-// 	//Simple
-// 	@imagettftext($template, 25, 0, $widthBoxNameFirst, 43, $color, $templateFontLatoBold, $nameUser);
-// 	//Simple
-// }
-
-//Simple
-// @imagettftext($template, 25, 0, $widthBoxNameFirst, 43, $color, $templateFontLatoBold, $nameUser);
 @imagettftext($template, 25, 0, $widthBoxNameFirst, 43, $color, $templateFontLatoBold, $nameUser);
 
 imagepng($template, "../../pages/charts/chart/$codeUser-text.png");

@@ -18,7 +18,16 @@ class variablesCom extends Controller{
             $codeUser = $code;
 
             $conection = \DB::connection('SQL73');
-                $response = $conection->select("SELECT AssociateName as name_user, Country as countrie_user, b.rango_actual as rank_user FROM LAT_MyNIKKEN.dbo.Distributors_MD a WITH(NOLOCK) JOIN Rango_actual_USA b WITH(NOLOCK) ON a.AssociateID = b.numci WHERE Distributor_Status='D' AND AssociateID = $codeUser;");
+                $response = $conection->select("SELECT 
+                                                    AssociateName as name_user, 
+                                                    Country as countrie_user, 
+                                                    MAX(b.Rango) as rank_user 
+                                                FROM LAT_MyNIKKEN.dbo.Distributors_MD a WITH(NOLOCK) 
+                                                JOIN LAT_MyNIKKEN_TEST.dbo.Rangos_Avance_USA b WITH(NOLOCK) ON 
+                                                    a.AssociateID = b.numci 
+                                                WHERE Distributor_Status='D' 
+                                                AND AssociateID = $codeUser
+                                                GROUP BY AssociateName, Country;");
             \DB::disconnect('SQL73');
 
             if(sizeof($response) < 1){
