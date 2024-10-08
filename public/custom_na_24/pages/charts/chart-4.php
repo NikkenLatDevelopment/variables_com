@@ -304,14 +304,14 @@ $dataVolumenesVoldpys = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1">POINTS</th>
-				<th scope="col"><span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
-				<th scope="col"><span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
-				<th scope="col"><span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
-				<th scope="col"><span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
-				<th scope="col"><span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
-				<th scope="col"><span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
-				<th scope="col"><span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
-				<th scope="col"><span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
+				<th scope="col"><span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span></th>
+				<th scope="col"><span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span></th>
+				<th scope="col"><span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span></th>
+				<th scope="col"><span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span></th>
+				<th scope="col"><span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span></th>
+				<th scope="col"><span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span></th>
+				<th scope="col"><span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span></th>
+				<th scope="col"><span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span></th>
 				<th scope="col"><span id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span></th>
 				<th scope="col"><span id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span></th>
 				<th scope="col"><span id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span></th>
