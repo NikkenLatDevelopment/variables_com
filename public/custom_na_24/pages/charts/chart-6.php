@@ -59,6 +59,7 @@ $dataIncorporacionActividad2022 = array();
 	}
 
 	$aniosDif = array_unique($aniosDif);
+	$aniosDif = array_values($aniosDif);
 	$i = 1;
 
 	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa_24m $codeUser, $periodoPost";
@@ -274,7 +275,7 @@ $monthLabelGraph = array();
 		<tbody>
 			<!-- Compras Organización 2021 -->
 				<tr>
-					<th scope="row"><span id="mes2"><?php echo $aniosDif[$i + 12]; ?></span></th>
+					<th scope="row"><span id="mes2"><?php echo $aniosDif[1]; ?></span></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[24]]) ? number_format($dataCompras[$monthToShow[24]]["compraTotal"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[23]]) ? number_format($dataCompras[$monthToShow[23]]["compraTotal"], 0) : 0 ?></td><?php } ?>
@@ -316,7 +317,7 @@ $monthLabelGraph = array();
 
 			<!-- Compras Organización 2022 -->
 				<tr>
-					<th scope="row"><span id="mes1"><?php echo $aniosDif[$i]; ?></th>
+					<th scope="row"><span id="mes1"><?php echo $aniosDif[0]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[12]]) ? number_format($dataCompras[$monthToShow[12]]["compraTotal"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[11]]) ? number_format($dataCompras[$monthToShow[11]]["compraTotal"], 0) : 0 ?></td><?php } ?>
@@ -545,7 +546,7 @@ $monthLabelGraph = array();
 		<tbody>
 			<!-- Incorporaciones Organización 2021 -->
 				<tr>
-					<th scope="row"><?php echo $aniosDif[$i + 12]; ?></th>
+					<th scope="row"><?php echo $aniosDif[1]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
@@ -587,7 +588,7 @@ $monthLabelGraph = array();
 
 			<!-- Incorporaciones Organización 2022 -->
 				<tr>
-					<th scope="row"><?php echo $aniosDif[$i]; ?></th>
+					<th scope="row"><?php echo $aniosDif[0]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
@@ -837,7 +838,7 @@ $monthLabelGraph = array();
 		<tbody>
 			<!-- Actividad 2021 -->
 				<tr>
-					<th scope="row" id="lasrYearLastGraph"><?php echo $aniosDif[$i + 12]; ?></th>
+					<th scope="row" id="lasrYearLastGraph"><?php echo $aniosDif[1]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
@@ -879,7 +880,7 @@ $monthLabelGraph = array();
 
 			<!-- Actividad 2022 -->
 				<tr>
-					<th scope="row" id="curYearLastGraph"><?php echo $aniosDif[$i]; ?></th>
+					<th scope="row" id="curYearLastGraph"><?php echo $aniosDif[0]; ?></th>
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classMar == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
