@@ -211,7 +211,7 @@ $dataBonificacionesOrganizacion = array();
 				<th scope="col"><span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
 				<th scope="col"><span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
 				<th scope="col"><span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
-				<th scope="col" class="c-mw-2">Average 16 Months</th>
+				<th scope="col" class="c-mw-2">Average 24 Months</th>
 			</tr>
 		</thead>
 
