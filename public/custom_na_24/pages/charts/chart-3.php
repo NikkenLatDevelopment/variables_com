@@ -127,7 +127,7 @@ $dataBonificacionesOrganizacion = array();
 	$count = 0;
 
 	//Periodo inicial de consulta
-	$periodoIni = $periodMonthsByGraph[$monthToShow[16]];
+	$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 	$period = new DateTime("$periodoIni");
 	//Periodo inicial de consulta
 
