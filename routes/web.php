@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get("varcomusa24",  [variablesCom::class, 'varcomusa24'])->name('varcomusa24');
 Route::get("varcomusa24nalat",  [variablesCom::class, 'varcomusa24nalat'])->name('varcomusa24nalat');
+Route::get("varcomlat24",  [variablesCom::class, 'varcomlat24'])->name('varcomlat24');

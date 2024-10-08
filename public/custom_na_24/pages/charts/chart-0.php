@@ -171,7 +171,7 @@ list($imgWidth, $imgHeight) = getimagesize('../../pages/charts/chart/' . $codeUs
 
 $template = imagecreatetruecolor(800, 800);
 imagesavealpha($template, true);
-$color = imagecolorallocatealpha($template, 0, 0, 0, 127);
+$color = imagecolorallocatealpha($template, 255, 255, 255, 127);
 imagefill($template, 0, 0, $color);
 
 $photo = imagecreatefrompng('../../pages/charts/chart/' . $codeUser . '-min.png');

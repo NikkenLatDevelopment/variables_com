@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,500&display=swap');
+
+body{
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	line-height: 115%;
+	color: black;
+}
+
+/*Custom*/
+	.c-mw-1{
+		min-width: 200px;
+	}
+
+	.c-mw-2{
+		min-width: 70px;
+	}
+
+	.c-c-1{
+		color: #663367;
+	}
+/*Custom*/
+
+/*Table*/
+	.table>:not(caption)>*>* {
+    	padding: 0.5rem 0.2rem;
+    }
+/*Table*/
+
+/*Chart 0*/
+	.text{
+		position: absolute;
+	    top: 44.5vw;
+	    right: 7.2%;
+	    font-size: 1.6vw;
+	    font-weight: 700;
+	    width: 26vw;
+	    text-align: center;
+	}
+
+	.text-doble{
+	    position: absolute;
+	    top: 42.8vw;
+	    right: 7.2%;
+	    font-size: 1.6vw;
+	    font-weight: 700;
+	    width: 26vw;
+	    text-align: center;
+	    line-height: 114%;
+	}
+
+	.plata{
+		color: #666666;
+	}
+
+	.oro{
+		color: #735c3e;
+	}
+
+	.platino{
+		color: #0b5394;
+	}
+
+	.diamante{
+		color: #741b47;
+	}
+
+	.diamante-real{
+		color: #0b5394;
+	}
+/*Chart 0*/
