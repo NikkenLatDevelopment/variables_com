@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+date_default_timezone_set('America/Mexico_City');
+
 class variablesCom extends Controller{
     public function varcomusa24(){
         if(empty(request()->code)){
@@ -96,16 +98,54 @@ class variablesCom extends Controller{
         }
     }
 
+    private function isValidSignature($url, $params, $providedSignature) {
+        $secret = config('app.CUSTOM_API_KEY');
+        unset($params['signature']);
+        // ksort($params);
+        $queryString = http_build_query($params);
+        $unsignedUrl = $url . '?' . $queryString;
+        $expectedSignature = hash_hmac('sha256', $unsignedUrl, $secret);
+        return hash_equals($expectedSignature, $providedSignature);
+    }
+
+    public function verifySignedUrl($request) {
+        $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https://" : "http://";
+        $url = $protocol . $_SERVER['HTTP_HOST'] . strtok($_SERVER["REQUEST_URI"], '?');
+        
+        $params = $request->query();
+        if (!isset($params['signature'])) {
+            return ['status' => 'No signature provided'];
+        }
+        $providedSignature = $params['signature'];
+        if (isset($params['expires']) && now()->timestamp > $params['expires']) {
+            return ['status' => 'La URL ha expirado'];
+        }
+
+        if (!$this->isValidSignature($url, $params, $providedSignature)) {
+            return ['status' => 'Firma Incorrecta'];
+        }
+        return ['status' => 'success'];
+    }
+
+    public function accesVariablesCom(){
+        $data = $this->verifySignedUrl(request());
+        $status = $data['status'];
+        if($status != "success"){
+            return redirect("https://micrositiosnikken.nikkenlatam.com/error403");
+        }
+        $code = request()->code;
+        session(['code' => $code]);
+        session(['period' => $code]);
+        return redirect('varcomlat24');
+    }
+
     public function varcomlat24(){
-        if(empty(request()->code)){
-            return "Informes Seminario Diamante MyNIKKEN";
+        if(empty(session('code'))){
+            return redirect("https://micrositiosnikken.nikkenlatam.com/error403");
         }
         try{
-            $code = request()->code;
-            $period = request()->period;
-            if(!is_numeric($code)){
-                $code = base64_decode($code);
-            }
+            $code = session('code');
+            $period = session('period');
             $codeUser = $code;
 
             $conection = \DB::connection('nikkenla_office');

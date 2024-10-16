@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 return [
 
     'PROD' => env('PROD', 'SI'),
+    'CUSTOM_API_KEY' => env('CUSTOM_API_KEY'),
+    
     /*
     |--------------------------------------------------------------------------
     | Application Name
