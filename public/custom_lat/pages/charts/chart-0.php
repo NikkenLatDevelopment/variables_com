@@ -42,7 +42,7 @@ $periodoPost = $_POST["periodo"];
 	$comprasUltimoAno = 0;
 
 	//$sql = "EXEC ConteoComercialD1_test $codeUser, $periodoPost";
-	$sql = "EXEC ConteoComercialD1 $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1 $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
@@ -208,7 +208,7 @@ $templateFontRobotoBold = '../../pages/charts/chart/roboto_bold.ttf';
 
 	$template = imagecreatetruecolor(800, 800);
 	imagesavealpha($template, true);
-	$color = imagecolorallocatealpha($template, 0, 0, 0, 127);
+	$color = imagecolorallocatealpha($template, 255, 255, 255, 127);
 	imagefill($template, 0, 0, $color);
 
 	$photo = imagecreatefrompng('../../pages/charts/chart/' . $codeUser . '-min.png');

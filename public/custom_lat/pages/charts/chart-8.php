@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión
-$serverName = "200.66.68.173";
-$connectionInfo = array("Database" => "COMERCIAL_LAT", "UID" => "nikkcomer", "PWD" => "C0m3rCial$");
+$serverName = "200.66.68.166";
+$connectionInfo = array("Database" => "SIP", "UID" => "nikkenmk", "PWD" => "M4rk3t1n$");
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 if(!$conn){ die(print_r(sqlsrv_errors(), true)); }
 //Conexión
@@ -16,109 +16,109 @@ $periodo = $_POST["periodo"];
 //Vars
 
 //Others
-$accesorios_1_2020 = "0";
-$accesorios_1_2021 = "0";
 $accesorios_1_2022 = "0";
+$accesorios_1_2023 = "0";
+$accesorios_1_2024 = "0";
 
-$agua_1_2020 = "0";
-$agua_1_2021 = "0";
 $agua_1_2022 = "0";
+$agua_1_2023 = "0";
+$agua_1_2024 = "0";
 
-$accesorios_2_2020 = "0";
-$accesorios_2_2021 = "0";
 $accesorios_2_2022 = "0";
+$accesorios_2_2023 = "0";
+$accesorios_2_2024 = "0";
 
-$agua_2_2020 = "0";
-$agua_2_2021 = "0";
 $agua_2_2022 = "0";
+$agua_2_2023 = "0";
+$agua_2_2024 = "0";
 
-$accesorios_3_2020 = "0";
-$accesorios_3_2021 = "0";
 $accesorios_3_2022 = "0";
+$accesorios_3_2023 = "0";
+$accesorios_3_2024 = "0";
 
-$agua_3_2020 = "0";
-$agua_3_2021 = "0";
 $agua_3_2022 = "0";
+$agua_3_2023 = "0";
+$agua_3_2024 = "0";
 
-$accesorios_4_2020 = "0";
-$accesorios_4_2021 = "0";
 $accesorios_4_2022 = "0";
+$accesorios_4_2023 = "0";
+$accesorios_4_2024 = "0";
 
-$agua_4_2020 = "0";
-$agua_4_2021 = "0";
 $agua_4_2022 = "0";
+$agua_4_2023 = "0";
+$agua_4_2024 = "0";
 //Others
 
-$sql = "EXEC [dbo].[ps_producto_3_1]'$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_2_1_1] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die( print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total * 100, 1, '.', '')));
 
-	if($product == "ACCESORIOS" && $period == "2020"){ $accesorios_1_2020 = $total; }
-	if($product == "ACCESORIOS" && $period == "2021"){ $accesorios_1_2021 = $total; }
 	if($product == "ACCESORIOS" && $period == "2022"){ $accesorios_1_2022 = $total; }
+	if($product == "ACCESORIOS" && $period == "2023"){ $accesorios_1_2023 = $total; }
+	if($product == "ACCESORIOS" && $period == "2024"){ $accesorios_1_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $agua_1_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $agua_1_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $agua_1_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $agua_1_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $agua_1_2024 = $total; }
 }
 
-$sql = "EXEC [dbo].[ps_producto_3_2] '$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_2_1_2] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die( print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total, 1, '.', '')));
 
-	if($product == "ACCESORIOS" && $period == "2020"){ $accesorios_2_2020 = $total; }
-	if($product == "ACCESORIOS" && $period == "2021"){ $accesorios_2_2021 = $total; }
 	if($product == "ACCESORIOS" && $period == "2022"){ $accesorios_2_2022 = $total; }
+	if($product == "ACCESORIOS" && $period == "2023"){ $accesorios_2_2023 = $total; }
+	if($product == "ACCESORIOS" && $period == "2024"){ $accesorios_2_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $agua_2_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $agua_2_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $agua_2_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $agua_2_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $agua_2_2024 = $total; }
 }
 
-$sql = "EXEC [dbo].[ps_producto_3_3]'$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_2_2_1] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die( print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total * 100, 1, '.', '')));
 
-	if($product == "ACCESORIOS" && $period == "2020"){ $accesorios_3_2020 = $total; }
-	if($product == "ACCESORIOS" && $period == "2021"){ $accesorios_3_2021 = $total; }
 	if($product == "ACCESORIOS" && $period == "2022"){ $accesorios_3_2022 = $total; }
+	if($product == "ACCESORIOS" && $period == "2023"){ $accesorios_3_2023 = $total; }
+	if($product == "ACCESORIOS" && $period == "2024"){ $accesorios_3_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $agua_3_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $agua_3_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $agua_3_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $agua_3_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $agua_3_2024 = $total; }
 }
 
-$sql = "EXEC [dbo].[ps_producto_3_4]'$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_2_2_2] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die( print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total, 1, '.', '')));
 
-	if($product == "ACCESORIOS" && $period == "2020"){ $accesorios_4_2020 = $total; }
-	if($product == "ACCESORIOS" && $period == "2021"){ $accesorios_4_2021 = $total; }
 	if($product == "ACCESORIOS" && $period == "2022"){ $accesorios_4_2022 = $total; }
+	if($product == "ACCESORIOS" && $period == "2023"){ $accesorios_4_2023 = $total; }
+	if($product == "ACCESORIOS" && $period == "2024"){ $accesorios_4_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $agua_4_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $agua_4_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $agua_4_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $agua_4_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $agua_4_2024 = $total; }
 }
 
 ?>
@@ -131,7 +131,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Informe Variables Comerciales por Socio Independiente</div>
-			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2020 a Agosto 2022</div>
+			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2022 a Agosto 2024</div>
 			<div class="h6"><span class="fw-bold">País:</span> <?php echo $countrieUser ?></div>
 		</div>
 
@@ -206,17 +206,17 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart7Detail = new Chart(viewChart7, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'ACCESORIOS',
-			            data: [<?php echo $accesorios_1_2020 ?>, <?php echo $accesorios_1_2021 ?>, <?php echo $accesorios_1_2022 ?>],
+			            data: [<?php echo $accesorios_1_2022 ?>, <?php echo $accesorios_1_2023 ?>, <?php echo $accesorios_1_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'AGUA',
-			            data: [<?php echo $agua_1_2020 ?>, <?php echo $agua_1_2021 ?>, <?php echo $agua_1_2022 ?>],
+			            data: [<?php echo $agua_1_2022 ?>, <?php echo $agua_1_2023 ?>, <?php echo $agua_1_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        }
@@ -253,17 +253,17 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart77Detail = new Chart(viewChart77, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'ACCESORIOS',
-			            data: [<?php echo $accesorios_2_2020 ?>, <?php echo $accesorios_2_2021 ?>, <?php echo $accesorios_2_2022 ?>],
+			            data: [<?php echo $accesorios_2_2022 ?>, <?php echo $accesorios_2_2023 ?>, <?php echo $accesorios_2_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'AGUA',
-			            data: [<?php echo $agua_2_2020 ?>, <?php echo $agua_2_2021 ?>, <?php echo $agua_2_2022 ?>],
+			            data: [<?php echo $agua_2_2022 ?>, <?php echo $agua_2_2023 ?>, <?php echo $agua_2_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        }
@@ -303,17 +303,17 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart777Detail = new Chart(viewChart777, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'ACCESORIOS',
-			            data: [<?php echo $accesorios_3_2020 ?>, <?php echo $accesorios_3_2021 ?>, <?php echo $accesorios_3_2022 ?>],
+			            data: [<?php echo $accesorios_3_2022 ?>, <?php echo $accesorios_3_2023 ?>, <?php echo $accesorios_3_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'AGUA',
-			            data: [<?php echo $agua_3_2020 ?>, <?php echo $agua_3_2021 ?>, <?php echo $agua_3_2022 ?>],
+			            data: [<?php echo $agua_3_2022 ?>, <?php echo $agua_3_2023 ?>, <?php echo $agua_3_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        }
@@ -350,17 +350,17 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart7777Detail = new Chart(viewChart7777, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'ACCESORIOS',
-			            data: [<?php echo $accesorios_4_2020 ?>, <?php echo $accesorios_4_2021 ?>, <?php echo $accesorios_4_2022 ?>],
+			            data: [<?php echo $accesorios_4_2022 ?>, <?php echo $accesorios_4_2023 ?>, <?php echo $accesorios_4_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'AGUA',
-			            data: [<?php echo $agua_4_2020 ?>, <?php echo $agua_4_2021 ?>, <?php echo $agua_4_2022 ?>],
+			            data: [<?php echo $agua_4_2022 ?>, <?php echo $agua_4_2023 ?>, <?php echo $agua_4_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        }

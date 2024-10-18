@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión
-$serverName = "200.66.68.173";
-$connectionInfo = array("Database" => "COMERCIAL_LAT", "UID" => "nikkcomer", "PWD" => "C0m3rCial$");
+$serverName = "200.66.68.166";
+$connectionInfo = array("Database" => "SIP", "UID" => "nikkenmk", "PWD" => "M4rk3t1n$");
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 if(!$conn){ die(print_r(sqlsrv_errors(), true)); }
 //Conexión
@@ -16,173 +16,176 @@ $periodo = $_POST["periodo"];
 //Vars
 
 //Others
-$kenkoSleep_1_2020 = "0";
-$kenkoSleep_1_2021 = "0";
 $kenkoSleep_1_2022 = "0";
+$kenkoSleep_1_2023 = "0";
+$kenkoSleep_1_2024 = "0";
 
-$pimag_1_2020 = "0";
-$pimag_1_2021 = "0";
 $pimag_1_2022 = "0";
+$pimag_1_2023 = "0";
+$pimag_1_2024 = "0";
 
-$kenkoAir_1_2020 = "0";
-$kenkoAir_1_2021 = "0";
 $kenkoAir_1_2022 = "0";
+$kenkoAir_1_2023 = "0";
+$kenkoAir_1_2024 = "0";
 
-$otros_1_2020 = "0";
-$otros_1_2021 = "0";
 $otros_1_2022 = "0";
+$otros_1_2023 = "0";
+$otros_1_2024 = "0";
 
-$kenkoSleep_2_2020 = "0";
-$kenkoSleep_2_2021 = "0";
 $kenkoSleep_2_2022 = "0";
+$kenkoSleep_2_2023 = "0";
+$kenkoSleep_2_2024 = "0";
 
-$pimag_2_2020 = "0";
-$pimag_2_2021 = "0";
 $pimag_2_2022 = "0";
+$pimag_2_2023 = "0";
+$pimag_2_2024 = "0";
 
-$kenkoAir_2_2020 = "0";
-$kenkoAir_2_2021 = "0";
 $kenkoAir_2_2022 = "0";
+$kenkoAir_2_2023 = "0";
+$kenkoAir_2_2024 = "0";
 
-$otros_2_2020 = "0";
-$otros_2_2021 = "0";
 $otros_2_2022 = "0";
+$otros_2_2023 = "0";
+$otros_2_2024 = "0";
 
-$kenkoSleep_3_2020 = "0";
-$kenkoSleep_3_2021 = "0";
 $kenkoSleep_3_2022 = "0";
+$kenkoSleep_3_2023 = "0";
+$kenkoSleep_3_2024 = "0";
 
-$pimag_3_2020 = "0";
-$pimag_3_2021 = "0";
 $pimag_3_2022 = "0";
+$pimag_3_2023 = "0";
+$pimag_3_2024 = "0";
 
-$kenkoAir_3_2020 = "0";
-$kenkoAir_3_2021 = "0";
 $kenkoAir_3_2022 = "0";
+$kenkoAir_3_2023 = "0";
+$kenkoAir_3_2024 = "0";
 
-$otros_3_2020 = "0";
-$otros_3_2021 = "0";
 $otros_3_2022 = "0";
+$otros_3_2023 = "0";
+$otros_3_2024 = "0";
 
-$kenkoSleep_4_2020 = "0";
-$kenkoSleep_4_2021 = "0";
 $kenkoSleep_4_2022 = "0";
+$kenkoSleep_4_2023 = "0";
+$kenkoSleep_4_2024 = "0";
 
-$pimag_4_2020 = "0";
-$pimag_4_2021 = "0";
 $pimag_4_2022 = "0";
+$pimag_4_2023 = "0";
+$pimag_4_2024 = "0";
 
-$kenkoAir_4_2020 = "0";
-$kenkoAir_4_2021 = "0";
 $kenkoAir_4_2022 = "0";
+$kenkoAir_4_2023 = "0";
+$kenkoAir_4_2024 = "0";
 
-$otros_4_2020 = "0";
-$otros_4_2021 = "0";
 $otros_4_2022 = "0";
+$otros_4_2023 = "0";
+$otros_4_2024 = "0";
 //Others
 
-$sql = "EXEC [dbo].[ps_producto_2_1] '$codeUser'";
+$sql = "SELECT *
+		FROM [SIP].[dbo].[sd_1_1_1]
+		WHERE Codigo = $codeUser;";
+		
 $recordSet = sqlsrv_query($conn, $sql) or die(print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total * 100, 1, '.', '')));
 
-	if($product == "KENKO SLEEP" && $period == "2020"){ $kenkoSleep_1_2020 = $total; }
-	if($product == "KENKO SLEEP" && $period == "2021"){ $kenkoSleep_1_2021 = $total; }
 	if($product == "KENKO SLEEP" && $period == "2022"){ $kenkoSleep_1_2022 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2023"){ $kenkoSleep_1_2023 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2024"){ $kenkoSleep_1_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $pimag_1_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $pimag_1_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $pimag_1_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $pimag_1_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $pimag_1_2024 = $total; }
 
-	if($product == "KENKO AIR" && $period == "2020"){ $kenkoAir_1_2020 = $total; }
-	if($product == "KENKO AIR" && $period == "2021"){ $kenkoAir_1_2021 = $total; }
 	if($product == "KENKO AIR" && $period == "2022"){ $kenkoAir_1_2022 = $total; }
+	if($product == "KENKO AIR" && $period == "2023"){ $kenkoAir_1_2023 = $total; }
+	if($product == "KENKO AIR" && $period == "2024"){ $kenkoAir_1_2024 = $total; }
 
-	if($product == "OTROS" && $period == "2020"){ $otros_1_2020 = $total; }
-	if($product == "OTROS" && $period == "2021"){ $otros_1_2021 = $total; }
 	if($product == "OTROS" && $period == "2022"){ $otros_1_2022 = $total; }
+	if($product == "OTROS" && $period == "2023"){ $otros_1_2023 = $total; }
+	if($product == "OTROS" && $period == "2024"){ $otros_1_2024 = $total; }
 }
 
-$sql = "EXEC [dbo].[ps_producto_2_2] '$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_1_1_2] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die('hola -->' . print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total, 1, '.', '')));
 
-	if($product == "KENKO SLEEP" && $period == "2020"){ $kenkoSleep_2_2020 = $total; }
-	if($product == "KENKO SLEEP" && $period == "2021"){ $kenkoSleep_2_2021 = $total; }
 	if($product == "KENKO SLEEP" && $period == "2022"){ $kenkoSleep_2_2022 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2023"){ $kenkoSleep_2_2023 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2024"){ $kenkoSleep_2_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $pimag_2_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $pimag_2_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $pimag_2_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $pimag_2_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $pimag_2_2024 = $total; }
 
-	if($product == "KENKO AIR" && $period == "2020"){ $kenkoAir_2_2020 = $total; }
-	if($product == "KENKO AIR" && $period == "2021"){ $kenkoAir_2_2021 = $total; }
 	if($product == "KENKO AIR" && $period == "2022"){ $kenkoAir_2_2022 = $total; }
+	if($product == "KENKO AIR" && $period == "2023"){ $kenkoAir_2_2023 = $total; }
+	if($product == "KENKO AIR" && $period == "2024"){ $kenkoAir_2_2024 = $total; }
 
-	if($product == "OTROS" && $period == "2020"){ $otros_2_2020 = $total; }
-	if($product == "OTROS" && $period == "2021"){ $otros_2_2021 = $total; }
 	if($product == "OTROS" && $period == "2022"){ $otros_2_2022 = $total; }
+	if($product == "OTROS" && $period == "2023"){ $otros_2_2023 = $total; }
+	if($product == "OTROS" && $period == "2024"){ $otros_2_2024 = $total; }
 }
 
-$sql = "EXEC [dbo].[ps_producto_2_3] '$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_1_2_1] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die('hola -->' . print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total * 100, 1, '.', '')));
 
-	if($product == "KENKO SLEEP" && $period == "2020"){ $kenkoSleep_3_2020 = $total; }
-	if($product == "KENKO SLEEP" && $period == "2021"){ $kenkoSleep_3_2021 = $total; }
 	if($product == "KENKO SLEEP" && $period == "2022"){ $kenkoSleep_3_2022 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2023"){ $kenkoSleep_3_2023 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2024"){ $kenkoSleep_3_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $pimag_3_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $pimag_3_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $pimag_3_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $pimag_3_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $pimag_3_2024 = $total; }
 
-	if($product == "KENKO AIR" && $period == "2020"){ $kenkoAir_3_2020 = $total; }
-	if($product == "KENKO AIR" && $period == "2021"){ $kenkoAir_3_2021 = $total; }
 	if($product == "KENKO AIR" && $period == "2022"){ $kenkoAir_3_2022 = $total; }
+	if($product == "KENKO AIR" && $period == "2023"){ $kenkoAir_3_2023 = $total; }
+	if($product == "KENKO AIR" && $period == "2024"){ $kenkoAir_3_2024 = $total; }
 
-	if($product == "OTROS" && $period == "2020"){ $otros_3_2020 = $total; }
-	if($product == "OTROS" && $period == "2021"){ $otros_3_2021 = $total; }
 	if($product == "OTROS" && $period == "2022"){ $otros_3_2022 = $total; }
+	if($product == "OTROS" && $period == "2023"){ $otros_3_2023 = $total; }
+	if($product == "OTROS" && $period == "2024"){ $otros_3_2024 = $total; }
 }
 
-$sql = "EXEC [dbo].[ps_producto_2_4] '$codeUser'";
+$sql = "SELECT * FROM [SIP].[dbo].[sd_1_2_2] WHERE Codigo = $codeUser";
 $recordSet = sqlsrv_query($conn, $sql) or die('hola -->' . print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$period = trim($row_sap[0]);
-	$product = trim($row_sap[1]);
+	$period = trim($row_sap[1]);
+	$product = trim($row_sap[2]);
 
-	$total = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$total = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$total = trim(str_replace(",", "", number_format($total, 1, '.', '')));
 
-	if($product == "KENKO SLEEP" && $period == "2020"){ $kenkoSleep_4_2020 = $total; }
-	if($product == "KENKO SLEEP" && $period == "2021"){ $kenkoSleep_4_2021 = $total; }
 	if($product == "KENKO SLEEP" && $period == "2022"){ $kenkoSleep_4_2022 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2023"){ $kenkoSleep_4_2023 = $total; }
+	if($product == "KENKO SLEEP" && $period == "2024"){ $kenkoSleep_4_2024 = $total; }
 
-	if($product == "PIMAG" && $period == "2020"){ $pimag_4_2020 = $total; }
-	if($product == "PIMAG" && $period == "2021"){ $pimag_4_2021 = $total; }
 	if($product == "PIMAG" && $period == "2022"){ $pimag_4_2022 = $total; }
+	if($product == "PIMAG" && $period == "2023"){ $pimag_4_2023 = $total; }
+	if($product == "PIMAG" && $period == "2024"){ $pimag_4_2024 = $total; }
 
-	if($product == "KENKO AIR" && $period == "2020"){ $kenkoAir_4_2020 = $total; }
-	if($product == "KENKO AIR" && $period == "2021"){ $kenkoAir_4_2021 = $total; }
 	if($product == "KENKO AIR" && $period == "2022"){ $kenkoAir_4_2022 = $total; }
+	if($product == "KENKO AIR" && $period == "2023"){ $kenkoAir_4_2023 = $total; }
+	if($product == "KENKO AIR" && $period == "2024"){ $kenkoAir_4_2024 = $total; }
 
-	if($product == "OTROS" && $period == "2020"){ $otros_4_2020 = $total; }
-	if($product == "OTROS" && $period == "2021"){ $otros_4_2021 = $total; }
 	if($product == "OTROS" && $period == "2022"){ $otros_4_2022 = $total; }
+	if($product == "OTROS" && $period == "2023"){ $otros_4_2023 = $total; }
+	if($product == "OTROS" && $period == "2024"){ $otros_4_2024 = $total; }
 }
 
 ?>
@@ -197,7 +200,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Informe Variables Comerciales por Socio Independiente</div>
-			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2020 a Agosto 2022</div>
+			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2022 a Agosto 2024</div>
 			<div class="h6"><span class="fw-bold">País:</span> <?php echo $countrieUser ?></div>
 		</div>
 
@@ -272,29 +275,29 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart6Detail = new Chart(viewChart6, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'KENKO SLEEP',
-			            data: [<?php echo $kenkoSleep_1_2020 ?>, <?php echo $kenkoSleep_1_2021 ?>, <?php echo $kenkoSleep_1_2022 ?>],
+			            data: [<?php echo $kenkoSleep_1_2022 ?>, <?php echo $kenkoSleep_1_2023 ?>, <?php echo $kenkoSleep_1_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'PIMAG',
-			            data: [<?php echo $pimag_1_2020 ?>, <?php echo $pimag_1_2021 ?>, <?php echo $pimag_1_2022 ?>],
+			            data: [<?php echo $pimag_1_2022 ?>, <?php echo $pimag_1_2023 ?>, <?php echo $pimag_1_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        },
 			        {
 			            label: 'KENKO AIR',
-			            data: [<?php echo $kenkoAir_1_2020 ?>, <?php echo $kenkoAir_1_2021 ?>, <?php echo $kenkoAir_1_2022 ?>],
+			            data: [<?php echo $kenkoAir_1_2022 ?>, <?php echo $kenkoAir_1_2023 ?>, <?php echo $kenkoAir_1_2024 ?>],
 			            backgroundColor: [ 'rgba(39, 112, 48, 1)', ],
 			            borderColor: [ 'rgba(39, 112, 48, 1)', ],
 			        },
 			        {
 			            label: 'OTROS',
-			            data: [<?php echo $otros_1_2020 ?>, <?php echo $otros_1_2021 ?>, <?php echo $otros_1_2022 ?>],
+			            data: [<?php echo $otros_1_2022 ?>, <?php echo $otros_1_2023 ?>, <?php echo $otros_1_2024 ?>],
 			            backgroundColor: [ 'rgba(146, 196, 100, 1)', ],
 			            borderColor: [ 'rgba(146, 196, 100, 1)', ],
 			        }
@@ -331,29 +334,29 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart66Detail = new Chart(viewChart66, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'KENKO SLEEP',
-			            data: [<?php echo $kenkoSleep_2_2020 ?>, <?php echo $kenkoSleep_2_2021 ?>, <?php echo $kenkoSleep_2_2022 ?>],
+			            data: [<?php echo $kenkoSleep_2_2022 ?>, <?php echo $kenkoSleep_2_2023 ?>, <?php echo $kenkoSleep_2_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'PIMAG',
-			            data: [<?php echo $pimag_2_2020 ?>, <?php echo $pimag_2_2021 ?>, <?php echo $pimag_2_2022 ?>],
+			            data: [<?php echo $pimag_2_2022 ?>, <?php echo $pimag_2_2023 ?>, <?php echo $pimag_2_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        },
 			        {
 			            label: 'KENKO AIR',
-			            data: [<?php echo $kenkoAir_2_2020 ?>, <?php echo $kenkoAir_2_2021 ?>, <?php echo $kenkoAir_2_2022 ?>],
+			            data: [<?php echo $kenkoAir_2_2022 ?>, <?php echo $kenkoAir_2_2023 ?>, <?php echo $kenkoAir_2_2024 ?>],
 			            backgroundColor: [ 'rgba(39, 112, 48, 1)', ],
 			            borderColor: [ 'rgba(39, 112, 48, 1)', ],
 			        },
 			        {
 			            label: 'OTROS',
-			            data: [<?php echo $otros_2_2020 ?>, <?php echo $otros_2_2021 ?>, <?php echo $otros_2_2022 ?>],
+			            data: [<?php echo $otros_2_2022 ?>, <?php echo $otros_2_2023 ?>, <?php echo $otros_2_2024 ?>],
 			            backgroundColor: [ 'rgba(146, 196, 100, 1)', ],
 			            borderColor: [ 'rgba(146, 196, 100, 1)', ],
 			        }
@@ -393,29 +396,29 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart666Detail = new Chart(viewChart666, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'KENKO SLEEP',
-			            data: [<?php echo $kenkoSleep_3_2020 ?>, <?php echo $kenkoSleep_3_2021 ?>, <?php echo $kenkoSleep_3_2022 ?>],
+			            data: [<?php echo $kenkoSleep_3_2022 ?>, <?php echo $kenkoSleep_3_2023 ?>, <?php echo $kenkoSleep_3_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'PIMAG',
-			            data: [<?php echo $pimag_3_2020 ?>, <?php echo $pimag_3_2021 ?>, <?php echo $pimag_3_2022 ?>],
+			            data: [<?php echo $pimag_3_2022 ?>, <?php echo $pimag_3_2023 ?>, <?php echo $pimag_3_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        },
 			        {
 			            label: 'KENKO AIR',
-			            data: [<?php echo $kenkoAir_3_2020 ?>, <?php echo $kenkoAir_3_2021 ?>, <?php echo $kenkoAir_3_2022 ?>],
+			            data: [<?php echo $kenkoAir_3_2022 ?>, <?php echo $kenkoAir_3_2023 ?>, <?php echo $kenkoAir_3_2024 ?>],
 			            backgroundColor: [ 'rgba(39, 112, 48, 1)', ],
 			            borderColor: [ 'rgba(39, 112, 48, 1)', ],
 			        },
 			        {
 			            label: 'OTROS',
-			            data: [<?php echo $otros_3_2020 ?>, <?php echo $otros_3_2021 ?>, <?php echo $otros_3_2022 ?>],
+			            data: [<?php echo $otros_3_2022 ?>, <?php echo $otros_3_2023 ?>, <?php echo $otros_3_2024 ?>],
 			            backgroundColor: [ 'rgba(146, 196, 100, 1)', ],
 			            borderColor: [ 'rgba(146, 196, 100, 1)', ],
 			        }
@@ -452,29 +455,29 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart6666Detail = new Chart(viewChart6666, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2020', '2021','2022'],
+		        labels: ['2022', '2023','2024'],
 		        datasets: [
 			        {
 			            label: 'KENKO SLEEP',
-			            data: [<?php echo $kenkoSleep_4_2020 ?>, <?php echo $kenkoSleep_4_2021 ?>, <?php echo $kenkoSleep_4_2022 ?>],
+			            data: [<?php echo $kenkoSleep_4_2022 ?>, <?php echo $kenkoSleep_4_2023 ?>, <?php echo $kenkoSleep_4_2024 ?>],
 			            backgroundColor: [ 'rgb(147, 169, 216, 1)', ],
 			            borderColor: [ 'rgba(147, 169, 216, 1)', ],
 			        },
 			        {
 			            label: 'PIMAG',
-			            data: [<?php echo $pimag_4_2020 ?>, <?php echo $pimag_4_2021 ?>, <?php echo $pimag_4_2022 ?>],
+			            data: [<?php echo $pimag_4_2022 ?>, <?php echo $pimag_4_2023 ?>, <?php echo $pimag_4_2024 ?>],
 			            backgroundColor: [ 'rgba(75, 155, 213, 1)', ],
 			            borderColor: [ 'rgba(75, 155, 213, 1)', ],
 			        },
 			        {
 			            label: 'KENKO AIR',
-			            data: [<?php echo $kenkoAir_4_2020 ?>, <?php echo $kenkoAir_4_2021 ?>, <?php echo $kenkoAir_4_2022 ?>],
+			            data: [<?php echo $kenkoAir_4_2022 ?>, <?php echo $kenkoAir_4_2023 ?>, <?php echo $kenkoAir_4_2024 ?>],
 			            backgroundColor: [ 'rgba(39, 112, 48, 1)', ],
 			            borderColor: [ 'rgba(39, 112, 48, 1)', ],
 			        },
 			        {
 			            label: 'OTROS',
-			            data: [<?php echo $otros_4_2020 ?>, <?php echo $otros_4_2021 ?>, <?php echo $otros_4_2022 ?>],
+			            data: [<?php echo $otros_4_2022 ?>, <?php echo $otros_4_2023 ?>, <?php echo $otros_4_2024 ?>],
 			            backgroundColor: [ 'rgba(146, 196, 100, 1)', ],
 			            borderColor: [ 'rgba(146, 196, 100, 1)', ],
 			        }

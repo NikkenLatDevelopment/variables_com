@@ -98,7 +98,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		$dataIncorporacionesIncorporaciones = array_merge($dataIncorporacionesIncorporaciones, array($price));
 		//Guardar incorporaciones
 
-		if($count < 21){
+		if($count < 24){
 			//Guardar porcentaje incorporaciones con actividad trimestral
 			$price = isset($dataIncorporaciones[$periodQuery]) ? $dataIncorporaciones[$periodQuery]["porcentajeIncorporacionesActividadTrimestral"] : 0;
 			$dataIncorporacionesPorcentajeIncorporadosActividadTrimestral = array_merge($dataIncorporacionesPorcentajeIncorporadosActividadTrimestral, array($price));

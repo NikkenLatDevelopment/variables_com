@@ -134,8 +134,9 @@ class variablesCom extends Controller{
             return redirect("https://micrositiosnikken.nikkenlatam.com/error403");
         }
         $code = request()->code;
+        $period = request()->period;
         session(['code' => $code]);
-        session(['period' => $code]);
+        session(['period' => $period]);
         return redirect('varcomlat24');
     }
 

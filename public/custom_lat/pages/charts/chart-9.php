@@ -16,16 +16,6 @@ $periodo = $_POST["periodo"];
 //Vars
 
 //Others
-$waterfallVtaProducto2013 = "0";
-$waterfallVtaRepuestos2013 = "0";
-$waterfallVtaIdeal2013 = "0";
-$waterfallCumplimiento2013 = "0";
-
-$waterfallVtaProducto2014 = "0";
-$waterfallVtaRepuestos2014 = "0";
-$waterfallVtaIdeal2014 = "0";
-$waterfallCumplimiento2014 = "0";
-
 $waterfallVtaProducto2015 = "0";
 $waterfallVtaRepuestos2015 = "0";
 $waterfallVtaIdeal2015 = "0";
@@ -66,15 +56,17 @@ $waterfallVtaRepuestos2022 = "0";
 $waterfallVtaIdeal2022 = "0";
 $waterfallCumplimiento2022 = "0";
 
-$piWaterVtaProducto2013 = "0";
-$piWaterVtaRepuestos2013 = "0";
-$piWaterVtaIdeal2013 = "0";
-$piWaterCumplimiento2013 = "0";
+$waterfallVtaProducto2023 = "0";
+$waterfallVtaRepuestos2023 = "0";
+$waterfallVtaIdeal2023 = "0";
+$waterfallCumplimiento2023 = "0";
 
-$piWaterVtaProducto2014 = "0";
-$piWaterVtaRepuestos2014 = "0";
-$piWaterVtaIdeal2014 = "0";
-$piWaterCumplimiento2014 = "0";
+$waterfallVtaProducto2024 = "0";
+$waterfallVtaRepuestos2024 = "0";
+$waterfallVtaIdeal2024 = "0";
+$waterfallCumplimiento2024 = "0";
+
+################################################################
 
 $piWaterVtaProducto2015 = "0";
 $piWaterVtaRepuestos2015 = "0";
@@ -116,15 +108,17 @@ $piWaterVtaRepuestos2022 = "0";
 $piWaterVtaIdeal2022 = "0";
 $piWaterCumplimiento2022 = "0";
 
-$kenkoAirVtaProducto2013 = "0";
-$kenkoAirVtaRepuestos2013 = "0";
-$kenkoAirVtaIdeal2013 = "0";
-$kenkoAirCumplimiento2013 = "0";
+$piWaterVtaProducto2023 = "0";
+$piWaterVtaRepuestos2023 = "0";
+$piWaterVtaIdeal2023 = "0";
+$piWaterCumplimiento2023 = "0";
 
-$kenkoAirVtaProducto2014 = "0";
-$kenkoAirVtaRepuestos2014 = "0";
-$kenkoAirVtaIdeal2014 = "0";
-$kenkoAirCumplimiento2014 = "0";
+$piWaterVtaProducto2024 = "0";
+$piWaterVtaRepuestos2024 = "0";
+$piWaterVtaIdeal2024 = "0";
+$piWaterCumplimiento2024 = "0";
+
+################################################################
 
 $kenkoAirVtaProducto2015 = "0";
 $kenkoAirVtaRepuestos2015 = "0";
@@ -166,15 +160,17 @@ $kenkoAirVtaRepuestos2022 = "0";
 $kenkoAirVtaIdeal2022 = "0";
 $kenkoAirCumplimiento2022 = "0";
 
-$optimizerVtaProducto2013 = "0";
-$optimizerVtaRepuestos2013 = "0";
-$optimizerVtaIdeal2013 = "0";
-$optimizerCumplimiento2013 = "0";
+$kenkoAirVtaProducto2023 = "0";
+$kenkoAirVtaRepuestos2023 = "0";
+$kenkoAirVtaIdeal2023 = "0";
+$kenkoAirCumplimiento2023 = "0";
 
-$optimizerVtaProducto2014 = "0";
-$optimizerVtaRepuestos2014 = "0";
-$optimizerVtaIdeal2014 = "0";
-$optimizerCumplimiento2014 = "0";
+$kenkoAirVtaProducto2024 = "0";
+$kenkoAirVtaRepuestos2024 = "0";
+$kenkoAirVtaIdeal2024 = "0";
+$kenkoAirCumplimiento2024 = "0";
+
+################################################################
 
 $optimizerVtaProducto2015 = "0";
 $optimizerVtaRepuestos2015 = "0";
@@ -216,15 +212,17 @@ $optimizerVtaRepuestos2022 = "0";
 $optimizerVtaIdeal2022 = "0";
 $optimizerCumplimiento2022 = "0";
 
-$duchaManualVtaProducto2013 = "0";
-$duchaManualVtaRepuestos2013 = "0";
-$duchaManualVtaIdeal2013 = "0";
-$duchaManualCumplimiento2013 = "0";
+$optimizerVtaProducto2023 = "0";
+$optimizerVtaRepuestos2023 = "0";
+$optimizerVtaIdeal2023 = "0";
+$optimizerCumplimiento2023 = "0";
 
-$duchaManualVtaProducto2014 = "0";
-$duchaManualVtaRepuestos2014 = "0";
-$duchaManualVtaIdeal2014 = "0";
-$duchaManualCumplimiento2014 = "0";
+$optimizerVtaProducto2024 = "0";
+$optimizerVtaRepuestos2024 = "0";
+$optimizerVtaIdeal2024 = "0";
+$optimizerCumplimiento2024 = "0";
+
+################################################################
 
 $duchaManualVtaProducto2015 = "0";
 $duchaManualVtaRepuestos2015 = "0";
@@ -266,15 +264,17 @@ $duchaManualVtaRepuestos2022 = "0";
 $duchaManualVtaIdeal2022 = "0";
 $duchaManualCumplimiento2022 = "0";
 
-$duchaParedVtaProducto2013 = "0";
-$duchaParedVtaRepuestos2013 = "0";
-$duchaParedVtaIdeal2013 = "0";
-$duchaParedCumplimiento2013 = "0";
+$duchaManualVtaProducto2023 = "0";
+$duchaManualVtaRepuestos2023 = "0";
+$duchaManualVtaIdeal2023 = "0";
+$duchaManualCumplimiento2023 = "0";
 
-$duchaParedVtaProducto2014 = "0";
-$duchaParedVtaRepuestos2014 = "0";
-$duchaParedVtaIdeal2014 = "0";
-$duchaParedCumplimiento2014 = "0";
+$duchaManualVtaProducto2024 = "0";
+$duchaManualVtaRepuestos2024 = "0";
+$duchaManualVtaIdeal2024 = "0";
+$duchaManualCumplimiento2024 = "0";
+
+################################################################
 
 $duchaParedVtaProducto2015 = "0";
 $duchaParedVtaRepuestos2015 = "0";
@@ -316,442 +316,463 @@ $duchaParedVtaRepuestos2022 = "0";
 $duchaParedVtaIdeal2022 = "0";
 $duchaParedCumplimiento2022 = "0";
 
-$sql = "EXEC [dbo].[grafica_cambio_ideal] '$codeUser'";
+$duchaParedVtaProducto2023 = "0";
+$duchaParedVtaRepuestos2023 = "0";
+$duchaParedVtaIdeal2023 = "0";
+$duchaParedCumplimiento2023 = "0";
+
+$duchaParedVtaProducto2024 = "0";
+$duchaParedVtaRepuestos2024 = "0";
+$duchaParedVtaIdeal2024 = "0";
+$duchaParedCumplimiento2024 = "0";
+
+$sql = "SELECT * FROM [SIP].[dbo].[sd_3_1_1] WHERE Codigo = $codeUser";
+
 $recordSet = sqlsrv_query($conn, $sql) or die( print_r( sqlsrv_errors(), true));
 while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
-	$product = trim($row_sap[0]);
+	$product = trim($row_sap[2]);
 	$period = trim($row_sap[1]);
 
-	$vtaProducto = trim($row_sap[2]) == "" ? 0 : $row_sap[2];
+	$vtaProducto = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
 	$vtaProducto = trim(str_replace(",", "", number_format($vtaProducto, 0, '.', '')));
 
-	$vtaRepuestos = trim($row_sap[3]) == "" ? 0 : $row_sap[3];
+	$vtaRepuestos = trim($row_sap[4]) == "" ? 0 : $row_sap[4];
 	$vtaRepuestos = trim(str_replace(",", "", number_format($vtaRepuestos, 0, '.', '')));
 
-	$vtaIdeal = trim($row_sap[4]) == "" ? 0 : $row_sap[4];
+	$vtaIdeal = trim($row_sap[6]) == "" ? 0 : $row_sap[6];
 	$vtaIdeal = trim(str_replace(",", "", number_format($vtaIdeal, 0, '.', '')));
 
 	$cumplimiento = trim($row_sap[5]) == "" ? 0 : $row_sap[5];
 	$cumplimiento = trim(str_replace(",", "", number_format($cumplimiento * 100, 1, '.', '')));
 
-	if($product == "Ducha Manual" && $period == "2013"){
-		$duchaManualVtaProducto2013 = $vtaProducto;
-		$duchaManualVtaRepuestos2013 = $vtaRepuestos;
-		$duchaManualVtaIdeal2013 = $vtaIdeal;
-		$duchaManualCumplimiento2013 = $cumplimiento;
-	}
-
-	if($product == "Ducha Manual" && $period == "2014"){
-		$duchaManualVtaProducto2014 = $vtaProducto;
-		$duchaManualVtaRepuestos2014 = $vtaRepuestos;
-		$duchaManualVtaIdeal2014 = $vtaIdeal;
-		$duchaManualCumplimiento2014 = $cumplimiento;
-	}
-
-	if($product == "Ducha Manual" && $period == "2015"){
+	if($product == "DUCHA MANUAL" && $period == "2015"){
 		$duchaManualVtaProducto2015 = $vtaProducto;
 		$duchaManualVtaRepuestos2015 = $vtaRepuestos;
 		$duchaManualVtaIdeal2015 = $vtaIdeal;
 		$duchaManualCumplimiento2015 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2016"){
+	if($product == "DUCHA MANUAL" && $period == "2016"){
 		$duchaManualVtaProducto2016 = $vtaProducto;
 		$duchaManualVtaRepuestos2016 = $vtaRepuestos;
 		$duchaManualVtaIdeal2016 = $vtaIdeal;
 		$duchaManualCumplimiento2016 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2017"){
+	if($product == "DUCHA MANUAL" && $period == "2017"){
 		$duchaManualVtaProducto2017 = $vtaProducto;
 		$duchaManualVtaRepuestos2017 = $vtaRepuestos;
 		$duchaManualVtaIdeal2017 = $vtaIdeal;
 		$duchaManualCumplimiento2017 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2018"){
+	if($product == "DUCHA MANUAL" && $period == "2018"){
 		$duchaManualVtaProducto2018 = $vtaProducto;
 		$duchaManualVtaRepuestos2018 = $vtaRepuestos;
 		$duchaManualVtaIdeal2018 = $vtaIdeal;
 		$duchaManualCumplimiento2018 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2019"){
+	if($product == "DUCHA MANUAL" && $period == "2019"){
 		$duchaManualVtaProducto2019 = $vtaProducto;
 		$duchaManualVtaRepuestos2019 = $vtaRepuestos;
 		$duchaManualVtaIdeal2019 = $vtaIdeal;
 		$duchaManualCumplimiento2019 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2020"){
+	if($product == "DUCHA MANUAL" && $period == "2020"){
 		$duchaManualVtaProducto2020 = $vtaProducto;
 		$duchaManualVtaRepuestos2020 = $vtaRepuestos;
 		$duchaManualVtaIdeal2020 = $vtaIdeal;
 		$duchaManualCumplimiento2020 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2021"){
+	if($product == "DUCHA MANUAL" && $period == "2021"){
 		$duchaManualVtaProducto2021 = $vtaProducto;
 		$duchaManualVtaRepuestos2021 = $vtaRepuestos;
 		$duchaManualVtaIdeal2021 = $vtaIdeal;
 		$duchaManualCumplimiento2021 = $cumplimiento;
 	}
 
-	if($product == "Ducha Manual" && $period == "2022"){
+	if($product == "DUCHA MANUAL" && $period == "2022"){
 		$duchaManualVtaProducto2022 = $vtaProducto;
 		$duchaManualVtaRepuestos2022 = $vtaRepuestos;
 		$duchaManualVtaIdeal2022 = $vtaIdeal;
 		$duchaManualCumplimiento2022 = $cumplimiento;
 	}
-
-	if($product == "Ducha Pared" && $period == "2013"){
-		$duchaParedVtaProducto2013 = $vtaProducto;
-		$duchaParedVtaRepuestos2013 = $vtaRepuestos;
-		$duchaParedVtaIdeal2013 = $vtaIdeal;
-		$duchaParedCumplimiento2013 = $cumplimiento;
+	
+	if($product == "DUCHA MANUAL" && $period == "2023"){
+		$duchaManualVtaProducto2023 = $vtaProducto;
+		$duchaManualVtaRepuestos2023 = $vtaRepuestos;
+		$duchaManualVtaIdeal2023 = $vtaIdeal;
+		$duchaManualCumplimiento2023 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2014"){
-		$duchaParedVtaProducto2014 = $vtaProducto;
-		$duchaParedVtaRepuestos2014 = $vtaRepuestos;
-		$duchaParedVtaIdeal2014 = $vtaIdeal;
-		$duchaParedCumplimiento2014 = $cumplimiento;
+	if($product == "DUCHA MANUAL" && $period == "2024"){
+		$duchaManualVtaProducto2024 = $vtaProducto;
+		$duchaManualVtaRepuestos2024 = $vtaRepuestos;
+		$duchaManualVtaIdeal2024 = $vtaIdeal;
+		$duchaManualCumplimiento2024 = $cumplimiento;
 	}
+	
+	################################################################
 
-	if($product == "Ducha Pared" && $period == "2015"){
+	if($product == "DUCHA PARED" && $period == "2015"){
 		$duchaParedVtaProducto2015 = $vtaProducto;
 		$duchaParedVtaRepuestos2015 = $vtaRepuestos;
 		$duchaParedVtaIdeal2015 = $vtaIdeal;
 		$duchaParedCumplimiento2015 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2016"){
+	if($product == "DUCHA PARED" && $period == "2016"){
 		$duchaParedVtaProducto2016 = $vtaProducto;
 		$duchaParedVtaRepuestos2016 = $vtaRepuestos;
 		$duchaParedVtaIdeal2016 = $vtaIdeal;
 		$duchaParedCumplimiento2016 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2017"){
+	if($product == "DUCHA PARED" && $period == "2017"){
 		$duchaParedVtaProducto2017 = $vtaProducto;
 		$duchaParedVtaRepuestos2017 = $vtaRepuestos;
 		$duchaParedVtaIdeal2017 = $vtaIdeal;
 		$duchaParedCumplimiento2017 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2018"){
+	if($product == "DUCHA PARED" && $period == "2018"){
 		$duchaParedVtaProducto2018 = $vtaProducto;
 		$duchaParedVtaRepuestos2018 = $vtaRepuestos;
 		$duchaParedVtaIdeal2018 = $vtaIdeal;
 		$duchaParedCumplimiento2018 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2019"){
+	if($product == "DUCHA PARED" && $period == "2019"){
 		$duchaParedVtaProducto2019 = $vtaProducto;
 		$duchaParedVtaRepuestos2019 = $vtaRepuestos;
 		$duchaParedVtaIdeal2019 = $vtaIdeal;
 		$duchaParedCumplimiento2019 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2020"){
+	if($product == "DUCHA PARED" && $period == "2020"){
 		$duchaParedVtaProducto2020 = $vtaProducto;
 		$duchaParedVtaRepuestos2020 = $vtaRepuestos;
 		$duchaParedVtaIdeal2020 = $vtaIdeal;
 		$duchaParedCumplimiento2020 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2021"){
+	if($product == "DUCHA PARED" && $period == "2021"){
 		$duchaParedVtaProducto2021 = $vtaProducto;
 		$duchaParedVtaRepuestos2021 = $vtaRepuestos;
 		$duchaParedVtaIdeal2021 = $vtaIdeal;
 		$duchaParedCumplimiento2021 = $cumplimiento;
 	}
 
-	if($product == "Ducha Pared" && $period == "2022"){
+	if($product == "DUCHA PARED" && $period == "2022"){
 		$duchaParedVtaProducto2022 = $vtaProducto;
 		$duchaParedVtaRepuestos2022 = $vtaRepuestos;
 		$duchaParedVtaIdeal2022 = $vtaIdeal;
 		$duchaParedCumplimiento2022 = $cumplimiento;
 	}
-
-	if($product == "Kenko Air Purifier" && $period == "2013"){
-		$kenkoAirVtaProducto2013 = $vtaProducto;
-		$kenkoAirVtaRepuestos2013 = $vtaRepuestos;
-		$kenkoAirVtaIdeal2013 = $vtaIdeal;
-		$kenkoAirCumplimiento2013 = $cumplimiento;
+	
+	if($product == "DUCHA PARED" && $period == "2023"){
+		$duchaParedVtaProducto2023 = $vtaProducto;
+		$duchaParedVtaRepuestos2023 = $vtaRepuestos;
+		$duchaParedVtaIdeal2023 = $vtaIdeal;
+		$duchaParedCumplimiento2023 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2014"){
-		$kenkoAirVtaProducto2014 = $vtaProducto;
-		$kenkoAirVtaRepuestos2014 = $vtaRepuestos;
-		$kenkoAirVtaIdeal2014 = $vtaIdeal;
-		$kenkoAirCumplimiento2014 = $cumplimiento;
+	if($product == "DUCHA PARED" && $period == "2024"){
+		$duchaParedVtaProducto2024 = $vtaProducto;
+		$duchaParedVtaRepuestos2024 = $vtaRepuestos;
+		$duchaParedVtaIdeal2024 = $vtaIdeal;
+		$duchaParedCumplimiento2024 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2015"){
+	################################################################
+
+	if($product == "KENKOAIR" && $period == "2015"){
 		$kenkoAirVtaProducto2015 = $vtaProducto;
 		$kenkoAirVtaRepuestos2015 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2015 = $vtaIdeal;
 		$kenkoAirCumplimiento2015 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2016"){
+	if($product == "KENKOAIR" && $period == "2016"){
 		$kenkoAirVtaProducto2016 = $vtaProducto;
 		$kenkoAirVtaRepuestos2016 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2016 = $vtaIdeal;
 		$kenkoAirCumplimiento2016 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2017"){
+	if($product == "KENKOAIR" && $period == "2017"){
 		$kenkoAirVtaProducto2017 = $vtaProducto;
 		$kenkoAirVtaRepuestos2017 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2017 = $vtaIdeal;
 		$kenkoAirCumplimiento2017 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2018"){
+	if($product == "KENKOAIR" && $period == "2018"){
 		$kenkoAirVtaProducto2018 = $vtaProducto;
 		$kenkoAirVtaRepuestos2018 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2018 = $vtaIdeal;
 		$kenkoAirCumplimiento2018 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2019"){
+	if($product == "KENKOAIR" && $period == "2019"){
 		$kenkoAirVtaProducto2019 = $vtaProducto;
 		$kenkoAirVtaRepuestos2019 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2019 = $vtaIdeal;
 		$kenkoAirCumplimiento2019 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2020"){
+	if($product == "KENKOAIR" && $period == "2020"){
 		$kenkoAirVtaProducto2020 = $vtaProducto;
 		$kenkoAirVtaRepuestos2020 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2020 = $vtaIdeal;
 		$kenkoAirCumplimiento2020 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2021"){
+	if($product == "KENKOAIR" && $period == "2021"){
 		$kenkoAirVtaProducto2021 = $vtaProducto;
 		$kenkoAirVtaRepuestos2021 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2021 = $vtaIdeal;
 		$kenkoAirCumplimiento2021 = $cumplimiento;
 	}
 
-	if($product == "Kenko Air Purifier" && $period == "2022"){
+	if($product == "KENKOAIR" && $period == "2022"){
 		$kenkoAirVtaProducto2022 = $vtaProducto;
 		$kenkoAirVtaRepuestos2022 = $vtaRepuestos;
 		$kenkoAirVtaIdeal2022 = $vtaIdeal;
 		$kenkoAirCumplimiento2022 = $cumplimiento;
 	}
-
-	if($product == "Pimag Optimizer" && $period == "2013"){
-		$optimizerVtaProducto2013 = $vtaProducto;
-		$optimizerVtaRepuestos2013 = $vtaRepuestos;
-		$optimizerVtaIdeal2013 = $vtaIdeal;
-		$optimizerCumplimiento2013 = $cumplimiento;
+	
+	if($product == "KENKOAIR" && $period == "2023"){
+		$kenkoAirVtaProducto2023 = $vtaProducto;
+		$kenkoAirVtaRepuestos2023 = $vtaRepuestos;
+		$kenkoAirVtaIdeal2023 = $vtaIdeal;
+		$kenkoAirCumplimiento2023 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2014"){
-		$optimizerVtaProducto2014 = $vtaProducto;
-		$optimizerVtaRepuestos2014 = $vtaRepuestos;
-		$optimizerVtaIdeal2014 = $vtaIdeal;
-		$optimizerCumplimiento2014 = $cumplimiento;
+	if($product == "KENKOAIR" && $period == "2024"){
+		$kenkoAirVtaProducto2024 = $vtaProducto;
+		$kenkoAirVtaRepuestos2024 = $vtaRepuestos;
+		$kenkoAirVtaIdeal2024 = $vtaIdeal;
+		$kenkoAirCumplimiento2024 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2015"){
+	################################################################
+
+	if($product == "OPTIMZER" && $period == "2015"){
 		$optimizerVtaProducto2015 = $vtaProducto;
 		$optimizerVtaRepuestos2015 = $vtaRepuestos;
 		$optimizerVtaIdeal2015 = $vtaIdeal;
 		$optimizerCumplimiento2015 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2016"){
+	if($product == "OPTIMZER" && $period == "2016"){
 		$optimizerVtaProducto2016 = $vtaProducto;
 		$optimizerVtaRepuestos2016 = $vtaRepuestos;
 		$optimizerVtaIdeal2016 = $vtaIdeal;
 		$optimizerCumplimiento2016 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2017"){
+	if($product == "OPTIMZER" && $period == "2017"){
 		$optimizerVtaProducto2017 = $vtaProducto;
 		$optimizerVtaRepuestos2017 = $vtaRepuestos;
 		$optimizerVtaIdeal2017 = $vtaIdeal;
 		$optimizerCumplimiento2017 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2018"){
+	if($product == "OPTIMZER" && $period == "2018"){
 		$optimizerVtaProducto2018 = $vtaProducto;
 		$optimizerVtaRepuestos2018 = $vtaRepuestos;
 		$optimizerVtaIdeal2018 = $vtaIdeal;
 		$optimizerCumplimiento2018 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2019"){
+	if($product == "OPTIMZER" && $period == "2019"){
 		$optimizerVtaProducto2019 = $vtaProducto;
 		$optimizerVtaRepuestos2019 = $vtaRepuestos;
 		$optimizerVtaIdeal2019 = $vtaIdeal;
 		$optimizerCumplimiento2019 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2020"){
+	if($product == "OPTIMZER" && $period == "2020"){
 		$optimizerVtaProducto2020 = $vtaProducto;
 		$optimizerVtaRepuestos2020 = $vtaRepuestos;
 		$optimizerVtaIdeal2020 = $vtaIdeal;
 		$optimizerCumplimiento2020 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2021"){
+	if($product == "OPTIMZER" && $period == "2021"){
 		$optimizerVtaProducto2021 = $vtaProducto;
 		$optimizerVtaRepuestos2021 = $vtaRepuestos;
 		$optimizerVtaIdeal2021 = $vtaIdeal;
 		$optimizerCumplimiento2021 = $cumplimiento;
 	}
 
-	if($product == "Pimag Optimizer" && $period == "2022"){
+	if($product == "OPTIMZER" && $period == "2022"){
 		$optimizerVtaProducto2022 = $vtaProducto;
 		$optimizerVtaRepuestos2022 = $vtaRepuestos;
 		$optimizerVtaIdeal2022 = $vtaIdeal;
 		$optimizerCumplimiento2022 = $cumplimiento;
 	}
-
-	if($product == "Pimag Pi Water" && $period == "2013"){
-		$piWaterVtaProducto2013 = $vtaProducto;
-		$piWaterVtaRepuestos2013 = $vtaRepuestos;
-		$piWaterVtaIdeal2013 = $vtaIdeal;
-		$piWaterCumplimiento2013 = $cumplimiento;
+	
+	if($product == "OPTIMZER" && $period == "2023"){
+		$optimizerVtaProducto2023 = $vtaProducto;
+		$optimizerVtaRepuestos2023 = $vtaRepuestos;
+		$optimizerVtaIdeal2023 = $vtaIdeal;
+		$optimizerCumplimiento2023 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2014"){
-		$piWaterVtaProducto2014 = $vtaProducto;
-		$piWaterVtaRepuestos2014 = $vtaRepuestos;
-		$piWaterVtaIdeal2014 = $vtaIdeal;
-		$piWaterCumplimiento2014 = $cumplimiento;
+	if($product == "OPTIMZER" && $period == "2024"){
+		$optimizerVtaProducto2024 = $vtaProducto;
+		$optimizerVtaRepuestos2024 = $vtaRepuestos;
+		$optimizerVtaIdeal2024 = $vtaIdeal;
+		$optimizerCumplimiento2024 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2015"){
+	################################################################
+
+	if($product == "PI WATER" && $period == "2015"){
 		$piWaterVtaProducto2015 = $vtaProducto;
 		$piWaterVtaRepuestos2015 = $vtaRepuestos;
 		$piWaterVtaIdeal2015 = $vtaIdeal;
 		$piWaterCumplimiento2015 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2016"){
+	if($product == "PI WATER" && $period == "2016"){
 		$piWaterVtaProducto2016 = $vtaProducto;
 		$piWaterVtaRepuestos2016 = $vtaRepuestos;
 		$piWaterVtaIdeal2016 = $vtaIdeal;
 		$piWaterCumplimiento2016 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2017"){
+	if($product == "PI WATER" && $period == "2017"){
 		$piWaterVtaProducto2017 = $vtaProducto;
 		$piWaterVtaRepuestos2017 = $vtaRepuestos;
 		$piWaterVtaIdeal2017 = $vtaIdeal;
 		$piWaterCumplimiento2017 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2018"){
+	if($product == "PI WATER" && $period == "2018"){
 		$piWaterVtaProducto2018 = $vtaProducto;
 		$piWaterVtaRepuestos2018 = $vtaRepuestos;
 		$piWaterVtaIdeal2018 = $vtaIdeal;
 		$piWaterCumplimiento2018 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2019"){
+	if($product == "PI WATER" && $period == "2019"){
 		$piWaterVtaProducto2019 = $vtaProducto;
 		$piWaterVtaRepuestos2019 = $vtaRepuestos;
 		$piWaterVtaIdeal2019 = $vtaIdeal;
 		$piWaterCumplimiento2019 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2020"){
+	if($product == "PI WATER" && $period == "2020"){
 		$piWaterVtaProducto2020 = $vtaProducto;
 		$piWaterVtaRepuestos2020 = $vtaRepuestos;
 		$piWaterVtaIdeal2020 = $vtaIdeal;
 		$piWaterCumplimiento2020 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2021"){
+	if($product == "PI WATER" && $period == "2021"){
 		$piWaterVtaProducto2021 = $vtaProducto;
 		$piWaterVtaRepuestos2021 = $vtaRepuestos;
 		$piWaterVtaIdeal2021 = $vtaIdeal;
 		$piWaterCumplimiento2021 = $cumplimiento;
 	}
 
-	if($product == "Pimag Pi Water" && $period == "2022"){
+	if($product == "PI WATER" && $period == "2022"){
 		$piWaterVtaProducto2022 = $vtaProducto;
 		$piWaterVtaRepuestos2022 = $vtaRepuestos;
 		$piWaterVtaIdeal2022 = $vtaIdeal;
 		$piWaterCumplimiento2022 = $cumplimiento;
 	}
-
-	if($product == "Pimag Waterfall" && $period == "2013"){
-		$waterfallVtaProducto2013 = $vtaProducto;
-		$waterfallVtaRepuestos2013 = $vtaRepuestos;
-		$waterfallVtaIdeal2013 = $vtaIdeal;
-		$waterfallCumplimiento2013 = $cumplimiento;
+	
+	if($product == "PI WATER" && $period == "2023"){
+		$piWaterVtaProducto2023 = $vtaProducto;
+		$piWaterVtaRepuestos2023 = $vtaRepuestos;
+		$piWaterVtaIdeal2023 = $vtaIdeal;
+		$piWaterCumplimiento2023 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2014"){
-		$waterfallVtaProducto2014 = $vtaProducto;
-		$waterfallVtaRepuestos2014 = $vtaRepuestos;
-		$waterfallVtaIdeal2014 = $vtaIdeal;
-		$waterfallCumplimiento2014 = $cumplimiento;
+	if($product == "PI WATER" && $period == "2024"){
+		$piWaterVtaProducto2024 = $vtaProducto;
+		$piWaterVtaRepuestos2024 = $vtaRepuestos;
+		$piWaterVtaIdeal2024 = $vtaIdeal;
+		$piWaterCumplimiento2024 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2015"){
+	################################################################
+
+	if($product == "WATERFALL" && $period == "2015"){
 		$waterfallVtaProducto2015 = $vtaProducto;
 		$waterfallVtaRepuestos2015 = $vtaRepuestos;
 		$waterfallVtaIdeal2015 = $vtaIdeal;
 		$waterfallCumplimiento2015 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2016"){
+	if($product == "WATERFALL" && $period == "2016"){
 		$waterfallVtaProducto2016 = $vtaProducto;
 		$waterfallVtaRepuestos2016 = $vtaRepuestos;
 		$waterfallVtaIdeal2016 = $vtaIdeal;
 		$waterfallCumplimiento2016 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2017"){
+	if($product == "WATERFALL" && $period == "2017"){
 		$waterfallVtaProducto2017 = $vtaProducto;
 		$waterfallVtaRepuestos2017 = $vtaRepuestos;
 		$waterfallVtaIdeal2017 = $vtaIdeal;
 		$waterfallCumplimiento2017 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2018"){
+	if($product == "WATERFALL" && $period == "2018"){
 		$waterfallVtaProducto2018 = $vtaProducto;
 		$waterfallVtaRepuestos2018 = $vtaRepuestos;
 		$waterfallVtaIdeal2018 = $vtaIdeal;
 		$waterfallCumplimiento2018 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2019"){
+	if($product == "WATERFALL" && $period == "2019"){
 		$waterfallVtaProducto2019 = $vtaProducto;
 		$waterfallVtaRepuestos2019 = $vtaRepuestos;
 		$waterfallVtaIdeal2019 = $vtaIdeal;
 		$waterfallCumplimiento2019 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2020"){
+	if($product == "WATERFALL" && $period == "2020"){
 		$waterfallVtaProducto2020 = $vtaProducto;
 		$waterfallVtaRepuestos2020 = $vtaRepuestos;
 		$waterfallVtaIdeal2020 = $vtaIdeal;
 		$waterfallCumplimiento2020 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2021"){
+	if($product == "WATERFALL" && $period == "2021"){
 		$waterfallVtaProducto2021 = $vtaProducto;
 		$waterfallVtaRepuestos2021 = $vtaRepuestos;
 		$waterfallVtaIdeal2021 = $vtaIdeal;
 		$waterfallCumplimiento2021 = $cumplimiento;
 	}
 
-	if($product == "Pimag Waterfall" && $period == "2022"){
+	if($product == "WATERFALL" && $period == "2022"){
 		$waterfallVtaProducto2022 = $vtaProducto;
 		$waterfallVtaRepuestos2022 = $vtaRepuestos;
 		$waterfallVtaIdeal2022 = $vtaIdeal;
 		$waterfallCumplimiento2022 = $cumplimiento;
+	}
+	
+	if($product == "WATERFALL" && $period == "2023"){
+		$waterfallVtaProducto2023 = $vtaProducto;
+		$waterfallVtaRepuestos2023 = $vtaRepuestos;
+		$waterfallVtaIdeal2023 = $vtaIdeal;
+		$waterfallCumplimiento2023 = $cumplimiento;
+	}
+
+	if($product == "WATERFALL" && $period == "2024"){
+		$waterfallVtaProducto2024 = $vtaProducto;
+		$waterfallVtaRepuestos2024 = $vtaRepuestos;
+		$waterfallVtaIdeal2024 = $vtaIdeal;
+		$waterfallCumplimiento2024 = $cumplimiento;
 	}
 }
 
@@ -765,7 +786,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Informe Variables Comerciales por Socio Independiente</div>
-			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2013 a Agosto 2022</div>
+			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2015 a Agosto 2024</div>
 			<div class="h6"><span class="fw-bold">País:</span> <?php echo $countrieUser ?></div>
 		</div>
 
@@ -806,7 +827,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Informe Variables Comerciales por Socio Independiente</div>
-			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2013 a Agosto 2022</div>
+			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2015 a Agosto 2024</div>
 			<div class="h6"><span class="fw-bold">País:</span> <?php echo $countrieUser ?></div>
 		</div>
 
@@ -847,7 +868,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Informe Variables Comerciales por Socio Independiente</div>
-			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2013 a Agosto 2022</div>
+			<div class="h6 mb-0"><span class="fw-bold">Periodo de Medición:</span> Enero 2015 a Agosto 2024</div>
 			<div class="h6"><span class="fw-bold">País:</span> <?php echo $countrieUser ?></div>
 		</div>
 
@@ -890,11 +911,11 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart8Detail = new Chart(viewChart8, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+		        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
 		        datasets: [
 			        {
 			            label: 'Cumplimiento',
-			            data: [<?php echo $waterfallCumplimiento2013 ?>, <?php echo $waterfallCumplimiento2014 ?>, <?php echo $waterfallCumplimiento2015 ?>, <?php echo $waterfallCumplimiento2016 ?>, <?php echo $waterfallCumplimiento2017 ?>, <?php echo $waterfallCumplimiento2018 ?>, <?php echo $waterfallCumplimiento2019 ?>, <?php echo $waterfallCumplimiento2020 ?>, <?php echo $waterfallCumplimiento2021 ?>, <?php echo $waterfallCumplimiento2022 ?>],
+			            data: [<?php echo $waterfallCumplimiento2015 ?>, <?php echo $waterfallCumplimiento2016 ?>, <?php echo $waterfallCumplimiento2017 ?>, <?php echo $waterfallCumplimiento2018 ?>, <?php echo $waterfallCumplimiento2019 ?>, <?php echo $waterfallCumplimiento2020 ?>, <?php echo $waterfallCumplimiento2021 ?>, <?php echo $waterfallCumplimiento2022 ?>, <?php echo $waterfallCumplimiento2023 ?>, <?php echo $waterfallCumplimiento2024 ?>],
 			            backgroundColor: [ 'rgba(27, 62, 115, 1)', ],
 			            borderColor: [ 'rgba(27, 62, 115, 1)', ],
 			            yAxisID: 'y1',
@@ -909,7 +930,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_producto',
-			            data: [<?php echo $waterfallVtaProducto2013 ?>, <?php echo $waterfallVtaProducto2014 ?>, <?php echo $waterfallVtaProducto2015 ?>, <?php echo $waterfallVtaProducto2016 ?>, <?php echo $waterfallVtaProducto2017 ?>, <?php echo $waterfallVtaProducto2018 ?>, <?php echo $waterfallVtaProducto2019 ?>, <?php echo $waterfallVtaProducto2020 ?>, <?php echo $waterfallVtaProducto2021 ?>, <?php echo $waterfallVtaProducto2022 ?>],
+			            data: [<?php echo $waterfallVtaProducto2015 ?>, <?php echo $waterfallVtaProducto2016 ?>, <?php echo $waterfallVtaProducto2017 ?>, <?php echo $waterfallVtaProducto2018 ?>, <?php echo $waterfallVtaProducto2019 ?>, <?php echo $waterfallVtaProducto2020 ?>, <?php echo $waterfallVtaProducto2021 ?>, <?php echo $waterfallVtaProducto2022 ?>, <?php echo $waterfallVtaProducto2023 ?>, <?php echo $waterfallVtaProducto2024 ?>],
 			            backgroundColor: [ 'rgba(235, 125, 60, 1)', ],
 			            borderColor: [ 'rgba(235, 125, 60, 1)', ],
 			            yAxisID: 'y',
@@ -920,7 +941,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_repuestos',
-			            data: [<?php echo $waterfallVtaRepuestos2013 ?>, <?php echo $waterfallVtaRepuestos2014 ?>, <?php echo $waterfallVtaRepuestos2015 ?>, <?php echo $waterfallVtaRepuestos2016 ?>, <?php echo $waterfallVtaRepuestos2017 ?>, <?php echo $waterfallVtaRepuestos2018 ?>, <?php echo $waterfallVtaRepuestos2019 ?>, <?php echo $waterfallVtaRepuestos2020 ?>, <?php echo $waterfallVtaRepuestos2021 ?>, <?php echo $waterfallVtaRepuestos2022 ?>],
+			            data: [<?php echo $waterfallVtaRepuestos2015 ?>, <?php echo $waterfallVtaRepuestos2016 ?>, <?php echo $waterfallVtaRepuestos2017 ?>, <?php echo $waterfallVtaRepuestos2018 ?>, <?php echo $waterfallVtaRepuestos2019 ?>, <?php echo $waterfallVtaRepuestos2020 ?>, <?php echo $waterfallVtaRepuestos2021 ?>, <?php echo $waterfallVtaRepuestos2022 ?>, <?php echo $waterfallVtaRepuestos2023 ?>, <?php echo $waterfallVtaRepuestos2024 ?>],
 			            backgroundColor: [ 'rgba(165, 165, 165, 1)', ],
 			            borderColor: [ 'rgba(165, 165, 165, 1)', ],
 			            yAxisID: 'y',
@@ -931,7 +952,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_ideal',
-			            data: [<?php echo $waterfallVtaIdeal2013 ?>, <?php echo $waterfallVtaIdeal2014 ?>, <?php echo $waterfallVtaIdeal2015 ?>, <?php echo $waterfallVtaIdeal2016 ?>, <?php echo $waterfallVtaIdeal2017 ?>, <?php echo $waterfallVtaIdeal2018 ?>, <?php echo $waterfallVtaIdeal2019 ?>, <?php echo $waterfallVtaIdeal2020 ?>, <?php echo $waterfallVtaIdeal2021 ?>, <?php echo $waterfallVtaIdeal2022 ?>],
+			            data: [<?php echo $waterfallVtaIdeal2015 ?>, <?php echo $waterfallVtaIdeal2016 ?>, <?php echo $waterfallVtaIdeal2017 ?>, <?php echo $waterfallVtaIdeal2018 ?>, <?php echo $waterfallVtaIdeal2019 ?>, <?php echo $waterfallVtaIdeal2020 ?>, <?php echo $waterfallVtaIdeal2021 ?>, <?php echo $waterfallVtaIdeal2022 ?>, <?php echo $waterfallVtaIdeal2023 ?>, <?php echo $waterfallVtaIdeal2024 ?>],
 			            backgroundColor: [ 'rgba(253, 191, 45, 1)', ],
 			            borderColor: [ 'rgba(253, 191, 45, 1)', ],
 			            yAxisID: 'y',
@@ -972,11 +993,11 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart88Detail = new Chart(viewChart88, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+		        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
 		        datasets: [
 			        {
 			            label: 'Cumplimiento',
-			            data: [<?php echo $piWaterCumplimiento2013 ?>, <?php echo $piWaterCumplimiento2014 ?>, <?php echo $piWaterCumplimiento2015 ?>, <?php echo $piWaterCumplimiento2016 ?>, <?php echo $piWaterCumplimiento2017 ?>, <?php echo $piWaterCumplimiento2018 ?>, <?php echo $piWaterCumplimiento2019 ?>, <?php echo $piWaterCumplimiento2020 ?>, <?php echo $piWaterCumplimiento2021 ?>, <?php echo $piWaterCumplimiento2022 ?>],
+			            data: [<?php echo $piWaterCumplimiento2015 ?>, <?php echo $piWaterCumplimiento2016 ?>, <?php echo $piWaterCumplimiento2017 ?>, <?php echo $piWaterCumplimiento2018 ?>, <?php echo $piWaterCumplimiento2019 ?>, <?php echo $piWaterCumplimiento2020 ?>, <?php echo $piWaterCumplimiento2021 ?>, <?php echo $piWaterCumplimiento2022 ?>, <?php echo $piWaterCumplimiento2023 ?>, <?php echo $piWaterCumplimiento2024 ?>],
 			            backgroundColor: [ 'rgba(27, 62, 115, 1)', ],
 			            borderColor: [ 'rgba(27, 62, 115, 1)', ],
 			            yAxisID: 'y1',
@@ -991,7 +1012,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_producto',
-			            data: [<?php echo $piWaterVtaProducto2013 ?>, <?php echo $piWaterVtaProducto2014 ?>, <?php echo $piWaterVtaProducto2015 ?>, <?php echo $piWaterVtaProducto2016 ?>, <?php echo $piWaterVtaProducto2017 ?>, <?php echo $piWaterVtaProducto2018 ?>, <?php echo $piWaterVtaProducto2019 ?>, <?php echo $piWaterVtaProducto2020 ?>, <?php echo $piWaterVtaProducto2021 ?>, <?php echo $piWaterVtaProducto2022 ?>],
+			            data: [<?php echo $piWaterVtaProducto2015 ?>, <?php echo $piWaterVtaProducto2016 ?>, <?php echo $piWaterVtaProducto2017 ?>, <?php echo $piWaterVtaProducto2018 ?>, <?php echo $piWaterVtaProducto2019 ?>, <?php echo $piWaterVtaProducto2020 ?>, <?php echo $piWaterVtaProducto2021 ?>, <?php echo $piWaterVtaProducto2022 ?>, <?php echo $piWaterVtaProducto2023 ?>, <?php echo $piWaterVtaProducto2024 ?>],
 			            backgroundColor: [ 'rgba(235, 125, 60, 1)', ],
 			            borderColor: [ 'rgba(235, 125, 60, 1)', ],
 			            yAxisID: 'y',
@@ -1002,7 +1023,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_repuestos',
-			            data: [<?php echo $piWaterVtaRepuestos2013 ?>, <?php echo $piWaterVtaRepuestos2014 ?>, <?php echo $piWaterVtaRepuestos2015 ?>, <?php echo $piWaterVtaRepuestos2016 ?>, <?php echo $piWaterVtaRepuestos2017 ?>, <?php echo $piWaterVtaRepuestos2018 ?>, <?php echo $piWaterVtaRepuestos2019 ?>, <?php echo $piWaterVtaRepuestos2020 ?>, <?php echo $piWaterVtaRepuestos2021 ?>, <?php echo $piWaterVtaRepuestos2022 ?>],
+			            data: [<?php echo $piWaterVtaRepuestos2015 ?>, <?php echo $piWaterVtaRepuestos2016 ?>, <?php echo $piWaterVtaRepuestos2017 ?>, <?php echo $piWaterVtaRepuestos2018 ?>, <?php echo $piWaterVtaRepuestos2019 ?>, <?php echo $piWaterVtaRepuestos2020 ?>, <?php echo $piWaterVtaRepuestos2021 ?>, <?php echo $piWaterVtaRepuestos2022 ?>, <?php echo $piWaterVtaRepuestos2023 ?>, <?php echo $piWaterVtaRepuestos2024 ?>],
 			            backgroundColor: [ 'rgba(165, 165, 165, 1)', ],
 			            borderColor: [ 'rgba(165, 165, 165, 1)', ],
 			            yAxisID: 'y',
@@ -1013,7 +1034,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_ideal',
-			            data: [<?php echo $piWaterVtaIdeal2013 ?>, <?php echo $piWaterVtaIdeal2014 ?>, <?php echo $piWaterVtaIdeal2015 ?>, <?php echo $piWaterVtaIdeal2016 ?>, <?php echo $piWaterVtaIdeal2017 ?>, <?php echo $piWaterVtaIdeal2018 ?>, <?php echo $piWaterVtaIdeal2019 ?>, <?php echo $piWaterVtaIdeal2020 ?>, <?php echo $piWaterVtaIdeal2021 ?>, <?php echo $piWaterVtaIdeal2022 ?>],
+			            data: [<?php echo $piWaterVtaIdeal2015 ?>, <?php echo $piWaterVtaIdeal2016 ?>, <?php echo $piWaterVtaIdeal2017 ?>, <?php echo $piWaterVtaIdeal2018 ?>, <?php echo $piWaterVtaIdeal2019 ?>, <?php echo $piWaterVtaIdeal2020 ?>, <?php echo $piWaterVtaIdeal2021 ?>, <?php echo $piWaterVtaIdeal2022 ?>, <?php echo $piWaterVtaIdeal2023 ?>, <?php echo $piWaterVtaIdeal2024 ?>],
 			            backgroundColor: [ 'rgba(253, 191, 45, 1)', ],
 			            borderColor: [ 'rgba(253, 191, 45, 1)', ],
 			            yAxisID: 'y',
@@ -1054,11 +1075,11 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart888Detail = new Chart(viewChart888, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+		        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
 		        datasets: [
 			        {
 			            label: 'Cumplimiento',
-			            data: [<?php echo $kenkoAirCumplimiento2013 ?>, <?php echo $kenkoAirCumplimiento2014 ?>, <?php echo $kenkoAirCumplimiento2015 ?>, <?php echo $kenkoAirCumplimiento2016 ?>, <?php echo $kenkoAirCumplimiento2017 ?>, <?php echo $kenkoAirCumplimiento2018 ?>, <?php echo $kenkoAirCumplimiento2019 ?>, <?php echo $kenkoAirCumplimiento2020 ?>, <?php echo $kenkoAirCumplimiento2021 ?>, <?php echo $kenkoAirCumplimiento2022 ?>],
+			            data: [<?php echo $kenkoAirCumplimiento2015 ?>, <?php echo $kenkoAirCumplimiento2016 ?>, <?php echo $kenkoAirCumplimiento2017 ?>, <?php echo $kenkoAirCumplimiento2018 ?>, <?php echo $kenkoAirCumplimiento2019 ?>, <?php echo $kenkoAirCumplimiento2020 ?>, <?php echo $kenkoAirCumplimiento2021 ?>, <?php echo $kenkoAirCumplimiento2022 ?>, <?php echo $kenkoAirCumplimiento2023 ?>, <?php echo $kenkoAirCumplimiento2024 ?>],
 			            backgroundColor: [ 'rgba(27, 62, 115, 1)', ],
 			            borderColor: [ 'rgba(27, 62, 115, 1)', ],
 			            yAxisID: 'y1',
@@ -1073,7 +1094,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_producto',
-			            data: [<?php echo $kenkoAirVtaProducto2013 ?>, <?php echo $kenkoAirVtaProducto2014 ?>, <?php echo $kenkoAirVtaProducto2015 ?>, <?php echo $kenkoAirVtaProducto2016 ?>, <?php echo $kenkoAirVtaProducto2017 ?>, <?php echo $kenkoAirVtaProducto2018 ?>, <?php echo $kenkoAirVtaProducto2019 ?>, <?php echo $kenkoAirVtaProducto2020 ?>, <?php echo $kenkoAirVtaProducto2021 ?>, <?php echo $kenkoAirVtaProducto2022 ?>],
+			            data: [<?php echo $kenkoAirVtaProducto2015 ?>, <?php echo $kenkoAirVtaProducto2016 ?>, <?php echo $kenkoAirVtaProducto2017 ?>, <?php echo $kenkoAirVtaProducto2018 ?>, <?php echo $kenkoAirVtaProducto2019 ?>, <?php echo $kenkoAirVtaProducto2020 ?>, <?php echo $kenkoAirVtaProducto2021 ?>, <?php echo $kenkoAirVtaProducto2022 ?>, <?php echo $kenkoAirVtaProducto2023 ?>, <?php echo $kenkoAirVtaProducto2024 ?>],
 			            backgroundColor: [ 'rgba(235, 125, 60, 1)', ],
 			            borderColor: [ 'rgba(235, 125, 60, 1)', ],
 			            yAxisID: 'y',
@@ -1084,7 +1105,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_repuestos',
-			            data: [<?php echo $kenkoAirVtaRepuestos2013 ?>, <?php echo $kenkoAirVtaRepuestos2014 ?>, <?php echo $kenkoAirVtaRepuestos2015 ?>, <?php echo $kenkoAirVtaRepuestos2016 ?>, <?php echo $kenkoAirVtaRepuestos2017 ?>, <?php echo $kenkoAirVtaRepuestos2018 ?>, <?php echo $kenkoAirVtaRepuestos2019 ?>, <?php echo $kenkoAirVtaRepuestos2020 ?>, <?php echo $kenkoAirVtaRepuestos2021 ?>, <?php echo $kenkoAirVtaRepuestos2022 ?>],
+			            data: [<?php echo $kenkoAirVtaRepuestos2015 ?>, <?php echo $kenkoAirVtaRepuestos2016 ?>, <?php echo $kenkoAirVtaRepuestos2017 ?>, <?php echo $kenkoAirVtaRepuestos2018 ?>, <?php echo $kenkoAirVtaRepuestos2019 ?>, <?php echo $kenkoAirVtaRepuestos2020 ?>, <?php echo $kenkoAirVtaRepuestos2021 ?>, <?php echo $kenkoAirVtaRepuestos2022 ?>, <?php echo $kenkoAirVtaRepuestos2023 ?>, <?php echo $kenkoAirVtaRepuestos2024 ?>],
 			            backgroundColor: [ 'rgba(165, 165, 165, 1)', ],
 			            borderColor: [ 'rgba(165, 165, 165, 1)', ],
 			            yAxisID: 'y',
@@ -1095,7 +1116,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_ideal',
-			            data: [<?php echo $kenkoAirVtaIdeal2013 ?>, <?php echo $kenkoAirVtaIdeal2014 ?>, <?php echo $kenkoAirVtaIdeal2015 ?>, <?php echo $kenkoAirVtaIdeal2016 ?>, <?php echo $kenkoAirVtaIdeal2017 ?>, <?php echo $kenkoAirVtaIdeal2018 ?>, <?php echo $kenkoAirVtaIdeal2019 ?>, <?php echo $kenkoAirVtaIdeal2020 ?>, <?php echo $kenkoAirVtaIdeal2021 ?>, <?php echo $kenkoAirVtaIdeal2022 ?>],
+			            data: [<?php echo $kenkoAirVtaIdeal2015 ?>, <?php echo $kenkoAirVtaIdeal2016 ?>, <?php echo $kenkoAirVtaIdeal2017 ?>, <?php echo $kenkoAirVtaIdeal2018 ?>, <?php echo $kenkoAirVtaIdeal2019 ?>, <?php echo $kenkoAirVtaIdeal2020 ?>, <?php echo $kenkoAirVtaIdeal2021 ?>, <?php echo $kenkoAirVtaIdeal2022 ?>, <?php echo $kenkoAirVtaIdeal2023 ?>, <?php echo $kenkoAirVtaIdeal2024 ?>],
 			            backgroundColor: [ 'rgba(253, 191, 45, 1)', ],
 			            borderColor: [ 'rgba(253, 191, 45, 1)', ],
 			            yAxisID: 'y',
@@ -1136,11 +1157,11 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart8888Detail = new Chart(viewChart8888, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+		        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
 		        datasets: [
 			        {
 			            label: 'Cumplimiento',
-			            data: [<?php echo $optimizerCumplimiento2013 ?>, <?php echo $optimizerCumplimiento2014 ?>, <?php echo $optimizerCumplimiento2015 ?>, <?php echo $optimizerCumplimiento2016 ?>, <?php echo $optimizerCumplimiento2017 ?>, <?php echo $optimizerCumplimiento2018 ?>, <?php echo $optimizerCumplimiento2019 ?>, <?php echo $optimizerCumplimiento2020 ?>, <?php echo $optimizerCumplimiento2021 ?>, <?php echo $optimizerCumplimiento2022 ?>],
+			            data: [<?php echo $optimizerCumplimiento2015 ?>, <?php echo $optimizerCumplimiento2016 ?>, <?php echo $optimizerCumplimiento2017 ?>, <?php echo $optimizerCumplimiento2018 ?>, <?php echo $optimizerCumplimiento2019 ?>, <?php echo $optimizerCumplimiento2020 ?>, <?php echo $optimizerCumplimiento2021 ?>, <?php echo $optimizerCumplimiento2022 ?>, <?php echo $optimizerCumplimiento2023 ?>, <?php echo $optimizerCumplimiento2024 ?>],
 			            backgroundColor: [ 'rgba(27, 62, 115, 1)', ],
 			            borderColor: [ 'rgba(27, 62, 115, 1)', ],
 			            yAxisID: 'y1',
@@ -1155,7 +1176,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_producto',
-			            data: [<?php echo $optimizerVtaProducto2013 ?>, <?php echo $optimizerVtaProducto2014 ?>, <?php echo $optimizerVtaProducto2015 ?>, <?php echo $optimizerVtaProducto2016 ?>, <?php echo $optimizerVtaProducto2017 ?>, <?php echo $optimizerVtaProducto2018 ?>, <?php echo $optimizerVtaProducto2019 ?>, <?php echo $optimizerVtaProducto2020 ?>, <?php echo $optimizerVtaProducto2021 ?>, <?php echo $optimizerVtaProducto2022 ?>],
+			            data: [<?php echo $optimizerVtaProducto2015 ?>, <?php echo $optimizerVtaProducto2016 ?>, <?php echo $optimizerVtaProducto2017 ?>, <?php echo $optimizerVtaProducto2018 ?>, <?php echo $optimizerVtaProducto2019 ?>, <?php echo $optimizerVtaProducto2020 ?>, <?php echo $optimizerVtaProducto2021 ?>, <?php echo $optimizerVtaProducto2022 ?>, <?php echo $optimizerVtaProducto2023 ?>, <?php echo $optimizerVtaProducto2024 ?>],
 			            backgroundColor: [ 'rgba(235, 125, 60, 1)', ],
 			            borderColor: [ 'rgba(235, 125, 60, 1)', ],
 			            yAxisID: 'y',
@@ -1166,7 +1187,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_repuestos',
-			            data: [<?php echo $optimizerVtaRepuestos2013 ?>, <?php echo $optimizerVtaRepuestos2014 ?>, <?php echo $optimizerVtaRepuestos2015 ?>, <?php echo $optimizerVtaRepuestos2016 ?>, <?php echo $optimizerVtaRepuestos2017 ?>, <?php echo $optimizerVtaRepuestos2018 ?>, <?php echo $optimizerVtaRepuestos2019 ?>, <?php echo $optimizerVtaRepuestos2020 ?>, <?php echo $optimizerVtaRepuestos2021 ?>, <?php echo $optimizerVtaRepuestos2022 ?>],
+			            data: [<?php echo $optimizerVtaRepuestos2015 ?>, <?php echo $optimizerVtaRepuestos2016 ?>, <?php echo $optimizerVtaRepuestos2017 ?>, <?php echo $optimizerVtaRepuestos2018 ?>, <?php echo $optimizerVtaRepuestos2019 ?>, <?php echo $optimizerVtaRepuestos2020 ?>, <?php echo $optimizerVtaRepuestos2021 ?>, <?php echo $optimizerVtaRepuestos2022 ?>, <?php echo $optimizerVtaRepuestos2023 ?>, <?php echo $optimizerVtaRepuestos2024 ?>],
 			            backgroundColor: [ 'rgba(165, 165, 165, 1)', ],
 			            borderColor: [ 'rgba(165, 165, 165, 1)', ],
 			            yAxisID: 'y',
@@ -1177,7 +1198,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_ideal',
-			            data: [<?php echo $optimizerVtaIdeal2013 ?>, <?php echo $optimizerVtaIdeal2014 ?>, <?php echo $optimizerVtaIdeal2015 ?>, <?php echo $optimizerVtaIdeal2016 ?>, <?php echo $optimizerVtaIdeal2017 ?>, <?php echo $optimizerVtaIdeal2018 ?>, <?php echo $optimizerVtaIdeal2019 ?>, <?php echo $optimizerVtaIdeal2020 ?>, <?php echo $optimizerVtaIdeal2021 ?>, <?php echo $optimizerVtaIdeal2022 ?>],
+			            data: [<?php echo $optimizerVtaIdeal2015 ?>, <?php echo $optimizerVtaIdeal2016 ?>, <?php echo $optimizerVtaIdeal2017 ?>, <?php echo $optimizerVtaIdeal2018 ?>, <?php echo $optimizerVtaIdeal2019 ?>, <?php echo $optimizerVtaIdeal2020 ?>, <?php echo $optimizerVtaIdeal2021 ?>, <?php echo $optimizerVtaIdeal2022 ?>, <?php echo $optimizerVtaIdeal2023 ?>, <?php echo $optimizerVtaIdeal2024 ?>],
 			            backgroundColor: [ 'rgba(253, 191, 45, 1)', ],
 			            borderColor: [ 'rgba(253, 191, 45, 1)', ],
 			            yAxisID: 'y',
@@ -1218,11 +1239,11 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart88888Detail = new Chart(viewChart88888, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+		        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
 		        datasets: [
 			        {
 			            label: 'Cumplimiento',
-			            data: [<?php echo $duchaManualCumplimiento2013 ?>, <?php echo $duchaManualCumplimiento2014 ?>, <?php echo $duchaManualCumplimiento2015 ?>, <?php echo $duchaManualCumplimiento2016 ?>, <?php echo $duchaManualCumplimiento2017 ?>, <?php echo $duchaManualCumplimiento2018 ?>, <?php echo $duchaManualCumplimiento2019 ?>, <?php echo $duchaManualCumplimiento2020 ?>, <?php echo $duchaManualCumplimiento2021 ?>, <?php echo $duchaManualCumplimiento2022 ?>],
+			            data: [<?php echo $duchaManualCumplimiento2015 ?>, <?php echo $duchaManualCumplimiento2016 ?>, <?php echo $duchaManualCumplimiento2017 ?>, <?php echo $duchaManualCumplimiento2018 ?>, <?php echo $duchaManualCumplimiento2019 ?>, <?php echo $duchaManualCumplimiento2020 ?>, <?php echo $duchaManualCumplimiento2021 ?>, <?php echo $duchaManualCumplimiento2022 ?>, <?php echo $duchaManualCumplimiento2023 ?>, <?php echo $duchaManualCumplimiento2024 ?>],
 			            backgroundColor: [ 'rgba(27, 62, 115, 1)', ],
 			            borderColor: [ 'rgba(27, 62, 115, 1)', ],
 			            yAxisID: 'y1',
@@ -1237,7 +1258,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_producto',
-			            data: [<?php echo $duchaManualVtaProducto2013 ?>, <?php echo $duchaManualVtaProducto2014 ?>, <?php echo $duchaManualVtaProducto2015 ?>, <?php echo $duchaManualVtaProducto2016 ?>, <?php echo $duchaManualVtaProducto2017 ?>, <?php echo $duchaManualVtaProducto2018 ?>, <?php echo $duchaManualVtaProducto2019 ?>, <?php echo $duchaManualVtaProducto2020 ?>, <?php echo $duchaManualVtaProducto2021 ?>, <?php echo $duchaManualVtaProducto2022 ?>],
+			            data: [<?php echo $duchaManualVtaProducto2015 ?>, <?php echo $duchaManualVtaProducto2016 ?>, <?php echo $duchaManualVtaProducto2017 ?>, <?php echo $duchaManualVtaProducto2018 ?>, <?php echo $duchaManualVtaProducto2019 ?>, <?php echo $duchaManualVtaProducto2020 ?>, <?php echo $duchaManualVtaProducto2021 ?>, <?php echo $duchaManualVtaProducto2022 ?>, <?php echo $duchaManualVtaProducto2023 ?>, <?php echo $duchaManualVtaProducto2024 ?>],
 			            backgroundColor: [ 'rgba(235, 125, 60, 1)', ],
 			            borderColor: [ 'rgba(235, 125, 60, 1)', ],
 			            yAxisID: 'y',
@@ -1248,7 +1269,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_repuestos',
-			            data: [<?php echo $duchaManualVtaRepuestos2013 ?>, <?php echo $duchaManualVtaRepuestos2014 ?>, <?php echo $duchaManualVtaRepuestos2015 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2021 ?>, <?php echo $duchaManualVtaRepuestos2022 ?>],
+			            data: [<?php echo $duchaManualVtaRepuestos2015 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2020 ?>, <?php echo $duchaManualVtaRepuestos2021 ?>, <?php echo $duchaManualVtaRepuestos2022 ?>, <?php echo $duchaManualVtaRepuestos2023 ?>, <?php echo $duchaManualVtaRepuestos2024 ?>],
 			            backgroundColor: [ 'rgba(165, 165, 165, 1)', ],
 			            borderColor: [ 'rgba(165, 165, 165, 1)', ],
 			            yAxisID: 'y',
@@ -1259,7 +1280,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_ideal',
-			            data: [<?php echo $duchaManualVtaIdeal2013 ?>, <?php echo $duchaManualVtaIdeal2014 ?>, <?php echo $duchaManualVtaIdeal2015 ?>, <?php echo $duchaManualVtaIdeal2016 ?>, <?php echo $duchaManualVtaIdeal2017 ?>, <?php echo $duchaManualVtaIdeal2018 ?>, <?php echo $duchaManualVtaIdeal2019 ?>, <?php echo $duchaManualVtaIdeal2020 ?>, <?php echo $duchaManualVtaIdeal2021 ?>, <?php echo $duchaManualVtaIdeal2022 ?>],
+			            data: [<?php echo $duchaManualVtaIdeal2015 ?>, <?php echo $duchaManualVtaIdeal2016 ?>, <?php echo $duchaManualVtaIdeal2017 ?>, <?php echo $duchaManualVtaIdeal2018 ?>, <?php echo $duchaManualVtaIdeal2019 ?>, <?php echo $duchaManualVtaIdeal2020 ?>, <?php echo $duchaManualVtaIdeal2021 ?>, <?php echo $duchaManualVtaIdeal2022 ?>, <?php echo $duchaManualVtaIdeal2023 ?>, <?php echo $duchaManualVtaIdeal2024 ?>],
 			            backgroundColor: [ 'rgba(253, 191, 45, 1)', ],
 			            borderColor: [ 'rgba(253, 191, 45, 1)', ],
 			            yAxisID: 'y',
@@ -1300,11 +1321,11 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		var viewChart888888Detail = new Chart(viewChart888888, {
 		    type: 'bar',
 		    data: {
-		        labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+		        labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
 		        datasets: [
 			        {
 			            label: 'Cumplimiento',
-			            data: [<?php echo $duchaParedCumplimiento2013 ?>, <?php echo $duchaParedCumplimiento2014 ?>, <?php echo $duchaParedCumplimiento2015 ?>, <?php echo $duchaParedCumplimiento2016 ?>, <?php echo $duchaParedCumplimiento2017 ?>, <?php echo $duchaParedCumplimiento2018 ?>, <?php echo $duchaParedCumplimiento2019 ?>, <?php echo $duchaParedCumplimiento2020 ?>, <?php echo $duchaParedCumplimiento2021 ?>, <?php echo $duchaParedCumplimiento2022 ?>],
+			            data: [<?php echo $duchaParedCumplimiento2015 ?>, <?php echo $duchaParedCumplimiento2016 ?>, <?php echo $duchaParedCumplimiento2017 ?>, <?php echo $duchaParedCumplimiento2018 ?>, <?php echo $duchaParedCumplimiento2019 ?>, <?php echo $duchaParedCumplimiento2020 ?>, <?php echo $duchaParedCumplimiento2021 ?>, <?php echo $duchaParedCumplimiento2022 ?>, <?php echo $duchaParedCumplimiento2023 ?>, <?php echo $duchaParedCumplimiento2024 ?>],
 			            backgroundColor: [ 'rgba(27, 62, 115, 1)', ],
 			            borderColor: [ 'rgba(27, 62, 115, 1)', ],
 			            yAxisID: 'y1',
@@ -1319,7 +1340,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_producto',
-			            data: [<?php echo $duchaParedVtaProducto2013 ?>, <?php echo $duchaParedVtaProducto2014 ?>, <?php echo $duchaParedVtaProducto2015 ?>, <?php echo $duchaParedVtaProducto2016 ?>, <?php echo $duchaParedVtaProducto2017 ?>, <?php echo $duchaParedVtaProducto2018 ?>, <?php echo $duchaParedVtaProducto2019 ?>, <?php echo $duchaParedVtaProducto2020 ?>, <?php echo $duchaParedVtaProducto2021 ?>, <?php echo $duchaParedVtaProducto2022 ?>],
+			            data: [<?php echo $duchaParedVtaProducto2015 ?>, <?php echo $duchaParedVtaProducto2016 ?>, <?php echo $duchaParedVtaProducto2017 ?>, <?php echo $duchaParedVtaProducto2018 ?>, <?php echo $duchaParedVtaProducto2019 ?>, <?php echo $duchaParedVtaProducto2020 ?>, <?php echo $duchaParedVtaProducto2021 ?>, <?php echo $duchaParedVtaProducto2022 ?>, <?php echo $duchaParedVtaProducto2023 ?>, <?php echo $duchaParedVtaProducto2024 ?>],
 			            backgroundColor: [ 'rgba(235, 125, 60, 1)', ],
 			            borderColor: [ 'rgba(235, 125, 60, 1)', ],
 			            yAxisID: 'y',
@@ -1330,7 +1351,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_repuestos',
-			            data: [<?php echo $duchaParedVtaRepuestos2013 ?>, <?php echo $duchaParedVtaRepuestos2014 ?>, <?php echo $duchaParedVtaRepuestos2015 ?>, <?php echo $duchaParedVtaRepuestos2016 ?>, <?php echo $duchaParedVtaRepuestos2017 ?>, <?php echo $duchaParedVtaRepuestos2018 ?>, <?php echo $duchaParedVtaRepuestos2019 ?>, <?php echo $duchaParedVtaRepuestos2020 ?>, <?php echo $duchaParedVtaRepuestos2021 ?>, <?php echo $duchaParedVtaRepuestos2022 ?>],
+			            data: [<?php echo $duchaParedVtaRepuestos2015 ?>, <?php echo $duchaParedVtaRepuestos2016 ?>, <?php echo $duchaParedVtaRepuestos2017 ?>, <?php echo $duchaParedVtaRepuestos2018 ?>, <?php echo $duchaParedVtaRepuestos2019 ?>, <?php echo $duchaParedVtaRepuestos2020 ?>, <?php echo $duchaParedVtaRepuestos2021 ?>, <?php echo $duchaParedVtaRepuestos2022 ?>, <?php echo $duchaParedVtaRepuestos2023 ?>, <?php echo $duchaParedVtaRepuestos2024 ?>],
 			            backgroundColor: [ 'rgba(165, 165, 165, 1)', ],
 			            borderColor: [ 'rgba(165, 165, 165, 1)', ],
 			            yAxisID: 'y',
@@ -1341,7 +1362,7 @@ while ($row_sap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 			        },
 			        {
 			            label: 'vta_ideal',
-			            data: [<?php echo $duchaParedVtaIdeal2013 ?>, <?php echo $duchaParedVtaIdeal2014 ?>, <?php echo $duchaParedVtaIdeal2015 ?>, <?php echo $duchaParedVtaIdeal2016 ?>, <?php echo $duchaParedVtaIdeal2017 ?>, <?php echo $duchaParedVtaIdeal2018 ?>, <?php echo $duchaParedVtaIdeal2019 ?>, <?php echo $duchaParedVtaIdeal2020 ?>, <?php echo $duchaParedVtaIdeal2021 ?>, <?php echo $duchaParedVtaIdeal2022 ?>],
+			            data: [<?php echo $duchaParedVtaIdeal2015 ?>, <?php echo $duchaParedVtaIdeal2016 ?>, <?php echo $duchaParedVtaIdeal2017 ?>, <?php echo $duchaParedVtaIdeal2018 ?>, <?php echo $duchaParedVtaIdeal2019 ?>, <?php echo $duchaParedVtaIdeal2020 ?>, <?php echo $duchaParedVtaIdeal2021 ?>, <?php echo $duchaParedVtaIdeal2022 ?>, <?php echo $duchaParedVtaIdeal2023 ?>, <?php echo $duchaParedVtaIdeal2024 ?>],
 			            backgroundColor: [ 'rgba(253, 191, 45, 1)', ],
 			            borderColor: [ 'rgba(253, 191, 45, 1)', ],
 			            yAxisID: 'y',
