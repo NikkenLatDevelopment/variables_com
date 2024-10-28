@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -174,8 +175,32 @@ class variablesCom extends Controller{
         }
     }
 
-    public function mostrarReporte()
-    {
-        return view('reporte');
+    public function mostrarReporte($variable)
+{
+    // Realiza la consulta en la base de datos LAT_MyNIKKEN
+    $resultado = DB::connection('SQL73')->select("
+        SELECT 
+            [associateId],
+            [periodo],
+            [VOtotal],
+            [VOcomisionable],
+            [%Comisionable] AS Comisionable
+        FROM LAT_MyNIKKEN.dbo.seminarioDiamante_reportPDF 
+        WHERE associateId = ?", [$variable]);
+
+    // Verifica que el resultado no esté vacío y extrae los datos
+    if (count($resultado) > 0) {
+        $datos = $resultado[0]; // Asumimos que hay un único registro esperado por ID
+    } else {
+        $datos = (object)[
+            'nombre' => 'Nombre no encontrado',
+            'pais' => 'Desconocido',
+            'avance' => 'Sin avance',
+            'compras' => 0
+        ]; // Valores por defecto si no hay registro
     }
+
+    // Enviar los datos a la vista
+    return view('reporte', compact('datos'));
+}
 }

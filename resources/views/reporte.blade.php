@@ -120,9 +120,25 @@
         </div>
 
         <div class="profile">
-            <img src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/470803-min.jpg" alt="Perfil">
+        @if($datos->associateId)
+        <img src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $datos->associateId }}-min.jpg" alt="Perfil">
+        @else
+            <img src="https://via.placeholder.com/100" alt="Perfil">
+        @endif
             <h2>SOLTERO CURIEL, JOSE ARTURO</h2>
             <p>¡Muchas felicidades!</p>
+        </div>
+
+        <div class="data-section">
+        <h3>Datos del Socio</h3>
+        <ul class="data-list">
+            <li><span>Id AssociateID:</span><span>{{ $datos->associateId }}</span></li>
+            <li><span>Periodo:</span><span>{{ $datos->periodo }}</span></li>
+            <li><span>VO total:</span><span>{{ $datos->VOtotal }}</span></li>
+            <li><span>VO comisionable:</span><span>{{ $datos->VOcomisionable }}</span></li>
+            <li><span>% Comisionable:</span><span>{{ $datos->Comisionable }}%</span></li>
+
+        </ul>
         </div>
 
         <div class="data-section">
