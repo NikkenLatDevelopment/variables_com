@@ -120,7 +120,7 @@
         </div>
 
         <div class="profile">
-            <img src="https://via.placeholder.com/100" alt="Perfil">
+            <img src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/470803-min.jpg" alt="Perfil">
             <h2>SOLTERO CURIEL, JOSE ARTURO</h2>
             <p>¡Muchas felicidades!</p>
         </div>
