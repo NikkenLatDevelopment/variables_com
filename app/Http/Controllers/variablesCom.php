@@ -184,6 +184,7 @@ class variablesCom extends Controller{
             [periodo],
             [VOtotal],
             [VOcomisionable],
+            [nombre],
             [%Comisionable] AS Comisionable
         FROM LAT_MyNIKKEN.dbo.seminarioDiamante_reportPDF 
         WHERE associateId = ?", [$variable]);

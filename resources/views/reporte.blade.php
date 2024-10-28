@@ -13,7 +13,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px; 
             margin: 40px auto;
             background-color: white;
             border-radius: 15px;
@@ -109,6 +109,8 @@
             border-top: 1px solid #ddd;
         }
     </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
     <div class="container">
@@ -125,7 +127,7 @@
         @else
             <img src="https://via.placeholder.com/100" alt="Perfil">
         @endif
-            <h2>SOLTERO CURIEL, JOSE ARTURO</h2>
+            <h2>{{ $datos->nombre }}</h2>
             <p>¡Muchas felicidades!</p>
         </div>
 
@@ -141,48 +143,132 @@
         </ul>
         </div>
 
-        <div class="data-section">
-            <h3>Avances</h3>
-            <ul class="data-list">
-                <li><span>Directo:</span><span>1999-01-01</span></li>
-                <li><span>Superior:</span><span>1998-01-31</span></li>
-                <li><span>Ejecutivo:</span><span>1998-01-31</span></li>
-                <li><span>Plata:</span><span>1998-01-31</span></li>
-                <li><span>Oro:</span><span>1998-01-31</span></li>
-                <li><span>Platino:</span><span>1998-01-31</span></li>
-                <li><span>Diamante:</span><span>2011-11-30</span></li>
-                <li><span>Diamante Real:</span><span>2017-11-30</span></li>
-            </ul>
-        </div>
+      
+       
+
+        
 
         <div class="data-section">
-            <h3>Líderes en su Organización</h3>
-            <ul class="data-list">
-                <li><span>Plata:</span><span>575</span></li>
-                <li><span>Oro:</span><span>63</span></li>
-                <li><span>Platino:</span><span>47</span></li>
-                <li><span>Diamante:</span><span>8</span></li>
-                <li><span>Diamante Real:</span><span>4</span></li>
-            </ul>
+            <h3>Reporte de Compras - 2024</h3>
+            <div class="table-container">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Meses</th>
+                            <th>Ene24</th><th>Feb24</th><th>Mar24</th><th>Abr24</th>
+                            <th>May24</th><th>Jun24</th><th>Jul24</th><th>Ago24</th>
+                            <th>Total 2024</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Compras Personales (Dólares)</th>
+                            <td>120</td><td>150</td><td>180</td><td>210</td>
+                            <td>250</td><td>300</td><td>350</td><td>400</td>
+                            <td>1960</td>
+                        </tr>
+                        <tr>
+                            <th>Compras de Clientes Preferentes (Dólares)</th>
+                            <td>80</td><td>100</td><td>120</td><td>140</td>
+                            <td>160</td><td>180</td><td>200</td><td>220</td>
+                            <td>1200</td>
+                        </tr>
+                        <tr>
+                            <th>Compras Organizacional (Dólares)</th>
+                            <td>500</td><td>550</td><td>600</td><td>650</td>
+                            <td>700</td><td>750</td><td>800</td><td>850</td>
+                            <td>5400</td>
+                        </tr>
+                        <tr>
+                            <th>Compra Total (Dólares)</th>
+                            <td>700</td><td>800</td><td>900</td><td>1000</td>
+                            <td>1110</td><td>1230</td><td>1350</td><td>1470</td>
+                            <td>8560</td>
+                        </tr>
+                        <tr>
+                            <th>Compra Promedio por Activo (Dólares)</th>
+                            <td>70</td><td>80</td><td>90</td><td>100</td>
+                            <td>110</td><td>120</td><td>130</td><td>140</td>
+                            <td>960</td>
+                        </tr>
+                        <tr>
+                            <th>Crecimiento de la Compra Personal (%)</th>
+                            <td>2%</td><td>3%</td><td>5%</td><td>4%</td>
+                            <td>6%</td><td>7%</td><td>8%</td><td>9%</td>
+                            <td>44%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="data-section">
-            <h3>Número de Influencers en su Organización</h3>
-            <ul class="data-list">
-                <li><span>No. de Socios Independientes:</span><span>7,059</span></li>
-                <li><span>No. de Clientes Preferentes:</span><span>4,003</span></li>
-                <li><span>Activos Mensuales (Promedio):</span><span>1,357</span></li>
-                <li><span>Incorporados Mes (Promedio):</span><span>191</span></li>
-                <li><span>Socios Independientes Frontales:</span><span>39</span></li>
-                <li><span>Niveles de Profundidad:</span><span>18</span></li>
-                <li><span>Compras del Último Año (USD):</span><span>$4,548,424</span></li>
-            </ul>
-        </div>
-
-        <div class="footer">
-            <p>Informe Variables Comerciales por Socio Independiente</p>
-            <p>Periodo de Medición: Septiembre 2023 a Agosto 2024</p>
+        <div class="chart-container">
+            <h3 class="text-center">Gráfico de Compras - 2024</h3>
+            <canvas id="comprasChart"></canvas>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('comprasChart').getContext('2d');
+        const comprasChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Ene24', 'Feb24', 'Mar24', 'Abr24', 'May24', 'Jun24', 'Jul24', 'Ago24'],
+                datasets: [
+                    {
+                        label: 'Compras Personales (Dólares)',
+                        data: [120, 150, 180, 210, 250, 300, 350, 400],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Compras de Clientes Preferentes (Dólares)',
+                        data: [80, 100, 120, 140, 160, 180, 200, 220],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Compras Organizacional (Dólares)',
+                        data: [500, 550, 600, 650, 700, 750, 800, 850],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Evolución de Compras Mensuales en 2024'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
