@@ -23,3 +23,5 @@ Route::get("varcomusa24nalat",  [variablesCom::class, 'varcomusa24nalat'])->name
 
 Route::get("accesVariablesCom",  [variablesCom::class, 'accesVariablesCom'])->name('accesVariablesCom');
 Route::get("varcomlat24",  [variablesCom::class, 'varcomlat24'])->name('varcomlat24');
+
+Route::get("mostrarReporte",  [variablesCom::class, 'mostrarReporte'])->name('mostrarReporte');

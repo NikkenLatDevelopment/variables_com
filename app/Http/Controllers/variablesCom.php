@@ -173,4 +173,9 @@ class variablesCom extends Controller{
             return $e;
         }
     }
+
+    public function mostrarReporte()
+    {
+        return view('reporte');
+    }
 }
