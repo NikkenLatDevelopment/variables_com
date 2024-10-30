@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+@php
+function formatoPeriodo($periodo) {
+    $anio = substr($periodo, 0, 4);
+    $mes = substr($periodo, 4, 2);
+
+    $meses = [
+        '01' => 'enero', '02' => 'febrero', '03' => 'marzo',
+        '04' => 'abril', '05' => 'mayo', '06' => 'junio',
+        '07' => 'julio', '08' => 'agosto', '09' => 'septiembre',
+        '10' => 'octubre', '11' => 'noviembre', '12' => 'diciembre'
+    ];
+
+    return "$anio " . ($meses[$mes] ?? 'Mes desconocido');
+}
+@endphp
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +29,7 @@
         }
 
         .container {
-            max-width: 1200px; 
+            max-width: 1200px;
             margin: 40px auto;
             background-color: white;
             border-radius: 15px;
@@ -30,27 +46,10 @@
             justify-content: space-between;
         }
 
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .flag-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .flag-container img {
-            width: 40px;
-            border-radius: 50%;
-        }
-
         .profile {
             text-align: center;
-            background: linear-gradient(to top right, #e0f7fa, #ffffff);
             padding: 20px;
-            position: relative;
+            background: linear-gradient(to top right, #e0f7fa, #ffffff);
         }
 
         .profile img {
@@ -62,213 +61,136 @@
             margin-bottom: 10px;
         }
 
-        .profile h2 {
-            margin: 0;
-            font-size: 20px;
-            color: #6A1B9A;
-        }
-
-        .profile p {
-            color: #666;
-            margin: 5px 0;
-        }
-
         .data-section {
             padding: 20px;
         }
 
-        .data-section h3 {
-            background-color: #9c27b0;
+        .table-container {
+            padding: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
             color: white;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 0 0 10px 0;
         }
 
-        .data-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
 
-        .data-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-        }
-
-        .footer {
-            background-color: #f8f8f8;
-            text-align: center;
-            padding: 10px;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #ddd;
+        .chart-container {
+            padding: 20px;
         }
     </style>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Reporte Comercial</h1>
-            <div class="flag-container">
-                <img src="https://flagcdn.com/w40/mx.png" alt="Bandera de México">
-            </div>
         </div>
 
+        <!-- Perfil del Socio -->
         <div class="profile">
-        @if($datos->associateId)
-        <img src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $datos->associateId }}-min.jpg" alt="Perfil">
-        @else
-            <img src="https://via.placeholder.com/100" alt="Perfil">
-        @endif
-            <h2>{{ $datos->nombre }}</h2>
-            <p>¡Muchas felicidades!</p>
+            @if($resultados[0]->associateId)
+                <img src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $resultados[0]->associateId }}-min.jpg" alt="Perfil">
+            @else
+                <img src="https://via.placeholder.com/100" alt="Perfil">
+            @endif
+            <h2>ID AssociateID: {{ $resultados[0]->associateId }}</h2>
         </div>
-
-        <div class="data-section">
-        <h3>Datos del Socio</h3>
-        <ul class="data-list">
-            <li><span>Id AssociateID:</span><span>{{ $datos->associateId }}</span></li>
-            <li><span>Periodo:</span><span>{{ $datos->periodo }}</span></li>
-            <li><span>VO total:</span><span>{{ $datos->VOtotal }}</span></li>
-            <li><span>VO comisionable:</span><span>{{ $datos->VOcomisionable }}</span></li>
-            <li><span>% Comisionable:</span><span>{{ $datos->Comisionable }}%</span></li>
-
-        </ul>
-        </div>
-
-      
-       
-
-        
 
         <div class="data-section">
             <h3>Reporte de Compras - 2024</h3>
             <div class="table-container">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <th>Meses</th>
-                            <th>Ene24</th><th>Feb24</th><th>Mar24</th><th>Abr24</th>
-                            <th>May24</th><th>Jun24</th><th>Jul24</th><th>Ago24</th>
-                            <th>Total 2024</th>
+                            <th>Associate ID</th>
+                            <th>Nombre</th>
+                            <th>Periodo</th>
+                            <th>VO Total</th>
+                            <th>VO Comisionable</th>
+                            <th>% Comisionable</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>Compras Personales (Dólares)</th>
-                            <td>120</td><td>150</td><td>180</td><td>210</td>
-                            <td>250</td><td>300</td><td>350</td><td>400</td>
-                            <td>1960</td>
-                        </tr>
-                        <tr>
-                            <th>Compras de Clientes Preferentes (Dólares)</th>
-                            <td>80</td><td>100</td><td>120</td><td>140</td>
-                            <td>160</td><td>180</td><td>200</td><td>220</td>
-                            <td>1200</td>
-                        </tr>
-                        <tr>
-                            <th>Compras Organizacional (Dólares)</th>
-                            <td>500</td><td>550</td><td>600</td><td>650</td>
-                            <td>700</td><td>750</td><td>800</td><td>850</td>
-                            <td>5400</td>
-                        </tr>
-                        <tr>
-                            <th>Compra Total (Dólares)</th>
-                            <td>700</td><td>800</td><td>900</td><td>1000</td>
-                            <td>1110</td><td>1230</td><td>1350</td><td>1470</td>
-                            <td>8560</td>
-                        </tr>
-                        <tr>
-                            <th>Compra Promedio por Activo (Dólares)</th>
-                            <td>70</td><td>80</td><td>90</td><td>100</td>
-                            <td>110</td><td>120</td><td>130</td><td>140</td>
-                            <td>960</td>
-                        </tr>
-                        <tr>
-                            <th>Crecimiento de la Compra Personal (%)</th>
-                            <td>2%</td><td>3%</td><td>5%</td><td>4%</td>
-                            <td>6%</td><td>7%</td><td>8%</td><td>9%</td>
-                            <td>44%</td>
-                        </tr>
+                        @foreach($resultados as $dato)
+                            <tr>
+                                <td>{{ $dato->associateId }}</td>
+                                <td>{{ $dato->nombre }}</td>
+                                <td>{{ formatoPeriodo($dato->periodo) }}</td>
+                                <td>{{ number_format($dato->VOtotal, 2) }}</td>
+                                <td>{{ number_format($dato->VOcomisionable, 2) }}</td>
+                                <td>{{ number_format($dato->Comisionable, 2) }}%</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!-- Gráficos -->
         <div class="chart-container">
-            <h3 class="text-center">Gráfico de Compras - 2024</h3>
-            <canvas id="comprasChart"></canvas>
+            <h3 class="text-center">Gráfico de VO Total</h3>
+            <canvas id="voTotalChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3 class="text-center">Gráfico de VO Comisionable</h3>
+            <canvas id="voComisionableChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3 class="text-center">Gráfico de % Comisionable</h3>
+            <canvas id="comisionableChart"></canvas>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctx = document.getElementById('comprasChart').getContext('2d');
-        const comprasChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Ene24', 'Feb24', 'Mar24', 'Abr24', 'May24', 'Jun24', 'Jul24', 'Ago24'],
-                datasets: [
-                    {
-                        label: 'Compras Personales (Dólares)',
-                        data: [120, 150, 180, 210, 250, 300, 350, 400],
+        const periodos = @json(array_column($resultados, 'periodo')).map(p => formatoPeriodo(p));
+        const voTotales = @json(array_column($resultados, 'VOtotal'));
+        const voComisionables = @json(array_column($resultados, 'VOcomisionable'));
+        const porcentajesComisionables = @json(array_column($resultados, 'Comisionable'));
+
+        function renderChart(id, label, data) {
+            new Chart(document.getElementById(id).getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: periodos,
+                    datasets: [{
+                        label: label,
+                        data: data,
                         borderColor: 'rgba(75, 192, 192, 1)',
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         fill: true,
-                        tension: 0.4
-                    },
-                    {
-                        label: 'Compras de Clientes Preferentes (Dólares)',
-                        data: [80, 100, 120, 140, 160, 180, 200, 220],
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        fill: true,
-                        tension: 0.4
-                    },
-                    {
-                        label: 'Compras Organizacional (Dólares)',
-                        data: [500, 550, 600, 650, 700, 750, 800, 850],
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        fill: true,
-                        tension: 0.4
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Evolución de Compras Mensuales en 2024'
-                    }
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: label }
+                    },
+                    scales: { y: { beginAtZero: true } }
                 }
-            }
-        });
+            });
+        }
+
+        renderChart('voTotalChart', 'VO Total', voTotales);
+        renderChart('voComisionableChart', 'VO Comisionable', voComisionables);
+        renderChart('comisionableChart', '% Comisionable', porcentajesComisionables);
     </script>
-
-
-
-    </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
