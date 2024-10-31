@@ -116,13 +116,15 @@ function formatoPeriodo($periodo) {
             </h1>
         </div>
 
-        
+
         <!-- Perfil del Socio -->
         <div class="profile">
             @if($resultados[0]->associateId)
                 <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $resultados[0]->associateId }}-min.jpg" alt="Perfil">
             @else
                 <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/3378794.png" alt="Perfil">
+
+                
             @endif
 
 
