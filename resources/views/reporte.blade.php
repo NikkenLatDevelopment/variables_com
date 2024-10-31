@@ -202,8 +202,7 @@ $nombreRango = $rangoNombres[$resultados[0]->Ranking] ?? 'Rango desconocido';
             @if($resultados[0]->associateId)
                 <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $resultados[0]->associateId }}-min.jpg" alt="Perfil">
             @else
-                <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/3378794.png" alt="Perfil">
-
+            <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $resultados[0]->associateId }}-min.jpg" alt="Perfil">
 
             @endif
 
