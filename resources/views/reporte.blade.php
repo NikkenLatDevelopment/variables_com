@@ -116,6 +116,7 @@ function formatoPeriodo($periodo) {
             </h1>
         </div>
 
+        
         <!-- Perfil del Socio -->
         <div class="profile">
             @if($resultados[0]->associateId)
@@ -123,6 +124,8 @@ function formatoPeriodo($periodo) {
             @else
                 <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/3378794.png" alt="Perfil">
             @endif
+
+
 
             <h2>Código de Asesor de Bienestar: {{ $resultados[0]->associateId }}</h2>
             <h2>Nombre: {{ $resultados[0]->nombre }}</h2>
