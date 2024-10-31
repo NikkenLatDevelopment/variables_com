@@ -178,15 +178,18 @@ class variablesCom extends Controller{
     public function mostrarReporte($variable)
 {
     $resultados = DB::connection('SQL73')->select("
-        SELECT 
-            [associateId],
-            [nombre],
-            [periodo],
-            [VOtotal],
-            [VOcomisionable],
-            [%Comisionable] AS Comisionable
-        FROM LAT_MyNIKKEN.dbo.seminarioDiamante_reportPDF 
-        WHERE associateId = ?", [$variable]);
+    SELECT 
+        [associateId],
+        [nombre],
+        [periodo],
+        [VOtotal],
+        [VOcomisionable],
+        [Ranking],
+        [pais],
+        [%Comisionable] AS Comisionable
+    FROM LAT_MyNIKKEN.dbo.seminarioDiamante_reportPDF 
+    WHERE associateId = ?
+    ORDER BY [periodo] ASC", [$variable]);
 
     // Enviar los resultados a la vista
     return view('reporte', compact('resultados'));

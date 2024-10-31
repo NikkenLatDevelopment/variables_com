@@ -19,7 +19,7 @@ function formatoPeriodo($periodo) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte Comercial</title>
+    <title>Reporte de Volumen 24 meses    </title>
     <style>
         body {
             margin: 0;
@@ -46,19 +46,34 @@ function formatoPeriodo($periodo) {
             justify-content: space-between;
         }
 
-        .profile {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(to top right, #e0f7fa, #ffffff);
-        }
-
-        .profile img {
+        .perfil-img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #6A1B9A;
             margin-bottom: 10px;
+        }
+
+        .flag-container {
+            text-align: center;
+            margin-top: 10px;
+            background: linear-gradient(to top right, #e0f7fa, #ffffff);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .flag-img {
+            display: inline-block;
+            width: auto;
+            height: auto;
+            border-radius: 0;
+        }
+
+        .profile {
+            text-align: center;
+            background: linear-gradient(to top right, #e0f7fa, #ffffff);
+            padding: 20px;
         }
 
         .data-section {
@@ -97,27 +112,48 @@ function formatoPeriodo($periodo) {
 <body>
     <div class="container">
         <div class="header">
-            <h1>Reporte Comercial</h1>
+            <h1>Reporte de Volumen 24 meses
+            </h1>
         </div>
 
         <!-- Perfil del Socio -->
         <div class="profile">
             @if($resultados[0]->associateId)
-                <img src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $resultados[0]->associateId }}-min.jpg" alt="Perfil">
+                <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/{{ $resultados[0]->associateId }}-min.jpg" alt="Perfil">
             @else
-                <img src="https://via.placeholder.com/100" alt="Perfil">
+                <img class="perfil-img" src="https://varaiblescom.nikkenlatam.com/custom_lat/img/codes/3378794.png" alt="Perfil">
             @endif
-            <h2>ID AssociateID: {{ $resultados[0]->associateId }}</h2>
+
+            <h2>Código de Asesor de Bienestar: {{ $resultados[0]->associateId }}</h2>
+            <h2>Nombre: {{ $resultados[0]->nombre }}</h2>
+            <h2>Rango: {{ $resultados[0]->Ranking }}</h2>
         </div>
 
+        <!-- Contenedor independiente para la bandera -->
+        <div class="flag-container">
+            @php
+                $paisesISO = [
+                    'MEX' => 'mx', 'CHL' => 'cl', 'PER' => 'pe', 'COL' => 'co',
+                    'ECU' => 'ec', 'GTM' => 'gt', 'SLV' => 'sv', 'PAN' => 'pa',
+                    'CRI' => 'cr', 'CAN' => 'ca', 'USA' => 'us'
+                ];
+                $codigoISO = $paisesISO[$resultados[0]->pais] ?? 'unknown';
+            @endphp
+
+            @if($codigoISO !== 'unknown')
+                <img class="flag-img" src="https://flagcdn.com/w40/{{ $codigoISO }}.png" alt="Bandera de {{ $resultados[0]->pais }}">
+            @else
+                <p>Bandera no disponible</p>
+            @endif
+        </div>
+
+        <!-- Tabla de Datos -->
         <div class="data-section">
             <h3>Reporte de Compras - 2024</h3>
             <div class="table-container">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Associate ID</th>
-                            <th>Nombre</th>
                             <th>Periodo</th>
                             <th>VO Total</th>
                             <th>VO Comisionable</th>
@@ -127,8 +163,6 @@ function formatoPeriodo($periodo) {
                     <tbody>
                         @foreach($resultados as $dato)
                             <tr>
-                                <td>{{ $dato->associateId }}</td>
-                                <td>{{ $dato->nombre }}</td>
                                 <td>{{ formatoPeriodo($dato->periodo) }}</td>
                                 <td>{{ number_format($dato->VOtotal, 2) }}</td>
                                 <td>{{ number_format($dato->VOcomisionable, 2) }}</td>
@@ -140,57 +174,51 @@ function formatoPeriodo($periodo) {
             </div>
         </div>
 
-        <!-- Gráficos -->
+        <!-- Gráfico de VO Total -->
         <div class="chart-container">
-            <h3 class="text-center">Gráfico de VO Total</h3>
+        <!--    <h3 class="text-center">Gráfico de VO Total</h3>-->
             <canvas id="voTotalChart"></canvas>
-        </div>
-
-        <div class="chart-container">
-            <h3 class="text-center">Gráfico de VO Comisionable</h3>
-            <canvas id="voComisionableChart"></canvas>
-        </div>
-
-        <div class="chart-container">
-            <h3 class="text-center">Gráfico de % Comisionable</h3>
-            <canvas id="comisionableChart"></canvas>
         </div>
     </div>
 
+    <!-- Cargar Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Script para Renderizar el Gráfico de VO Total -->
     <script>
-        const periodos = @json(array_column($resultados, 'periodo')).map(p => formatoPeriodo(p));
+        const periodos = @json(array_column($resultados, 'periodo')).map(periodo => {
+            const anio = periodo.slice(0, 4); // Obtiene el año
+            const mes = periodo.slice(4, 6);  // Obtiene el mes en formato MM
+            const meses = {
+                '01': 'enero', '02': 'febrero', '03': 'marzo', '04': 'abril', '05': 'mayo', '06': 'junio',
+                '07': 'julio', '08': 'agosto', '09': 'septiembre', '10': 'octubre', '11': 'noviembre', '12': 'diciembre'
+            };
+            return `${anio} ${meses[mes] || 'Mes desconocido'}`; // Usa el nombre del mes o 'Mes desconocido' si no coincide
+        });
+
         const voTotales = @json(array_column($resultados, 'VOtotal'));
-        const voComisionables = @json(array_column($resultados, 'VOcomisionable'));
-        const porcentajesComisionables = @json(array_column($resultados, 'Comisionable'));
 
-        function renderChart(id, label, data) {
-            new Chart(document.getElementById(id).getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: periodos,
-                    datasets: [{
-                        label: label,
-                        data: data,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        fill: true,
-                    }]
+        new Chart(document.getElementById('voTotalChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: periodos,
+                datasets: [{
+                    label: 'VO Total',
+                    data: voTotales,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Evolución de VO Total' }
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false },
-                        title: { display: true, text: label }
-                    },
-                    scales: { y: { beginAtZero: true } }
-                }
-            });
-        }
-
-        renderChart('voTotalChart', 'VO Total', voTotales);
-        renderChart('voComisionableChart', 'VO Comisionable', voComisionables);
-        renderChart('comisionableChart', '% Comisionable', porcentajesComisionables);
+                scales: { y: { beginAtZero: true } }
+            }
+        });
     </script>
 </body>
 </html>
