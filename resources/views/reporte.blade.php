@@ -129,7 +129,7 @@ function formatoPeriodo($periodo) {
             <h2>Rango: {{ $resultados[0]->Ranking }}</h2>
         </div>
 
-        <!-- Contenedor independiente para la bandera -->
+        <!-- Contenedor independiente para la bandera --> 
         <div class="flag-container">
             @php
                 $paisesISO = [
