@@ -229,7 +229,7 @@ $nombreRango = $rangoNombres[$resultados[0]->Ranking] ?? 'Rango desconocido';
 
         <!-- Tabla de Datos -->
         <div class="data-section">
-            <h3>Reporte de Compras - 2024</h3>
+          <!--  <h3>Reporte de Compras - 2024</h3>-->
             <div class="table-container">
                 <table class="table table-bordered">
                     <thead>
