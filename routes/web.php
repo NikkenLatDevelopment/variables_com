@@ -25,3 +25,7 @@ Route::get("accesVariablesCom",  [variablesCom::class, 'accesVariablesCom'])->na
 Route::get("varcomlat24",  [variablesCom::class, 'varcomlat24'])->name('varcomlat24');
 
 Route::get('/reporte/{variable}', [variablesCom::class, 'mostrarReporte']);
+Route::get('/reporte-pdf/{variable}', [variablesCom::class, 'generarPDF'])->name('reporte.pdf');
+Route::post('/guardar-imagen', [TuControlador::class, 'guardarImagen']);
+
+
