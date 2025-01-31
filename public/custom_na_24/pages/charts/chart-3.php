@@ -9,7 +9,7 @@ else{
 	$serverName75 = "104.130.46.73";
 }
 
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -31,7 +31,7 @@ $dataBonificacionesOrganizacion = array();
 //Others
 
 //Consulta
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa_24m $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_usa_24m $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
@@ -50,7 +50,7 @@ $dataBonificacionesOrganizacion = array();
 	}
 
 	// $sql = "EXEC Bonificaciones_SD_usa $codeUser, $periodopost";
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.varCom_bonificaciones_usa_24m $codeUser, '$periodopost'";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.varCom_bonificaciones_usa_24m $codeUser, '$periodopost'";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodo = trim($rowSap[11]);
@@ -105,7 +105,7 @@ $dataBonificacionesOrganizacion = array();
 
 	// echo '<pre>'; print_r($dataIncorporacionestable2); echo '</pre>';
 
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Bonificaciones_SD_ORG_usa_24m $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Bonificaciones_SD_ORG_usa_24m $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodo = trim($rowSap[8]);

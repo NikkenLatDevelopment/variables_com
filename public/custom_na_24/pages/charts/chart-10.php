@@ -9,7 +9,7 @@ else{
 	$serverName75 = "104.130.46.73";
 }
 
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -27,7 +27,7 @@ $periodoPost = $_POST["periodo"];
 
 	// $sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) from TreePerId_ORG_PER_Comercial_gen ($codeUser,$periodoPost) ORDER BY  ltrim(rtrim(country)) ASC";
 	// $sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) from [genealogias_datos-usa] where variable= $codeUser ORDER BY  ltrim(rtrim(country)) ASC";
-	$sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) Country FROM LAT_MyNIKKEN_TEST.dbo.[genealogias_datos-usa] where variable= $codeUser ORDER BY  ltrim(rtrim(country)) ASC";
+	$sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) Country FROM LAT_MyNIKKEN.dbo.[genealogias_datos-usa] where variable= $codeUser ORDER BY  ltrim(rtrim(country)) ASC";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) { 
 		if(letterCountrieGenealogy(trim($rowSap[0])) != ""){
