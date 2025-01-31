@@ -9,7 +9,7 @@ else{
 	$serverName75 = "104.130.46.73";
 }
 
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -37,7 +37,7 @@ $dataIncorporacionActividad2022 = array();
 
 //Consulta
 	//$sql = "EXEC Compras $codeUser, $periodoPost";
-	$sql = "EXEC Compras_org_anual $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Compras_org_anual $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoSho = "";
 	$aniosDif = [];
@@ -60,7 +60,7 @@ $dataIncorporacionActividad2022 = array();
 	$aniosDif = array_unique($aniosDif);
 	$i = 1;
 
-	$sql = "EXEC Incorporaciones $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$incorporacionesCisFrontales = trim($rowSap[1]);
@@ -74,7 +74,7 @@ $dataIncorporacionActividad2022 = array();
 	}
 
 	//$sql = "SELECT Periodo, Conteo from TotalORG_ReporteVariables where asociateid = $codeUser";
-	$sql = "EXEC Incorporaciones_aual_parametrizacion $codeUser, $periodoPost;";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_aual_parametrizacion $codeUser, $periodoPost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodoGenealogia = trim($rowSap[2]);

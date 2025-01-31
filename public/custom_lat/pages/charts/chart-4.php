@@ -31,7 +31,7 @@ $dataVolumenesVoldpys = array();
 //Others
 
 //Consulta
-	$sql = "EXEC Sp_Volumenes $codeUser, '$periodoPost'";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Sp_Volumenes $codeUser, '$periodoPost'";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];

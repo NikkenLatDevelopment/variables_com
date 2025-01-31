@@ -24,7 +24,7 @@ $periodoPost = $_POST["periodo"];
 //Consulta
 	$countries = "";
 
-	$sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) from TreePerId_ORG_PER_Comercial_gen ($codeUser,$periodoPost) ORDER BY  ltrim(rtrim(country)) ASC";
+	$sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) from LAT_MyNIKKEN.dbo.TreePerId_ORG_PER_Comercial_gen ($codeUser,$periodoPost) ORDER BY  ltrim(rtrim(country)) ASC";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) { 
 		if(letterCountrieGenealogy(trim($rowSap[0])) != ""){
@@ -34,7 +34,7 @@ $periodoPost = $_POST["periodo"];
 
 	$countries = substr($countries, 0, -2);
 
-    $sql = "EXEC ConteoComercialD1 $codeUser, $periodoPost";
+    $sql = "EXEC LAT_MyNIKKEN.dbo.ConteoComercialD1 $codeUser, $periodoPost";
     //$sql = "EXEC ConteoComercialD1_test $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";

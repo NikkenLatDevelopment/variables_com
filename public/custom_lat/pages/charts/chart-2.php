@@ -32,7 +32,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 //Others
 
 //Consulta
-	$sql = "EXEC Incorporaciones $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];

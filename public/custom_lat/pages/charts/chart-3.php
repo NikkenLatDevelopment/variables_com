@@ -30,7 +30,7 @@ $dataBonificacionesOrganizacion = array();
 //Others
 
 //Consulta
-	$sql = "EXEC Incorporaciones $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
@@ -48,7 +48,7 @@ $dataBonificacionesOrganizacion = array();
 		//Guardar datos en array
 	}
 
-	$sql = "EXEC Bonificaciones_SD $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Bonificaciones_SD $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodo = trim($rowSap[12]);
@@ -69,7 +69,7 @@ $dataBonificacionesOrganizacion = array();
 		//Guardar datos en array
 	}
 
-	$sql = "EXEC Bonificaciones_SD_ORG $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Bonificaciones_SD_ORG $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodo = trim($rowSap[12]);

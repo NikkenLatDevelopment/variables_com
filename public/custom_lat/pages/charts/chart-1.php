@@ -30,7 +30,7 @@ $dataComprasCompraPromedio = array();
 //Others
 
 //Consulta
-	$sql = "EXEC Compras $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Compras $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
@@ -51,7 +51,7 @@ $dataComprasCompraPromedio = array();
 		//Guardar datos en array
 	}
 
-	$sql = "EXEC Incorporaciones $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$totalActivosMensuales = trim($rowSap[8]);
@@ -65,7 +65,7 @@ $dataComprasCompraPromedio = array();
 	$comprasUltimoAno = 0;
 
 	//$sql = "EXEC ConteoComercialD1_test $codeUser, $periodopost";
-	$sql = "EXEC ConteoComercialD1 $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.ConteoComercialD1 $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC);
 	if($rowSap > 0) { $comprasUltimoAno = trim($rowSap[20]) == "" ? 0 : trim($rowSap[20]); }
