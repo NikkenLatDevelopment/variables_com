@@ -9,7 +9,7 @@ else{
 	$serverName75 = "104.130.46.73";
 }
 
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
