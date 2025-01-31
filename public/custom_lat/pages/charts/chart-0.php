@@ -42,7 +42,7 @@ $periodoPost = $_POST["periodo"];
 	$comprasUltimoAno = 0;
 
 	//$sql = "EXEC ConteoComercialD1_test $codeUser, $periodoPost";
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1 $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.ConteoComercialD1 $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
