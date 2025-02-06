@@ -37,7 +37,7 @@ $dataIncorporacionActividad2022 = array();
 
 //Consulta
 	//$sql = "EXEC Compras $codeUser, $periodoPost";
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Compras_org_anual $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Compras_org_anual $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoSho = "";
 	$aniosDif = [];
@@ -55,13 +55,12 @@ $dataIncorporacionActividad2022 = array();
 		//Guardar datos en array
 		$dataCompras[$periodo] = array("compraTotal" => $compraTotal);
 		//Guardar datos en array
-	}
-	echo "<pre>"; print_r($dataCompras); exit("</pre>");
+	};
 
 	$aniosDif = array_unique($aniosDif);
 	$i = 1;
 
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$incorporacionesCisFrontales = trim($rowSap[1]);
@@ -75,7 +74,7 @@ $dataIncorporacionActividad2022 = array();
 	}
 
 	//$sql = "SELECT Periodo, Conteo from TotalORG_ReporteVariables where asociateid = $codeUser";
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_aual_parametrizacion $codeUser, $periodoPost;";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_aual_parametrizacion $codeUser, $periodoPost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodoGenealogia = trim($rowSap[2]);
