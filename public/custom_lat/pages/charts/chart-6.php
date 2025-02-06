@@ -56,6 +56,7 @@ $dataIncorporacionActividad2022 = array();
 		$dataCompras[$periodo] = array("compraTotal" => $compraTotal);
 		//Guardar datos en array
 	}
+	echo "<pre>"; print_r($recordSet); exit("</pre>");
 
 	$aniosDif = array_unique($aniosDif);
 	$i = 1;
