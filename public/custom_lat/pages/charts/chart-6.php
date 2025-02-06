@@ -47,7 +47,7 @@ $dataIncorporacionActividad2022 = array();
 		$compraTotal = trim($rowSap[1]);
 		$periodo = trim($rowSap[2]);
 
-		$periodotoShow = trim($rowSap[2]);
+		$periodotoShow = trim($rowSap[2]); 
 		$x++;
 		$monthToShow[$x] = $rowSap[2];
 		$aniosDif[$x] = $rowSap[3];
