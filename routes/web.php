@@ -2,17 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\variablesCom;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\varComUsa;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,4 +18,5 @@ Route::get('/reporte/{variable}', [variablesCom::class, 'mostrarReporte']);
 Route::get('/reporte-pdf/{variable}', [variablesCom::class, 'generarPDF'])->name('reporte.pdf');
 Route::post('/guardar-imagen', [TuControlador::class, 'guardarImagen']);
 
-
+Route::get("varcomusa",  [varComUsa::class, 'varcomusa'])->name('varcomusa');
+Route::get("varcomusa12",  [varComUsa::class, 'varcomusa12'])->name('varcomusa12');

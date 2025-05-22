@@ -178,31 +178,8 @@ class variablesCom extends Controller{
         }
     }
 
-    public function mostrarReporte($variable)
-{
-    $resultados = DB::connection('SQL73')->select("
-    SELECT 
-        [associateId],
-        [nombre],
-        [periodo],
-        [VOtotal],
-        [VOcomisionable],
-        [Ranking],
-        [pais],
-        [rango],
-        [%Comisionable] AS Comisionable
-    FROM LAT_MyNIKKEN.dbo.seminarioDiamante_reportPDF 
-    WHERE associateId = ?
-    ORDER BY [periodo] ASC", [$variable]);
-
-    // Enviar los resultados a la vista
-    return view('reporte', compact('resultados'));
-}
-
-public function generarPDF($variable)
-{
-    // Realizar la consulta de datos
-    $resultados = DB::connection('SQL73')->select("
+    public function mostrarReporte($variable){
+        $resultados = DB::connection('SQL73')->select("
         SELECT 
             [associateId],
             [nombre],
@@ -217,33 +194,54 @@ public function generarPDF($variable)
         WHERE associateId = ?
         ORDER BY [periodo] ASC", [$variable]);
 
-        if (!empty($resultados)) {
-            $associateId = $resultados[0]->associateId;
-            $pais = $resultados[0]->pais;
-        } else {
-            return response()->json(['error' => 'No se encontraron datos para este Associate ID.']);
-        }    
-    // Verificar si la imagen del gráfico está guardada
-    $imagenGrafico = storage_path('app/public/images/vo_comisionable_chart.png');
-    if (!file_exists($imagenGrafico)) {
-        // Maneja el caso en que la imagen no esté disponible
-        $imagenGrafico = null;
+        // Enviar los resultados a la vista
+        return view('reporte', compact('resultados'));
     }
 
-    // Cargar la vista 'reporte' y pasar los datos y la imagen del gráfico
-    $pdf = Pdf::loadView('reporte', compact('resultados', 'imagenGrafico'))
-    ->setPaper('a4', 'portrait')
-    ->setOption('dpi', 96) // Asegúrate de que no sea demasiado alta la resolución
-    ->setOption('isHtml5ParserEnabled', true)
-    ->setOption('isPhpEnabled', true)
-    ->setOption('isRemoteEnabled', true)
-    ->setOption('defaultFont', 'Arial')
-    ->setOption('isFontSubsettingEnabled', true)
-    ->setOption('enable_auto_scaling', true); // Permite la escala automática
-    // Devolver el PDF como descarga
-    $fileName = "{$associateId}_{$pais}.pdf";
-    
+    public function generarPDF($variable){
+        // Realizar la consulta de datos
+        $resultados = DB::connection('SQL73')->select("
+            SELECT 
+                [associateId],
+                [nombre],
+                [periodo],
+                [VOtotal],
+                [VOcomisionable],
+                [Ranking],
+                [pais],
+                [rango],
+                [%Comisionable] AS Comisionable
+            FROM LAT_MyNIKKEN.dbo.seminarioDiamante_reportPDF 
+            WHERE associateId = ?
+            ORDER BY [periodo] ASC", [$variable]);
 
-    return $pdf->download($fileName);
-}
+            if (!empty($resultados)) {
+                $associateId = $resultados[0]->associateId;
+                $pais = $resultados[0]->pais;
+            } else {
+                return response()->json(['error' => 'No se encontraron datos para este Associate ID.']);
+            }    
+        // Verificar si la imagen del gráfico está guardada
+        $imagenGrafico = storage_path('app/public/images/vo_comisionable_chart.png');
+        if (!file_exists($imagenGrafico)) {
+            // Maneja el caso en que la imagen no esté disponible
+            $imagenGrafico = null;
+        }
+
+        // Cargar la vista 'reporte' y pasar los datos y la imagen del gráfico
+        $pdf = Pdf::loadView('reporte', compact('resultados', 'imagenGrafico'))
+        ->setPaper('a4', 'portrait')
+        ->setOption('dpi', 96) // Asegúrate de que no sea demasiado alta la resolución
+        ->setOption('isHtml5ParserEnabled', true)
+        ->setOption('isPhpEnabled', true)
+        ->setOption('isRemoteEnabled', true)
+        ->setOption('defaultFont', 'Arial')
+        ->setOption('isFontSubsettingEnabled', true)
+        ->setOption('enable_auto_scaling', true); // Permite la escala automática
+        // Devolver el PDF como descarga
+        $fileName = "{$associateId}_{$pais}.pdf";
+        
+
+        return $pdf->download($fileName);
+    }
 }
