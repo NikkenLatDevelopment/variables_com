@@ -57,7 +57,6 @@ class varComUsa extends Controller{
     }
 
     public function varcomusa12(){
-        return request();
         if(empty(request()->code)){
             return "Informes Seminario Diamante MyNIKKEN";
         }
@@ -73,6 +72,7 @@ class varComUsa extends Controller{
             App::setLocale($lang);
             
             $response = $core->execSQLQuery("EXEC LAT_MyNIKKEN.dbo.reporteBoss_datosGenerales $codeUser;", "SQL73");
+            return $response;
             $ciinfo = $response;
             $data_gral = [];
             $data_gral['name_user'] = $ciinfo[0]->name_user;
