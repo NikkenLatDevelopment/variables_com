@@ -3,8 +3,8 @@
 // echo getcwd() . "<br>";
 
 //Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+// $serverName75 = "104.130.46.73";
+$serverName75 = "172.24.16.75";
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -209,18 +209,50 @@ $dataBonificacionessuma = array();
 	</div>
 <!-- Gráficas -->
 
-<span hidden id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span>
-<span hidden id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span>
-<span hidden id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span>
-<span hidden id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span>
-<span hidden id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span>
-<span hidden id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span>
-<span hidden id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span>
-<span hidden id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span>
-<span hidden id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span>
-<span hidden id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span>
-<span hidden id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span>
-<span hidden id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span>
+<span hidden id="txtMont13"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></span>
+<span hidden id="txtMont14"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></span>
+<span hidden id="txtMont15"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></span>
+<span hidden id="txtMont16"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></span>
+<span hidden id="txtMont17"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></span>
+<span hidden id="txtMont18"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></span>
+<span hidden id="txtMont19"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></span>
+<span hidden id="txtMont20"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></span>
+<span hidden id="txtMont21"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></span>
+<span hidden id="txtMont22"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></span>
+<span hidden id="txtMont23"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></span>
+<span hidden id="txtMont24"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></span>
+
+<?php
+	$graphTexts = [
+		'es' => [
+			'Personal Rebate and Override Bonus' => "Reembolso personal y bonificación por anulación",
+			'Leadership Bonus' => "Bonificación por liderazgo",
+			'Retail Bonus' => "Bonificación por venta al por menor",
+			'WE Acelerate Bonus' => "Bonificación WE Acelera",
+			'Lifestyle Bonus' => "Bonificación por estilo de vida",
+		],
+		'en' => [
+			'Personal Rebate and Override Bonus' => "Personal Rebate and Override Bonus",
+			'Leadership Bonus' => "Leadership Bonus",
+			'Retail Bonus' => "Retail Bonus",
+			'WE Acelerate Bonus' => "WE Acelerate Bonus",
+			'Lifestyle Bonus' => "Lifestyle Bonus",
+		],
+		'fr' => [
+			'Personal Rebate and Override Bonus' => "Remise personnelle et prime de dépassement",
+			'Leadership Bonus' => "Prime de leadership",
+			'Retail Bonus' => "Prime de vente au détail",
+			'WE Acelerate Bonus' => "Prime WE Acelerate",
+			'Lifestyle Bonus' => "Prime de style de vie",
+		],
+	];
+?>
+
+<input type="hidden" id="Personal_Rebate_and_Override_Bonus" value="<?php echo $graphTexts[$lang]['Personal Rebate and Override Bonus']?>">
+<input type="hidden" id="Leadership_Bonus" value="<?php echo $graphTexts[$lang]['Leadership Bonus']?>">
+<input type="hidden" id="Retail_Bonus" value="<?php echo $graphTexts[$lang]['Retail Bonus']?>">
+<input type="hidden" id="WE_Acelerate_Bonus" value="<?php echo $graphTexts[$lang]['WE Acelerate Bonus']?>">
+<input type="hidden" id="Lifestyle_Bonus" value="<?php echo $graphTexts[$lang]['Lifestyle Bonus']?>">
 
 <script>
 	//Fuente de la gráfica
@@ -240,6 +272,12 @@ $dataBonificacionessuma = array();
 	txtMont23 = $("#txtMont23").text();
 	txtMont24 = $("#txtMont24").text();
 
+	var Personal_Rebate_and_Override_Bonus = $("#Personal_Rebate_and_Override_Bonus").val();
+	var Leadership_Bonus = $("#Leadership_Bonus").val();
+	var Retail_Bonus = $("#Retail_Bonus").val();
+	var WE_Acelerate_Bonus = $("#WE_Acelerate_Bonus").val();
+	var Lifestyle_Bonus = $("#Lifestyle_Bonus").val();
+
 	//Gráfica bonificaciones
 		var chart5Graph1 = document.getElementById('chart5Graph1').getContext('2d');
 		var chart5Graph1Detail = new Chart(chart5Graph1, {
@@ -248,8 +286,7 @@ $dataBonificacionessuma = array();
 		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
-			            // label: 'Personal Bonus',
-			            label: 'Personal Rebate and Override Bonus',
+			            label: Personal_Rebate_and_Override_Bonus,
 			            data: <?php echo json_encode($dataBonificacionespersonal) ?>,
 			            backgroundColor: [ 'rgba(255, 99, 132, 0.8)', ],
 			            borderColor: [ 'rgba(255, 99, 132, 0.8)', ],
@@ -257,36 +294,25 @@ $dataBonificacionessuma = array();
 			            yAxisID: 'y1',
 			        },
 			        {
-			            // label: 'Leadership Bonus',
-			            label: 'Leadership Bonus',
+			            label: Leadership_Bonus,
 			            data: <?php echo json_encode($dataBonificacionesleadership_bonus) ?>,
 			            backgroundColor: [ 'rgba(109, 85, 125, 0.8)', ],
 			            borderColor: [ 'rgba(109, 85, 125, 0.8)', ],
 			        },
 			        {
-			            // label: 'Retail Bonus',
-			            label: 'Retail Bonus',
+			            label: Retail_Bonus,
 			            data: <?php echo json_encode($dataBonificacionesretail_bonus) ?>,
 			            backgroundColor: [ 'rgba(54, 162, 235, 0.8)', ],
 			            borderColor: [ 'rgba(54, 162, 235, 0.8)', ],
 			        },
-			        // {
-			        //     // label: 'PIB Bonus',
-			        //     label: 'PIB Bonus',
-			        //     data: <?php echo json_encode($dataBonificacionespib_bonus) ?>,
-			        //     backgroundColor: [ 'rgba(75, 192, 192, 0.8)', ],
-			        //     borderColor: [ 'rgba(75, 192, 192, 0.8)', ],
-			        // },
 			        {
-			            // label: 'WE Acelerate Bonus',
-			            label: 'WE Acelerate Bonus',
+			            label: WE_Acelerate_Bonus,
 			            data: <?php echo json_encode($dataBonificacioneswe_acelerate_bonus) ?>,
 			            backgroundColor: [ 'rgba(213, 229, 178, 0.8)', ],
 			            borderColor: [ 'rgba(213, 229, 178, 0.8)', ],
 			        },
 			        {
-			            // label: 'Lifestyle Bonus',
-			            label: 'Lifestyle Bonus',
+			            label: Lifestyle_Bonus,
 			            data: <?php echo json_encode($dataBonificacioneslifestyle_bonus) ?>,
 			            backgroundColor: [ 'rgba(154, 181, 194, 0.8)', ],
 			            borderColor: [ 'rgba(154, 181, 194, 0.8)', ],

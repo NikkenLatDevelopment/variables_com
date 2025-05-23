@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+// $serverName75 = "104.130.46.73";
+$serverName75 = "172.24.16.75";
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -180,18 +180,18 @@ $dataBonificacionesOrganizacion = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><span id="txtMont13"><?php echo getMontPeriodShort($monthToShow[12]) ?></span></th>
-				<th scope="col"><span id="txtMont14"><?php echo getMontPeriodShort($monthToShow[11]) ?></span></th>
-				<th scope="col"><span id="txtMont15"><?php echo getMontPeriodShort($monthToShow[10]) ?></span></th>
-				<th scope="col"><span id="txtMont16"><?php echo getMontPeriodShort($monthToShow[9]) ?></span></th>
-				<th scope="col"><span id="txtMont17"><?php echo getMontPeriodShort($monthToShow[8]) ?></span></th>
-				<th scope="col"><span id="txtMont18"><?php echo getMontPeriodShort($monthToShow[7]) ?></span></th>
-				<th scope="col"><span id="txtMont19"><?php echo getMontPeriodShort($monthToShow[6]) ?></span></th>
-				<th scope="col"><span id="txtMont20"><?php echo getMontPeriodShort($monthToShow[5]) ?></span></th>
-				<th scope="col"><span id="txtMont21"><?php echo getMontPeriodShort($monthToShow[4]) ?></span></th>
-				<th scope="col"><span id="txtMont22"><?php echo getMontPeriodShort($monthToShow[3]) ?></span></th>
-				<th scope="col"><span id="txtMont23"><?php echo getMontPeriodShort($monthToShow[2]) ?></span></th>
-				<th scope="col"><span id="txtMont24"><?php echo getMontPeriodShort($monthToShow[1]) ?></span></th>
+				<th scope="col"><span id="txtMont13"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont14"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont15"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont16"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont17"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont18"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont19"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont20"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont21"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont22"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont23"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont24"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></span></th>
 				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Media 12 meses']; ?></th>
 			</tr>
 		</thead>
@@ -255,18 +255,18 @@ $dataBonificacionesOrganizacion = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[12]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[11]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[10]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[9]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[8]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[7]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[6]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[5]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[4]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[3]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[2]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[1]] ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></th>
 				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Total 12 Months']; ?></th>
 			</tr>
 		</thead>
@@ -374,18 +374,18 @@ $dataBonificacionesOrganizacion = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Rango de pago']; ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[12]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[11]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[10]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[9]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[8]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[7]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[6]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[5]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[4]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[3]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[2]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[1]] ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></th>
 			</tr>
 		</thead>
 
@@ -429,6 +429,38 @@ $dataBonificacionesOrganizacion = array();
 	</table>
 </div>
 
+<?php
+	$graphTexts = [
+		'es' => [
+			'Sign Ups by active' => "Incorporaciones por Activo",
+			'No. Sign Ups by active' => "No. Incorporaciones por Activo",
+			'Monthly Personal Check - Does Not Include Discounts (USD)' => "Cheque personal mensual - descuentos no incluidos (USD)",
+			'Commissions paid to the Organization' => "Comisiones pagadas a la organización (USD)",
+			'Commissions' => "Comisiones",
+		],
+		'en' => [
+			'Sign Ups by active' => 'Sign Ups by active',
+			'No. Sign Ups by active' => 'No. Sign Ups by active',
+			'Monthly Personal Check - Does Not Include Discounts (USD)' => 'Monthly Personal Check - Does Not Include Discounts (USD)',
+			'Commissions paid to the Organization' => 'Commissions paid to the Organization',
+			'Commissions' => 'Commissions',
+		],
+		'fr' => [
+			'Sign Ups by active' => 'Incorporations par actif',
+			'No. Sign Ups by active' => 'Non. Incorporations par actif',
+			'Monthly Personal Check - Does Not Include Discounts (USD)' => 'Chèque personnel mensuel - ne comprend pas les réductions (USD)',
+			'Commissions paid to the Organization' => 'Commissions versées à l\'organisation',
+			'Commissions' => 'Commissions',
+		],
+	];
+?>
+
+<input type="hidden" id="Sign_Ups_by_active" value="<?php echo $graphTexts[$lang]['Sign Ups by active'];?>">
+<input type="hidden" id="No_Sign_Ups_by_active" value="<?php echo $graphTexts[$lang]['No. Sign Ups by active']?>">
+<input type="hidden" id="Monthly_Personal_Check_Does_Not_Include_Discounts_USD" value="<?php echo $graphTexts[$lang]['Monthly Personal Check - Does Not Include Discounts (USD)']?>">
+<input type="hidden" id="Commissions_paid_to_the_Organization" value="<?php echo $graphTexts[$lang]['Commissions paid to the Organization']?>">
+<input type="hidden" id="Commissions" value="<?php echo $graphTexts[$lang]['Commissions']?>">
+
 <script>
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
@@ -447,6 +479,12 @@ $dataBonificacionesOrganizacion = array();
 	txtMont23 = $("#txtMont23").text();
 	txtMont24 = $("#txtMont24").text();
 
+	var Sign_Ups_by_active = $("#Sign_Ups_by_active").val();
+	var No_Sign_Ups_by_active = $("#No_Sign_Ups_by_active").val();
+	var Monthly_Personal_Check_Does_Not_Include_Discounts_USD = $("#Monthly_Personal_Check_Does_Not_Include_Discounts_USD").val();
+	var Commissions_paid_to_the_Organization = $("#Commissions_paid_to_the_Organization").val();
+	var Commissions = $("#Commissions").val();
+
 	//Gráfica Incorporaciones por Activo
 		var chart3Graph1 = document.getElementById('chart3Graph1').getContext('2d');
 		var chart3Graph1Detail = new Chart(chart3Graph1, {
@@ -455,7 +493,7 @@ $dataBonificacionesOrganizacion = array();
 		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
-			            label: 'Sign Ups by active',
+			            label: Sign_Ups_by_active,
 			            data: <?php echo json_encode($dataIncorporacionesActivo) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
@@ -467,7 +505,7 @@ $dataBonificacionesOrganizacion = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Sign Ups by active'
+						text: Sign_Ups_by_active
 					},
 				},
 				scales: {
@@ -475,7 +513,7 @@ $dataBonificacionesOrganizacion = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: 'No. Sign Ups by active'
+			          		text: No_Sign_Ups_by_active
 			        	},
 						beginAtZero: true
 			      	}
@@ -492,13 +530,13 @@ $dataBonificacionesOrganizacion = array();
 		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
-			            label: 'Monthly Personal Check - Does Not Include Discounts (USD)',
+			            label: Monthly_Personal_Check_Does_Not_Include_Discounts_USD,
 			            data: <?php echo json_encode($dataBonificacionesPersonales) ?>,
 			            backgroundColor: [ 'rgba(51, 51, 153, 1)', ],
 			            borderColor: [ 'rgba(51, 51, 153, 1)', ],
 			        },
 			        {
-			            label: 'Commissions paid to the Organization',
+			            label: Commissions_paid_to_the_Organization,
 			            data: <?php echo json_encode($dataBonificacionesOrganizacion) ?>,
 			            backgroundColor: [ 'rgba(102, 153, 102, 1)', ],
 			            borderColor: [ 'rgba(102, 153, 102, 1)', ],
@@ -510,7 +548,7 @@ $dataBonificacionesOrganizacion = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Commissions'
+						text: Commissions
 					},
 				},
 				scales: {

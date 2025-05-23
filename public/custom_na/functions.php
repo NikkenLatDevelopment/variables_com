@@ -603,6 +603,58 @@ function getMontPeriod($periodo){
     return $mesesLtr[$mes] . " " . $anio;
 }
 
+function getMontPeriodLang($periodo, $lang){
+    $anio = substr($periodo, 0, 4);
+    $mes = substr($periodo, 4, 2);
+
+    $mesesLtr = [
+        'es' => [
+            '01' => "Enero",
+            '02' => "Febrero",
+            '03' => "Marzo",
+            '04' => "Abril",
+            '05' => "Mayo",
+            '06' => "Junio",
+            '07' => "Julio",
+            '08' => "Agosto",
+            '09' => "Septiembre",
+            '10' => "Octubre",
+            '11' => "Noviembre",
+            '12' => "Diciembre",
+        ],
+        'en' => [
+            '01' => "January",
+            '02' => "February",
+            '03' => "March",
+            '04' => "April",
+            '05' => "May",
+            '06' => "June",
+            '07' => "July",
+            '08' => "August",
+            '09' => "September",
+            '10' => "October",
+            '11' => "November",
+            '12' => "December",
+        ],
+        'fr' => [
+            '01' => "Janvier",
+            '02' => "Février",
+            '03' => "Mars",
+            '04' => "Avril",
+            '05' => "Mai",
+            '06' => "Juin",
+            '07' => "Juillet",
+            '08' => "Août",
+            '09' => "Septembre",
+            '10' => "Octobre",
+            '11' => "Novembre",
+            '12' => "Décembre",
+        ]
+    ];
+
+    return $mesesLtr[$lang][$mes] . " " . $anio;
+}
+
 function getMontPeriodShort($periodo){
     $anio = substr($periodo, 0, 4);
     $mes = substr($periodo, 4, 2);
@@ -624,6 +676,58 @@ function getMontPeriodShort($periodo){
     ];
 
     return $mesesLtr[$mes] . " " . $anio;
+}
+
+function getMontPeriodShortLang($periodo, $lang){
+    $anio = substr($periodo, 0, 4);
+    $mes = substr($periodo, 4, 2);
+
+    $mesesLtr = [
+        'es' => [
+            '01' => 'Ene',
+            '02' => 'Feb',
+            '03' => 'Mar',
+            '04' => 'Abr',
+            '05' => 'May',
+            '06' => 'Jun',
+            '07' => 'Jul',
+            '08' => 'Ago',
+            '09' => 'Sep',
+            '10' => 'Oct',
+            '11' => 'Nov',
+            '12' => 'Dic',
+        ],
+        'en' => [
+            '01' => "Jan",
+            '02' => "Feb",
+            '03' => "Mar",
+            '04' => "Apr",
+            '05' => "May",
+            '06' => "Jun",
+            '07' => "Jul",
+            '08' => "Aug",
+            '09' => "Sep",
+            '10' => "Oct",
+            '11' => "Nov",
+            '12' => "Dec",
+        ],
+        'fr' => [
+            '01' => "Janv",
+            '02' => "Févr",
+            '03' => "Mars",
+            '04' => "Avr",
+            '05' => "Mai",
+            '06' => "Juin",
+            '07' => "Juil",
+            '08' => "Août",
+            '09' => "Sept",
+            '10' => "Oct",
+            '11' => "Nov",
+            '12' => "Déc",
+        ]
+    ];
+
+    return $mesesLtr[$lang][$mes] . $anio[2] . $anio[3];
 }
 
 $laguaje = [

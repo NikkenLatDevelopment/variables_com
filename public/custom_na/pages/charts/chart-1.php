@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+// $serverName75 = "104.130.46.73";
+$serverName75 = "172.24.16.75";
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -131,18 +131,18 @@ $dataComprasCompraPromedio = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
-				<th scope="col"><span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
-				<th scope="col"><span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
-				<th scope="col"><span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
-				<th scope="col"><span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
-				<th scope="col"><span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
-				<th scope="col"><span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
-				<th scope="col"><span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
-				<th scope="col"><span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span></th>
-				<th scope="col"><span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
-				<th scope="col"><span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
-				<th scope="col"><span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
+				<th scope="col"><span id="txtMont13"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont14"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont15"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont16"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont17"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont18"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont19"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont20"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont21"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont22"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont23"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont24"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></span></th>
 				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Total 12 meses']; ?></th>
 			</tr>
 		</thead>
@@ -667,18 +667,18 @@ $dataComprasCompraPromedio = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Activos Mensuales']; ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[12]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[11]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[10]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[9]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[8]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[7]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[6]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[5]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[4]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[3]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[2]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[1]] ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></th>
 				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Media 12 meses']; ?></th>
 			</tr>
 		</thead>
@@ -758,7 +758,40 @@ $dataComprasCompraPromedio = array();
 <div class="fw-bold mb-4" style="color: red;">* <?php echo $laguaje[$lang]['Media calculada']; ?></div>
 <!-- Notas -->
 
+<?php
+	$graphTexts = [
+		'es' => [
+			'Monthly Actives' => 'Activos Mensuales',
+			'Purchases (USD)' => 'Compras (USD)',
+			'Average Purchase by Active (USD)' => 'Compra Promedio por Activo (USD)',
+			'Purchasing behaviour vs Monthly Actives' => 'Comportamiento de Compras VS Activos Mensuales',
+		],
+		'en' => [
+			'Monthly Actives' => 'Monthly Actives',
+			'Purchases (USD)' => 'Purchases (USD)',
+			'Average Purchase by Active (USD)' => 'Average Purchase by Active (USD)',
+			'Purchasing behaviour vs Monthly Actives' => 'Purchasing behaviour vs Monthly Actives',
+		],
+		'fr' => [
+			'Monthly Actives' => 'Actifs Mensuels',
+			'Purchases (USD)' => 'Achats (USD)',
+			'Average Purchase by Active (USD)' => 'Achat moyen par actif (USD)',
+			'Purchasing behaviour vs Monthly Actives' => 'Comportement d\'achat par rapport aux actifs mensuels',
+		],
+	];
+?>
+
+<input type="hidden" id="Monthly_Actives" value="<?php echo $graphTexts[$lang]['Monthly Actives']; ?>">
+<input type="hidden" id="Purchases_USD" value="<?php echo $graphTexts[$lang]['Purchases (USD)']; ?>">
+<input type="hidden" id="Average_Purchase_by_Active_USD" value="<?php echo $graphTexts[$lang]['Average Purchase by Active (USD)']; ?>">
+<input type="hidden" id="Purchasing_behaviour_vs_Monthly_Actives" value="<?php echo $graphTexts[$lang]['Purchasing behaviour vs Monthly Actives']; ?>">
+
 <script>
+	var Monthly_Actives = $("#Monthly_Actives").val();
+	var Purchases_USD = $("#Purchases_USD").val();
+	var Average_Purchase_by_Active_USD = $("#Average_Purchase_by_Active_USD").val();
+	var Purchasing_behaviour_vs_Monthly_Actives = $("#Purchasing_behaviour_vs_Monthly_Actives").val();
+
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
 	//Fuente de la gráfica
@@ -784,7 +817,7 @@ $dataComprasCompraPromedio = array();
 			labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 			datasets: [
 				{
-					label: 'Monthly Actives',
+					label: Monthly_Actives,
 					data: <?php echo json_encode($dataIncorporacionesActivosMensuales) ?>,
 					backgroundColor: [ 'rgba(220, 123, 79, 1)', ],
 					borderColor: [ 'rgba(220, 123, 79, 1)', ],
@@ -792,7 +825,7 @@ $dataComprasCompraPromedio = array();
 					type: 'line',
 				},
 				{
-					label: 'Purchases (USD)',
+					label: Purchases_USD,
 					data: <?php echo json_encode($dataComprasCompraTotal) ?>,
 					backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 					borderColor: [ 'rgba(241, 185, 42, 1)', ],
@@ -805,7 +838,7 @@ $dataComprasCompraPromedio = array();
 			plugins: {
 				title: {
 					display: true,
-					text: 'Purchasing behaviour vs Monthly Actives',
+					text: Purchasing_behaviour_vs_Monthly_Actives,
 					fontColor:'#000000'
 				},
 			},
@@ -825,7 +858,7 @@ $dataComprasCompraPromedio = array();
 					position: 'right',
 					title: {
 						display: true,
-						text: 'Monthly Actives'
+						text: Monthly_Actives
 					},
 				},
 			}
@@ -841,7 +874,7 @@ $dataComprasCompraPromedio = array();
 			labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 			datasets: [
 				{
-					label: 'Average Purchase by Active (USD)',
+					label: Average_Purchase_by_Active_USD,
 					data: <?php echo json_encode($dataComprasCompraPromedio) ?>,
 					backgroundColor: [ 'rgba(220, 123, 79, 1)', ],
 					borderColor: [ 'rgba(220, 123, 79, 1)', ],
@@ -853,7 +886,7 @@ $dataComprasCompraPromedio = array();
 			plugins: {
 				title: {
 					display: true,
-					text: 'Average Purchase by Active (USD)'
+					text: Average_Purchase_by_Active_USD
 				},
 			},
 			scales: {

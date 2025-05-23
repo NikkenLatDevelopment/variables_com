@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+// $serverName75 = "104.130.46.73";
+$serverName75 = "172.24.16.75";
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -705,6 +705,34 @@ $datagraph2 = [];
 	</table>
 </div>
 
+<?php
+	$graphTexts = [
+		'es' => [
+			'Total Sign ups' => "Total de Inscripciones",
+			'No. Total Sign ups' => "No. Total de Inscripciones",
+			'Monthly Active (Consultants and Customers)' => "Activos Mensuales (Consultores y Clientes)",
+			'No. Monthly Active (Consultants and Customers)' => "No. Activos Mensuales (Consultores y Clientes)",
+		],
+		'en' => [
+			'Total Sign ups' => "Total Sign ups",
+			'No. Total Sign ups' => "No. Total Sign ups",
+			'Monthly Active (Consultants and Customers)' => "Monthly Active (Consultants and Customers)",
+			'No. Monthly Active (Consultants and Customers)' => "No. Monthly Active (Consultants and Customers)",
+		],
+		'fr' => [
+			'Total Sign ups' => "Inscriptions Totales",
+			'No. Total Sign ups' => "Non. Inscriptions Totales",
+			'Monthly Active (Consultants and Customers)' => "Actifs Mensuels (Consultants et Clients)",
+			'No. Monthly Active (Consultants and Customers)' => "Non. Actifs Mensuels (Consultants et Clients)",
+		],
+	];
+?>
+
+<input type="hidden" id="Total_Sign_ups" value="<?php echo $graphTexts[$lang]['Total Sign ups']?>">
+<input type="hidden" id="No_Total_Sign_ups" value="<?php echo $graphTexts[$lang]['No. Total Sign ups']?>">
+<input type="hidden" id="Monthly_Active_Consultants_and_Customers" value="<?php echo $graphTexts[$lang]['Monthly Active (Consultants and Customers)']?>">
+<input type="hidden" id="No_Monthly_Active_Consultants_and_Customers" value="<?php echo $graphTexts[$lang]['No. Monthly Active (Consultants and Customers)']?>">
+
 <script>
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
@@ -716,6 +744,11 @@ $datagraph2 = [];
 	var txtMes4 = $("#mes4").text();
 	var txtMes5 = $("#mes5").text();
 
+	var Total_Sign_ups = $("#Total_Sign_ups").val();
+	var No_Total_Sign_ups = $("#No_Total_Sign_ups").val();
+	var Monthly_Active_Consultants_and_Customers = $("#Monthly_Active_Consultants_and_Customers").val();
+	var No_Monthly_Active_Consultants_and_Customers = $("#No_Monthly_Active_Consultants_and_Customers").val();
+
 	//Gráfica Totales
 		var chart11Graph1 = document.getElementById('chart11Graph1').getContext('2d');
 		var chart11Graph1Detail = new Chart(chart11Graph1, {
@@ -724,7 +757,7 @@ $datagraph2 = [];
 		        labels: [txtMes5, txtMes4, txtMes3, txtMes2, txtMes1],
 		        datasets: [
 			        {
-			            label: 'Total Sign ups',
+			            label: Total_Sign_ups,
 			            data: <?php echo /*json_encode($dataIncorporacionesInscripciones)*/ json_encode($datagraph1) ?>,
 			            backgroundColor: [ 'rgba(220, 123, 79, 1)', ],
 			            borderColor: [ 'rgba(220, 123, 79, 1)', ],
@@ -736,7 +769,7 @@ $datagraph2 = [];
 				plugins: {
 					title: {
 						display: true,
-						text: 'Total Sign ups'
+						text: Total_Sign_ups
 					},
 				},
 				scales: {
@@ -744,7 +777,7 @@ $datagraph2 = [];
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: 'No. Total Sign ups'
+			          		text: No_Total_Sign_ups
 			        	},
 						beginAtZero: true
 			      	}
@@ -761,7 +794,7 @@ $datagraph2 = [];
 		        labels: [txtMes5, txtMes4, txtMes3, txtMes2, txtMes1],
 		        datasets: [
 			        {
-			            label: 'Monthly Active (Consultants and Customers)',
+			            label: Monthly_Active_Consultants_and_Customers,
 			            data: <?php echo /*json_encode($dataIncorporacionesActivos)*/ json_encode($datagraph2) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
@@ -773,7 +806,7 @@ $datagraph2 = [];
 				plugins: {
 					title: {
 						display: true,
-						text: 'Monthly Active (Consultants and Customers)'
+						text: Monthly_Active_Consultants_and_Customers
 					},
 				},
 				scales: {
@@ -781,7 +814,7 @@ $datagraph2 = [];
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: 'No. Monthly Active (Consultants and Customers)'
+			          		text: No_Monthly_Active_Consultants_and_Customers
 			        	},
 						beginAtZero: true
 			      	}

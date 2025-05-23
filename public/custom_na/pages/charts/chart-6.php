@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+// $serverName75 = "104.130.46.73";
+$serverName75 = "172.24.16.75";
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -763,7 +763,7 @@ $monthLabelGraph = array();
 </div>
 
 <!-- Mostrar logo -->
-<img src="custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->
@@ -1611,7 +1611,40 @@ $monthLabelGraph = array();
 	</table>
 </div>
 
+<?php
+	$graphTexts = [
+		'es' => [
+			'Organization Purchases' => 'Compras Organización',
+			'Organization Sign Ups' => 'Incorporación Organización',
+			'Actives' => 'Actividad',
+			'No. of Sign Ups' => 'No. de Incorporaciones',
+		],
+		'en' => [
+			'Organization Purchases' => 'Organization Purchases',
+			'Organization Sign Ups' => 'Organization Sign Ups',
+			'Actives' => 'Actives',
+			'No. of Sign Ups' => 'No. of Sign Ups',
+		],
+		'fr' => [
+			'Organization Purchases' => 'Achats d\'organisation',
+			'Organization Sign Ups' => 'Inscriptions à l\'organisation',
+			'Actives' => 'Actifs',
+			'No. of Sign Ups' => 'Nombre d\'inscriptions',
+		],
+	];
+?>
+
+<input type="hidden" id="Organization_Purchases">
+<input type="hidden" id="Organization_Sign_Ups">
+<input type="hidden" id="Actives">
+<input type="hidden" id="No_of_Sign_Ups">
+
 <script>
+	var Organization_Purchases = $("#Organization_Purchases").val();
+	var Organization_Sign_Ups = $("#Organization_Sign_Ups").val();
+	var Actives = $("#Actives").val();
+	var No_of_Sign_Ups = $("#No_of_Sign_Ups").val();
+
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
 	//Fuente de la gráfica
@@ -1643,7 +1676,7 @@ $monthLabelGraph = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Organization Purchases'
+						text: Organization_Purchases
 					},
 				},
 				scales: {
@@ -1686,7 +1719,7 @@ $monthLabelGraph = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Organization Sign Ups'
+						text: Organization_Sign_Ups
 					},
 				},
 				scales: {
@@ -1694,7 +1727,7 @@ $monthLabelGraph = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: 'No. of Sign Ups'
+			          		text: No_of_Sign_Ups
 			        	},
 			        	beginAtZero: true
 			      	}
@@ -1729,7 +1762,7 @@ $monthLabelGraph = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Actives'
+						text: Actives
 					},
 				},
 				scales: {
@@ -1737,7 +1770,7 @@ $monthLabelGraph = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: 'Actives'
+			          		text: Actives
 			        	},
 			        	beginAtZero: true
 			      	}

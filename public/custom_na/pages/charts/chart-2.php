@@ -1,8 +1,8 @@
 <?php require_once("../../functions.php"); //Funciones
 
 //Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
+// $serverName75 = "104.130.46.73";
+$serverName75 = "172.24.16.75";
 $connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
@@ -144,18 +144,18 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
-				<th scope="col"><span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
-				<th scope="col"><span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
-				<th scope="col"><span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
-				<th scope="col"><span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
-				<th scope="col"><span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
-				<th scope="col"><span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
-				<th scope="col"><span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
-				<th scope="col"><span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span></th>
-				<th scope="col"><span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
-				<th scope="col"><span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
-				<th scope="col"><span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
+				<th scope="col"><span id="txtMont13"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont14"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont15"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont16"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont17"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont18"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont19"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont20"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont21"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont22"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont23"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></span></th>
+				<th scope="col"><span id="txtMont24"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></span></th>
 				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Total 12 Months']; ?></th>
 			</tr>
 		</thead>
@@ -933,18 +933,18 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[12]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[11]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[10]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[9]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[8]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[7]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[6]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[5]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[4]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[3]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[2]] ?></th>
-				<th scope="col"><?php echo $shortMonthYear[$monthToShow[1]] ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></th>
+				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></th>
 				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Total 12 Months']; ?></th>
 			</tr>
 		</thead>
@@ -1077,7 +1077,70 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 <div class="fw-bold mt-2 mb-4" style="color: red;">* <?php echo $laguaje[$lang]['is calculated Average']; ?></div>
 <!-- Notas -->
 
+<?php
+	$graphTexts = [
+		'es' => [
+			'Monthly Active' => "Activos Mensuales",
+			'Reactivations' => "Reactivaciones",
+			'Quarterly Active' => "Activos Trimestrales",
+			'Sign Ups' => "Incorporaciones",
+			'Purchasing Behaviour and Sign ups' =>	"Comportamiento de Compras e Incorporaciones",
+			'No. of People' => "No. de Personas",
+			'% Sign ups with quarterly activity' => "% de Incorporaciones con Actividad Trimestral",
+			'Sign ups with quarterly activity' => "Incorporaciones con Actividad Trimestral",
+			'Purchasing Behaviour vs Sign ups' => "Comportamiento de Compras vs Incorporaciones",
+			'No. of Sign ups' => "No. de Incorporaciones",
+		],
+		'en' => [
+			'Monthly Active' => "Monthly Active",
+			'Reactivations' => "Reactivations",
+			'Quarterly Active' => "Quarterly Active",
+			'Sign Ups' => "Sign Ups",
+			'Purchasing Behaviour and Sign ups' => "Purchasing Behaviour and Sign ups",
+			'No. of People' => "No. of People",
+			'% Sign ups with quarterly activity' => "% Sign ups with quarterly activity",
+			'Sign ups with quarterly activity' => "Sign ups with quarterly activity",
+			'Purchasing Behaviour vs Sign ups' => "Purchasing Behaviour vs Sign ups",
+			'No. of Sign ups' => "No. of Sign ups",
+		],
+		'fr' => [
+			'Monthly Active' => "Actifs Mensuels",
+			'Reactivations' => "Réactivations",
+			'Quarterly Active' => "Actifs Trimestriels",
+			'Sign Ups' => "Incorporations",
+			'Purchasing Behaviour and Sign ups' => "Comportement d'Achat et Inscription",
+			'No. of People' => "No. de personnes",
+			'% Sign ups with quarterly activity' => "% d'Inscriptions avec Activité Trimestrielle",
+			'Sign ups with quarterly activity' => "Inscriptions avec Activité Trimestrielle",
+			'Purchasing Behaviour vs Sign ups' => "Comportement d'Achat vs Inscriptions",
+			'No. of Sign ups' => "No. d'Inscriptions",
+		],
+	];
+?>
+
+<input type="hidden" id="Monthly_Active" value="<?php echo $graphTexts[$lang]['Monthly Active'];?>">
+<input type="hidden" id="Reactivations" value="<?php echo $graphTexts[$lang]['Reactivations'];?>">
+<input type="hidden" id="Quarterly_Active" value="<?php echo $graphTexts[$lang]['Quarterly Active'];?>">
+<input type="hidden" id="Sign_Ups" value="<?php echo $graphTexts[$lang]['Sign Ups'];?>">
+<input type="hidden" id="Purchasing_Behaviour_and_Sign_ups" value="<?php echo $graphTexts[$lang]['Purchasing Behaviour and Sign ups'];?>">
+<input type="hidden" id="No_of_People" value="<?php echo $graphTexts[$lang]['No. of People'];?>">
+<input type="hidden" id="_Sign_ups_with_quarterly_activity" value="<?php echo $graphTexts[$lang]['% Sign ups with quarterly activity'];?>">
+<input type="hidden" id="Sign_ups_with_quarterly_activity" value="<?php echo $graphTexts[$lang]['Sign ups with quarterly activity'];?>">
+<input type="hidden" id="Purchasing_Behaviour_vs_Sign_ups" value="<?php echo $graphTexts[$lang]['Purchasing Behaviour vs Sign ups'];?>">
+<input type="hidden" id="No_of_Sign_ups" value="<?php echo $graphTexts[$lang]['No. of Sign ups'];?>">
+
 <script>
+	var Monthly_Active = $("#Monthly_Active").val();
+	var Reactivations = $("#Reactivations").val();
+	var Quarterly_Active = $("#Quarterly_Active").val();
+	var Sign_Ups = $("#Sign_Ups").val();
+	var Purchasing_Behaviour_and_Sign_ups = $("#Purchasing_Behaviour_and_Sign_ups").val();
+	var No_of_People = $("#No_of_People").val();
+	var _Sign_ups_with_quarterly_activity = $("#_Sign_ups_with_quarterly_activity").val();
+	var Sign_ups_with_quarterly_activity = $("#Sign_ups_with_quarterly_activity").val();
+	var Purchasing_Behaviour_vs_Sign_ups = $("#Purchasing_Behaviour_vs_Sign_ups").val();
+	var No_of_Sign_ups = $("#No_of_Sign_ups").val();
+
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
 	//Fuente de la gráfica
@@ -1103,25 +1166,25 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
-			            label: 'Monthly Active',
+			            label: Monthly_Active,
 			            data: <?php echo json_encode($dataIncorporacionesActivosMensuales) ?>,
 			            backgroundColor: [ 'rgba(220, 123, 79, 1)', ],
 			            borderColor: [ 'rgba(220, 123, 79, 1)', ],
 			        },
 			        {
-			            label: 'Reactivations',
+			            label: Reactivations,
 			            data: <?php echo json_encode($dataIncorporacionesReactivaciones) ?>,
 			            backgroundColor: [ 'rgba(51, 51, 153, 1)', ],
 			            borderColor: [ 'rgba(51, 51, 153, 1)', ],
 			        },
 			        {
-			            label: 'Quarterly Active',
+			            label: Quarterly_Active,
 			            data: <?php echo json_encode($dataIncorporacionesActivosTrimestrales) ?>,
 			            backgroundColor: [ 'rgba(102, 153, 102, 1)', ],
 			            borderColor: [ 'rgba(102, 153, 102, 1)', ],
 			        },
 			        {
-			            label: 'Sign Ups',
+			            label: Sign_Ups,
 			            data: <?php echo json_encode($dataIncorporacionesIncorporaciones) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
@@ -1133,7 +1196,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Purchasing Behaviour and Sign ups'
+						text: Purchasing_Behaviour_and_Sign_ups
 					},
 				},
 				scales: {
@@ -1141,7 +1204,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: 'No. of People'
+			          		text: No_of_People
 			        	},
 						beginAtZero: true
 			      	}
@@ -1158,7 +1221,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 		        	{
-			            label: '% Sign ups with quarterly activity',
+			            label: _Sign_ups_with_quarterly_activity,
 			            data: <?php echo json_encode($dataIncorporacionesPorcentajeIncorporadosActividadTrimestral) ?>,
 			            backgroundColor: [ 'rgba(0, 0, 0, 1)', ],
 			            borderColor: [ 'rgba(0, 0, 0, 1)', ],
@@ -1166,14 +1229,14 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 			            type: 'line',
 			        },
 			        {
-			            label: 'Sig Ups',
+			            label: Sign_Ups,
 			            data: <?php echo json_encode($dataIncorporacionesIncorporaciones) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
 	      				yAxisID: 'y',
 			        },
 			        {
-			            label: 'Sign ups with quarterly activity',
+			            label: Sign_ups_with_quarterly_activity,
 			            data: <?php echo json_encode($dataIncorporacionesIncorporadosActividadTrimestral) ?>,
 			            backgroundColor: [ 'rgba(102, 153, 102, 1)', ],
 			            borderColor: [ 'rgba(102, 153, 102, 1)', ],
@@ -1186,7 +1249,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 				plugins: {
 					title: {
 						display: true,
-						text: 'Purchasing Behaviour vs Sign ups'
+						text: Purchasing_Behaviour_vs_Sign_ups
 					},
 				},
 				scales: {
@@ -1196,7 +1259,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						position: 'left',
 						title: {
 				          	display: true,
-				          	text: 'No. of Sign ups'
+				          	text: No_of_Sign_ups
 				        },
 					},
 					y1: {
