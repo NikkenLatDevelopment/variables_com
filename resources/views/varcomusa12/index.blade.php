@@ -59,19 +59,6 @@
         <div class="container-fluid">
             {{-- <input type="hidden" id="env" value="{{ env('ENTORNO') }}"> --}}
             <input type="hidden" id="env" value="test">
-            <div id="loader_div_ajax" class="loader_div">
-                <div class="messageText">
-                    <div class="text-center">
-                        <div class="spinner-border spinner-border-sm" role="status" style="width: 2rem;height: 2rem;">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                    <br>
-                    {{-- <h2>{{ $nameUser }}</h2> --}}
-                    <h4>Estamos actualizando tus datos, al finalizar podrás ver tu información.</h4>
-                    <h6>Tiempo de espera estimado 2 minutos.</h6>
-                </div>
-            </div>
 
             <div class="loader_div_na">
                 <div class="contenedor-div-y-titulo">
@@ -91,7 +78,7 @@
                     </blockquote>
                 </div>
                 <div class="col-6 col-lg-2 col-md-4 m-auto">
-                    <a class="card style-7" href="javascript:void(0)" target="_blank">
+                    <a class="card style-7" href="{{$data_gral['pwp']}}" target="_blank">
                         <img src="https://media.istockphoto.com/id/612520134/es/vector/icono-de-la-ni%C3%B1a-de-dibujos-animados-avatar-%C3%BAnico-icono-de-personas.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=Qr7Jijd2sk8keBFjgfoTXNHn_teVInKjHe4g8-1MdyA=" class="card-img-top" alt="...">
                     </a>
                 </div>

@@ -7,6 +7,11 @@ return [
 
     'PROD' => env('PROD', 'SI'),
     'CUSTOM_API_KEY' => env('CUSTOM_API_KEY'),
+    'API_EXIGO_USER' => env('API_EXIGO_USER'),
+    'API_EXIGO_PASS' => env('API_EXIGO_PASS'),
+    'API_EXIGO_ENV' => env('API_EXIGO_ENV'),
+    'JWT_USER' => env('JWT_USER'),
+    'JWT_PSWD' => env('JWT_PSWD'),
     
     /*
     |--------------------------------------------------------------------------

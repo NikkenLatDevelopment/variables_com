@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 use App\Http\Controllers\coreCms;
+use GuzzleHttp\Client;
 
 class varComUsa extends Controller{
     public function varcomusa(){
@@ -81,7 +82,49 @@ class varComUsa extends Controller{
             $data_gral['period_f'] = $core->getMontPeriod($period);
             
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
-            // return $portada;
+            
+            $client = new Client();
+            $autorization_exigo = base64_encode(config('app.API_EXIGO_USER') . '@nikken:' . config('app.API_EXIGO_PASS'));
+            $data = $client->get(config('app.API_EXIGO_ENV') . "3.0/customers/site?customerID=$code", [
+                'headers' => [
+                    'Authorization' => "Basic $autorization_exigo",
+                ],
+            ]);
+            $result = $data->getBody();
+            $result = json_decode($result);
+            $pwp = $result->webAlias;
+            $data_gral['pwp'] = "https://$pwp.devlivenikken.net/$pwp/Shopping/ItemList";
+
+            // $JWT_USER = config('app.JWT_USER');
+            // $JWT_PSWD = config('app.JWT_PSWD');
+            
+            // $body = [
+            //     "email" => "$JWT_USER",
+            //     "password" => "$JWT_PSWD"
+            // ];
+            // $client = new Client();
+            // $data = $client->post('https://apisjwtprod.nikken.com/api/v1/login', [
+            //     'json' => $body 
+            // ]);
+            // $data = $data->getBody();
+            // $data = json_decode($data, true);
+            // $jwt_token = $data['token'];
+            // // return $jwt_token;
+
+            // $client = new Client();
+            // $response = $client->get('https://apijwt.mynikken.com/api/v1/pwp_request', [
+            //     'headers' => [
+            //         'Authorization' => 'Bearer ' . $jwt_token,
+            //         'Content-Type'  => 'application/json'
+            //     ],
+            //     'json' => [
+            //         'pwp' => $pwp,
+            //         'consultant_id' => $code,
+            //     ],
+            // ]);
+            // $body = $response->getBody();
+            // $data = json_decode($body, true);
+            // return $data;
 
             if(sizeof($response) > 0){
                 $nameUser = $response[0]->name_user;
