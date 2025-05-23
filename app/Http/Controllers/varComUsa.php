@@ -80,9 +80,9 @@ class varComUsa extends Controller{
             $data_gral['rank_user'] = $core->define_rank($ciinfo[0]->rank_user);
             $data_gral['period_i'] = $core->getMontPeriodPast($period);
             $data_gral['period_f'] = $core->getMontPeriod($period);
-            return $data_gral;
             
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
+            return $portada;
             
             $client = new Client();
             $autorization_exigo = base64_encode(config('app.API_EXIGO_USER') . '@nikken:' . config('app.API_EXIGO_PASS'));
