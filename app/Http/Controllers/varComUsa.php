@@ -57,6 +57,7 @@ class varComUsa extends Controller{
     }
 
     public function varcomusa12(){
+        return request();
         if(empty(request()->code)){
             return "Informes Seminario Diamante MyNIKKEN";
         }
@@ -94,37 +95,6 @@ class varComUsa extends Controller{
             $result = json_decode($result);
             $pwp = $result->webAlias;
             $data_gral['pwp'] = "https://$pwp.devlivenikken.net/$pwp/Shopping/ItemList";
-
-            // $JWT_USER = config('app.JWT_USER');
-            // $JWT_PSWD = config('app.JWT_PSWD');
-            
-            // $body = [
-            //     "email" => "$JWT_USER",
-            //     "password" => "$JWT_PSWD"
-            // ];
-            // $client = new Client();
-            // $data = $client->post('https://apisjwtprod.nikken.com/api/v1/login', [
-            //     'json' => $body 
-            // ]);
-            // $data = $data->getBody();
-            // $data = json_decode($data, true);
-            // $jwt_token = $data['token'];
-            // // return $jwt_token;
-
-            // $client = new Client();
-            // $response = $client->get('https://apijwt.mynikken.com/api/v1/pwp_request', [
-            //     'headers' => [
-            //         'Authorization' => 'Bearer ' . $jwt_token,
-            //         'Content-Type'  => 'application/json'
-            //     ],
-            //     'json' => [
-            //         'pwp' => $pwp,
-            //         'consultant_id' => $code,
-            //     ],
-            // ]);
-            // $body = $response->getBody();
-            // $data = json_decode($body, true);
-            // return $data;
 
             if(sizeof($response) > 0){
                 $nameUser = $response[0]->name_user;
