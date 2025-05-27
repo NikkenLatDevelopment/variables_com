@@ -51,7 +51,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información compras
@@ -80,7 +82,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información inscripciones
@@ -109,7 +113,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información bonificaciones
@@ -138,7 +144,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información volúmenes
@@ -167,7 +175,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información ingresos
@@ -196,7 +206,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información comparativo
@@ -285,7 +297,9 @@
                     hideLoader();
                 }
             },
-            error: function(){}
+            error: function(){
+                hideLoader();
+            }
         });
     }
 //Mostrar información incorporaciones totales
