@@ -732,6 +732,7 @@ function getMontPeriodShortLang($periodo, $lang){
 
 $laguaje = [
     'es' => [
+        "Monthly Actives Growth %" => "Crecimiento de Activos Mensuales (%)",
         "Average" => "Promedio",
         "OPV Organizational Point Volume" => "Volumen de puntos organizativos de OPV",
         "PGPV Personal Group Point Volume" => "Volumen de puntos grupales de PGPV",
@@ -861,6 +862,7 @@ $laguaje = [
 
     ],
     'en' => [
+        "Monthly Actives Growth %" => "Montly Actives Growth %",
         "is calculated Average" => "is calculated Average",
         "% Sign ups with quarterly activity" => "% Sign ups with quarterly activity",
         "Average" => "Average",
@@ -985,6 +987,7 @@ $laguaje = [
         "Diciembre" => "December",
     ],
     'fr' => [
+        "Monthly Actives Growth %" => "Actifs mensuels Croissance (%)",
         "Sign Ups by actives" => "Inscriptions par actifs",
         "Average" => "Moyenne",
         "is calculated Average" => "se calcule moyenne",

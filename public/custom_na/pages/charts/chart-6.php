@@ -917,7 +917,7 @@ $monthLabelGraph = array();
 
 			<!-- Actividad 2021 - 2022 -->
 				<tr>
-					<th scope="row">Monthly Actives Growth %</th>
+					<th scope="row"><?php echo $laguaje[$lang]['Monthly Actives Growth %']; ?></th>
 					<?php $months = 0; ?>
 					<?php if($classEne == "") { ?><td class="text-center">
 						<?php

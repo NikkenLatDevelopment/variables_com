@@ -739,13 +739,13 @@ $dataComprasCompraPromedio = array();
 
 <!-- Gráficas -->
 	<div class="row">
-		<div class="col text-center">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
 			<!-- Gráfica Comportamiento de Compras VS Activos Mensuales -->
 			<canvas id="chart1Graph1" class="w-100" height="700"></canvas>
 			<!-- Gráfica Comportamiento de Compras VS Activos Mensuales -->
 		</div>
 
-		<div class="col text-center">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
 			<!-- Gráfica Compra Promedio por Activos - Dolares -->
 			<canvas id="chart1Graph2" class="w-100" height="700"></canvas>
 			<!-- Gráfica Compra Promedio por Activos - Dolares -->

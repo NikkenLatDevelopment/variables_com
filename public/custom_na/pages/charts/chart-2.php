@@ -914,13 +914,13 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 <!-- Gráficas -->
 	<div class="row">
-		<div class="col text-center">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
 			<!-- Gráfica Comportamiento de Compras e Incorporaciones -->
 			<canvas id="chart2Graph1" class="w-100" height="510"></canvas>
 			<!-- Gráfica Comportamiento de Compras e Incorporaciones -->
 		</div>
 
-		<div class="col text-center">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
 			<!-- Gráfica Comportamiento y Calidad de las Incorporaciones -->
 			<canvas id="chart2Graph2" class="w-100" height="510"></canvas>
 			<!-- Gráfica Comportamiento y Calidad de las Incorporaciones -->
