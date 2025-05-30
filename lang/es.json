@@ -24,5 +24,6 @@
     "Platinum": "Platino",
     "Diamond": "Diamante",
     "Royal_Diamond": "Diamante Real",
-    "loading_msg": "Estamos calculando la información, por favor espere."
+    "loading_msg": "Este informe calcula la información correspondiente a un año en el momento en que se solicita. Puede tardar hasta 4 minutos, dependiendo del tamaño de su red. Gracias de antemano por su paciencia al mostrar este informe.",
+    "instructions": "Ce rapport vous présente les variables d'entreprise qui font partie du BOSS Summit. Désormais accessibles à tous les consultants, elles vous permettront de connaître plus en détail les indicateurs de votre entreprise."
 }

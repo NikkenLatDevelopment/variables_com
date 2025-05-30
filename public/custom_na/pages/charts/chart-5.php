@@ -179,6 +179,7 @@ $dataBonificacionessuma = array();
 ?>
 
 <!-- Mostrar logo -->
+<hr>
 <img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 

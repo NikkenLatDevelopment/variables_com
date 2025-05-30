@@ -19,6 +19,11 @@
     }
 //Mostrar información general
 
+window.miTimeout = setTimeout(function() {
+    var alto_imagen = $("#abi_pwp_link").height();
+    $("#abiinfo_div").css('min-height', alto_imagen);
+}, 1000);
+
 // mostrar/ocultar div loader
     let requestCount = 0;
     $(".loader_div_na").hide();

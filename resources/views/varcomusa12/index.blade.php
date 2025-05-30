@@ -70,22 +70,23 @@
             </div>
 
             <div class="row layout-top-spacing w-100 mt-3 portada">
-                <div class="col-12 col-lg-10 col-md-12">
-                    <blockquote class="blockquote rounded">
-                        <h1 class="d-inline">{{ucwords(__('Business_Variables_Report_By_Consultant'))}}</h1>
+                <div class="col-12 col-md-10 d-flex flex-column justify-content-center">
+                    <blockquote class="blockquote rounded mb-0" id="abiinfo_div">
+                        <h1 class="d-inline">{{__('Business_Variables_Report_By_Consultant')}}</h1>
                         <h3 class="text-end"><b>{{ucwords($data_gral['name_user'])}}</b></h3>
-                        <h4 class="">{{ucwords(__('period'))}}: {{ $data_gral['period_i'] }} {{ucwords(__('to'))}} {{$data_gral['period_f']}}</h4>
+                        <h4 class="mb-2">{{__('period')}}: {{ $data_gral['period_i'] }} {{__('to')}} {{$data_gral['period_f']}}</h4>
+                        <h5 class="mt-2" style="color: #1e3461">{{__('instructions')}}</h5>
                     </blockquote>
                 </div>
-                <div class="col-6 col-lg-2 col-md-4 m-auto">
-                    <a class="card style-7" href="{{$data_gral['pwp']}}" target="_blank">
-                        <img src="https://media.istockphoto.com/id/612520134/es/vector/icono-de-la-ni%C3%B1a-de-dibujos-animados-avatar-%C3%BAnico-icono-de-personas.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=Qr7Jijd2sk8keBFjgfoTXNHn_teVInKjHe4g8-1MdyA=" class="card-img-top" alt="...">
+                <div class="col-6 col-md-2 d-flex align-items-center justify-content-center p-0" id="abi_pwp_link">
+                    <a class="card style-7 w-75 h-100 d-flex align-items-center justify-content-center overflow-hidden" href="{{$data_gral['pwp']}}" target="_blank">
+                        <img src="https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png"  class="card-img-top img-fluid" style="object-fit: cover; width: 100%; height: 100%;">
                     </a>
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 mt-2">
                     <div class="card mb-3">
                         <div class="card-content">
-                            <h4 class="card-title text-center bg-mnk pb-2 pt-2">{{ucwords(__('rank_advancement'))}}</h4>
+                            <h4 class="card-title text-center bg-mnk pb-2 pt-2">{{__('rank_advancement')}}</h4>
                             <div class="table-responsive p-2">
                                 <table class="table table-hover">
                                     <tbody>
@@ -130,7 +131,7 @@
                 <div class="col-12 col-lg-4 col-md-6 mt-2">
                     <div class="card mb-3">
                         <div class="card-content">
-                            <h4 class="card-title text-center bg-mnk pb-2 pt-2">{{ucwords(__('leaders_in_your_organization'))}}</h4>
+                            <h4 class="card-title text-center bg-mnk pb-2 pt-2">{{__('leaders_in_your_organization')}}</h4>
                             <div class="table-responsive p-2">
                                 <table class="table table-hover">
                                     <tbody>
@@ -163,48 +164,48 @@
                 <div class="col-12 col-lg-4 col-md-6 mt-2 mb-5">
                     <div class="card">
                         <div class="card-content">
-                            <h4 class="card-title text-center bg-mnk pb-2 pt-2">{{ucwords(__('members_in_your_organization'))}}</h4>
+                            <h4 class="card-title text-center bg-mnk pb-2 pt-2">{{__('members_in_your_organization')}}</h4>
                             <div class="table-responsive p-2">
                                 <table class="table table-hover table-sm">
                                     <tbody>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('no_of_consultants'))}}</td>
+                                            <td class="text-end">{{__('no_of_consultants')}}</td>
                                             <td>{{number_format($portada[0]->NAsesores, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('no_of_customers'))}}</td>
+                                            <td class="text-end">{{__('no_of_customers')}}</td>
                                             <td>{{number_format($portada[0]->NAsesoresPref, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('monthly_active_consultants_(Avg)'))}}</td>
+                                            <td class="text-end">{{__('monthly_active_consultants_(Avg)')}}</td>
                                             <td>{{number_format($portada[0]->ActivosMensuales_consultants, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('monthly_active_customers_(Avg)'))}}</td>
+                                            <td class="text-end">{{__('monthly_active_customers_(Avg)')}}</td>
                                             <td>{{number_format($portada[0]->ActivosMensuales_customer, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('monthly_consultants_sign_ups_(Avg)'))}}</td>
+                                            <td class="text-end">{{__('monthly_consultants_sign_ups_(Avg)')}}</td>
                                             <td>{{number_format($portada[0]->prom_consultans, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('monthly_customers_sign_ups_(Avg)'))}}</td>
+                                            <td class="text-end">{{__('monthly_customers_sign_ups_(Avg)')}}</td>
                                             <td>{{number_format($portada[0]->prom_costumers, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('frontline_consultants'))}}</td>
+                                            <td class="text-end">{{__('frontline_consultants')}}</td>
                                             <td>{{number_format($portada[0]->Frontalidad_consultants, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('frontline_customers'))}}</td>
+                                            <td class="text-end">{{__('frontline_customers')}}</td>
                                             <td>{{number_format($portada[0]->Frontalidad_customer, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('depth'))}}</td>
+                                            <td class="text-end">{{__('depth')}}</td>
                                             <td>{{number_format($portada[0]->Profundidad, 0)}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-end">{{ucwords(__('rolling_year_purchases_(usd)'))}}</td>
+                                            <td class="text-end">{{__('rolling_year_purchases_(usd)')}}</td>
                                             <td>{{number_format($portada[0]->ComprasUltimoAño, 0)}}</td>
                                         </tr>
                                     </tbody>

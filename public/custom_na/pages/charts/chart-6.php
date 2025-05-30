@@ -199,6 +199,7 @@ $monthLabelGraph = array();
 ?>
 
 <!-- Mostrar logo -->
+<hr>
 <img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
@@ -541,8 +542,7 @@ $monthLabelGraph = array();
 		<tbody>
 			<!-- Incorporaciones Organización 2021 -->
 				<tr>
-					<th scope="row"><?php echo $aniosDif[$i + 12]; ?>
-				<?php echo sizeof($dataIncorporaciones); ?></th>
+					<th scope="row"><?php echo $aniosDif[$i + 12]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
@@ -763,6 +763,7 @@ $monthLabelGraph = array();
 </div>
 
 <!-- Mostrar logo -->
+<hr>
 <img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
