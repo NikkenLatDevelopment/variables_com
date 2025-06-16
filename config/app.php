@@ -12,6 +12,8 @@ return [
     'API_EXIGO_ENV' => env('API_EXIGO_ENV'),
     'JWT_USER' => env('JWT_USER'),
     'JWT_PSWD' => env('JWT_PSWD'),
+    'EXIGO_SRV_USER' => env('EXIGO_SRV_USER'),
+    'EXIGO_SRV_PASS' => env('EXIGO_SRV_PASS'),
     
     /*
     |--------------------------------------------------------------------------

@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-6 col-md-2 d-flex align-items-center justify-content-center p-0" id="abi_pwp_link">
                     <a class="card style-7 w-75 h-100 d-flex align-items-center justify-content-center overflow-hidden" href="{{$data_gral['pwp']}}" target="_blank">
-                        <img src="https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png"  class="card-img-top img-fluid" style="object-fit: cover; width: 100%; height: 100%;">
+                        <img src="{{$user_picture ?? 'https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png'}}"  class="card-img-top img-fluid" style="object-fit: cover; width: 100%; height: 100%;">
                     </a>
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 mt-2">
