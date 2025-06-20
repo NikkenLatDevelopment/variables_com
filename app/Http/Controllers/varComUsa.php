@@ -57,18 +57,17 @@ class varComUsa extends Controller{
     }
 
     public function varcomusa12(){
-        if(empty(request()->code)){
+        $core = new coreCms();
+        $jwt_token = $core->getJWTToken();
+        $decrypted = $core->JWTDecrypt($jwt_token, request());
+        if(empty($decrypted['consultant_id'])){
             return "Informes Seminario Diamante MyNIKKEN";
         }
         try{
-            $core = new coreCms();
-            $code = request()->code;
-            $period = request()->period;
-            if(!is_numeric($code)){
-                $code = base64_decode($code);
-            }
+            $code = $decrypted['consultant_id'];
+            $period = $decrypted['start_period'];
             $codeUser = $code;
-            $lang = request()->lang;
+            $lang = $decrypted['lang'];
             App::setLocale($lang);
             $response = $core->execSQLQuery("EXEC LAT_MyNIKKEN.dbo.reporteBoss_datosGenerales $codeUser;", "SQL73");
             $ciinfo = $response;
