@@ -113,6 +113,9 @@ class varComUsa extends Controller{
             $user_picture = json_decode($user_picture);
             $user_picture = $user_picture->data;
             $user_picture = $user_picture->user_picture;
+            if(trim($user_picture) == ''){
+                $user_picture = "https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png";
+            }
             $data_gral['pwp'] = "https://$pwp.devlivenikken.net/$pwp/Shopping/ItemList";
             if(sizeof($response) > 0){
                 $nameUser = $response[0]->name_user;
