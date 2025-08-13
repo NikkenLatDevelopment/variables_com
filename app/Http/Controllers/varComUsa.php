@@ -57,6 +57,7 @@ class varComUsa extends Controller{
     }
 
     public function varcomusa12(){
+        return request();
         $core = new coreCms();
         $jwt_token = $core->getJWTToken();
         $decrypted = $core->JWTDecrypt($jwt_token, request());
