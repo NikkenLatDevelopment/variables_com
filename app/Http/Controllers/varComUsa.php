@@ -70,7 +70,6 @@ class varComUsa extends Controller{
             $lang = $decrypted['lang'];
             App::setLocale($lang);
             $response = $core->execSQLQuery("EXEC LAT_MyNIKKEN.dbo.reporteBoss_datosGenerales $codeUser;", "SQL73");
-            return $response;
             $ciinfo = $response;
             $data_gral = [];
             $data_gral['name_user'] = $ciinfo[0]->name_user;
@@ -80,6 +79,7 @@ class varComUsa extends Controller{
             $data_gral['period_i'] = $core->getMontPeriodPast($period);
             $data_gral['period_f'] = $core->getMontPeriod($period);
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
+            return $portada;
             # obtener pwp del usuario segun Exigo
             $client = new Client();
             $autorization_exigo = base64_encode(config('app.API_EXIGO_USER') . '@nikken:' . config('app.API_EXIGO_PASS'));
