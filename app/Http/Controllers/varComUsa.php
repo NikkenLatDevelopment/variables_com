@@ -57,7 +57,6 @@ class varComUsa extends Controller{
     }
 
     public function varcomusa12(){
-        return request();
         $core = new coreCms();
         $jwt_token = $core->getJWTToken();
         $decrypted = $core->JWTDecrypt($jwt_token, request());
@@ -71,6 +70,7 @@ class varComUsa extends Controller{
             $lang = $decrypted['lang'];
             App::setLocale($lang);
             $response = $core->execSQLQuery("EXEC LAT_MyNIKKEN.dbo.reporteBoss_datosGenerales $codeUser;", "SQL73");
+            return $response;
             $ciinfo = $response;
             $data_gral = [];
             $data_gral['name_user'] = $ciinfo[0]->name_user;
