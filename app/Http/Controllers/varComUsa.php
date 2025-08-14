@@ -79,7 +79,6 @@ class varComUsa extends Controller{
             $data_gral['period_i'] = $core->getMontPeriodPast($period);
             $data_gral['period_f'] = $core->getMontPeriod($period);
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
-            return $portada;
             # obtener pwp del usuario segun Exigo
             $client = new Client();
             $autorization_exigo = base64_encode(config('app.API_EXIGO_USER') . '@nikken:' . config('app.API_EXIGO_PASS'));
