@@ -10,7 +10,7 @@ use GuzzleHttp\Client;
 class varComUsa extends Controller{
     public function varcomusa(){
         $core = new coreCms();
-
+        // return request();
         if(empty(request()->code)){
             return "Informes Seminario Diamante MyNIKKEN";
         }
@@ -32,7 +32,7 @@ class varComUsa extends Controller{
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
             
             $compras_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Compras_usa $code, $period", 'SQL73');
-            $incorporaciones_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $code, $period", 'SQL73'); return $incorporaciones_usa;
+            $incorporaciones_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $code, $period", 'SQL73');
             $ConteoComercial_usa = $portada;
 
             return view('varcomusa.index', compact(

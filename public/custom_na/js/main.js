@@ -12,7 +12,9 @@
                 divMensaje.html(html); 
 
                 //Mostrar información genealogía
-                setTimeout(function(){ chart10(codeUser, nameUser, countrieUser, rankUser); });
+                setTimeout(function(){ 
+                    // chart10(codeUser, nameUser, countrieUser, rankUser); 
+                });
                 //Mostrar información genealogía
             }, error: function(){}
         });

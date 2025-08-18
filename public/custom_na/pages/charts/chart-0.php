@@ -38,41 +38,41 @@ $nivelesProfundidad = 0;
 $comprasUltimoAno = 0;
 
 //$sql = "EXEC ConteoComercialD1_test $codeUser, $periodoPost";
-$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $codeUser, $periodoPost";
+$sql = "EXEC LAT_MyNIKKEN.dbo.ConteoComercialD1_usa $codeUser, $periodoPost";
 $recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 $periodotoShow = "";
 $monthToShow = [];
 $x = 0;
 $rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC);
 if($rowSap > 0) {
-	$avancesDirecto = trim($rowSap[1]) == "0" ? "" : trim($rowSap[1]);
-	$avancesSuperior = trim($rowSap[2]) == "0" ? "" : trim($rowSap[2]);
-	$avancesEjecutivo = trim($rowSap[3]) == "0" ? "" : trim($rowSap[3]);
-	$avancesPlata = trim($rowSap[4]) == "0" ? "" : trim($rowSap[4]);
-	$avancesOro = trim($rowSap[5]) == "0" ? "" : trim($rowSap[5]);
-	$avancesPlatino = trim($rowSap[6]) == "0" ? "" : trim($rowSap[6]);
-	$avancesDiamante = trim($rowSap[7]) == "0" ? "" : trim($rowSap[7]);
-	$avancesDiamanteReal = trim($rowSap[8]) == "0" ? "" : trim($rowSap[8]);
-	$lideresPlata = trim($rowSap[9]);
-	$lideresOro = trim($rowSap[10]);
-	$lideresPlatino = trim($rowSap[11]);
-	$lideresDiamante = trim($rowSap[12]);
-	$lideresDiamanteReal = trim($rowSap[13]);
-	$numeroInfluencers = trim($rowSap[14]);
-	$numeroClientesPreferentes = trim($rowSap[15]);
-	$activosMensuales = trim($rowSap[16]);
-	$incorporadosMes = trim($rowSap[17]);
-	$influencersFrontales = trim($rowSap[18]);
-	$nivelesProfundidad = trim($rowSap[20]);
-	$comprasUltimoAno = trim($rowSap[21]) == "" ? 0 : trim($rowSap[21]);
+	$avancesDirecto = @trim($rowSap[1]) == "0" ? "" : @trim($rowSap[1]);
+	$avancesSuperior = @trim($rowSap[2]) == "0" ? "" : @trim($rowSap[2]);
+	$avancesEjecutivo = @trim($rowSap[3]) == "0" ? "" : @trim($rowSap[3]);
+	$avancesPlata = @trim($rowSap[4]) == "0" ? "" : @trim($rowSap[4]);
+	$avancesOro = @trim($rowSap[5]) == "0" ? "" : @trim($rowSap[5]);
+	$avancesPlatino = @trim($rowSap[6]) == "0" ? "" : @trim($rowSap[6]);
+	$avancesDiamante = @trim($rowSap[7]) == "0" ? "" : @trim($rowSap[7]);
+	$avancesDiamanteReal = @trim($rowSap[8]) == "0" ? "" : @trim($rowSap[8]);
+	$lideresPlata = @trim($rowSap[9]);
+	$lideresOro = @trim($rowSap[10]);
+	$lideresPlatino = @trim($rowSap[11]);
+	$lideresDiamante = @trim($rowSap[12]);
+	$lideresDiamanteReal = @trim($rowSap[13]);
+	$numeroInfluencers = @trim($rowSap[14]);
+	$numeroClientesPreferentes = @trim($rowSap[15]);
+	$activosMensuales = @trim($rowSap[16]);
+	$incorporadosMes = @trim($rowSap[17]);
+	$influencersFrontales = @trim($rowSap[18]);
+	$nivelesProfundidad = @trim($rowSap[20]);
+	$comprasUltimoAno = @trim($rowSap[21]) == "" ? 0 : @trim($rowSap[21]);
 
-	$monthActiveConsultant = trim($rowSap[16]);
-	$monthActiveCustomer = trim($rowSap[26]);
-	$monthConsultantSignUps = trim($rowSap[24]);
-	$monthCustomerSignUp = trim($rowSap[25]);
+	$monthActiveConsultant = (empty($rowSap[16])) ?0:@trim($rowSap[16]);
+	$monthActiveCustomer = (empty($rowSap[26])) ?0:@trim($rowSap[26]);
+	$monthConsultantSignUps = (empty($rowSap[24])) ?0:@trim($rowSap[24]);
+	$monthCustomerSignUp = (empty($rowSap[25])) ?0:@trim($rowSap[25]);
 
-	$frontLineConsultant = trim($rowSap[18]);
-	$frontLineCustomers = trim($rowSap[19]);
+	$frontLineConsultant = @trim($rowSap[18]);
+	$frontLineCustomers = @trim($rowSap[19]);
 }
 
 //Cerrar conexión
@@ -89,6 +89,15 @@ $templateFontBold = '../../pages/charts/chart/arial_bold.ttf';
 $templateFontRoboto = '../../pages/charts/chart/roboto.ttf';
 $templateFontRobotoBold = '../../pages/charts/chart/roboto_bold.ttf';
 $templateFontLatoBold = '../../pages/charts/chart/Lato-Black.ttf';
+
+$ranks_number = [
+	"Ejecutive" => 4,
+	"Silver" => 5,
+	"Gold" => 6,
+	"Platinum" => 7,
+	"Diamond" => 8,
+	"Royal Diamond" => 9,
+];
 
 //Generar imagen de Influencer
 if (file_exists('../../img/codes/' . $codeUser . '-min.jpg')) {
@@ -107,7 +116,7 @@ if (file_exists('../../img/codes/' . $codeUser . '-min.jpg')) {
 	imagefill($template, 0, 0, $color);
 
 	$photo = imagescale(imagecreatefromjpeg('../../img/codes/' . $codeUser . '-min.jpg'), $newImgWidth, $newImgHeight);
-	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($rankUser)) . '/' . $countrieUser . '.png');
+	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser . '.png');
 
 	imagecopy($template, $photo, 0, 0, 0, 0, $newImgWidth, 800);
 	imagecopy($template, $templatePhoto, 0, 0, 0, 0, 800, 800);
@@ -124,7 +133,7 @@ else{
 	$color = imagecolorallocatealpha($template, 0, 0, 0, 127);
 	imagefill($template, 0, 0, $color);
 
-	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($rankUser)) . '/' . $countrieUser . '.png');
+	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser . '.png');
 
 	imagecopy($template, $templatePhoto, 0, 0, 0, 0, 800, 800);
 	//Unir plantilla y foto
