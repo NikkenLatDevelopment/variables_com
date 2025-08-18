@@ -167,6 +167,6 @@
     <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
     <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
     <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    {{-- <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
 </html>
