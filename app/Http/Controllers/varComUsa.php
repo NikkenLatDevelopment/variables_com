@@ -30,12 +30,12 @@ class varComUsa extends Controller{
             $data_gral['period_f'] = $core->getMontPeriod($period);
             
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
-
+            
             $compras_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Compras_usa $code, $period", 'SQL73');
-            $incorporaciones_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $code, $period", 'SQL73');
+            $incorporaciones_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $code, $period", 'SQL73'); return $incorporaciones_usa;
             $ConteoComercial_usa = $portada;
 
-            return view('varcomusa12.index', compact(
+            return view('varcomusa.index', compact(
                 'core',
                 'code', 
                 'period', 

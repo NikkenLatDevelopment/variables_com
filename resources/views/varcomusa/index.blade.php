@@ -46,7 +46,7 @@
                 border-radius: 10px;
                 width: 100%;
                 margin: auto;
-                    margin-top: auto;
+                margin-top: auto;
                 text-align: center;
                 margin-top: 150px;
                 position: initial;
@@ -162,11 +162,11 @@
     <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
     
     <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>chart2($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    {{-- <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart2($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
 </html>
