@@ -33,7 +33,7 @@ $datagraph2 = [];
 //Others
 
 //Consulta
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_anual_usa $codeUser, $periodopost;";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_anual_usa $codeUser, $periodopost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$aniosDif = [];

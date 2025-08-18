@@ -38,7 +38,7 @@ $dataIncorporacionActividad2022 = array();
 
 //Consulta
 	//$sql = "EXEC Compras $codeUser, $periodoPost";
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Compras_org_anual_usa $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Compras_org_anual_usa $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoSho = "";
 	$aniosDif = [];
@@ -62,7 +62,7 @@ $dataIncorporacionActividad2022 = array();
 	$aniosDif = array_values($aniosDif);
 	$i = 1;
 
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_usa_24m $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa_24m $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$incorporacionesCisFrontales = trim($rowSap[1]);

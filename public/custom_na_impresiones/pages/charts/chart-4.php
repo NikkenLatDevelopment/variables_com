@@ -32,7 +32,7 @@ $dataVolumenesVoldpys = array();
 
 //Consulta
 	// $sql = "EXEC LAT_MyNIKKEN.dbo.Sp_Volumenes_usa $codeUser, '$periodoPost'";
-	$sql = "EXEC LAT_MyNIKKEN.dbo.Sp_Volumenes_usa_24 $codeUser, '$periodoPost'";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Sp_Volumenes_usa_24 $codeUser, '$periodoPost'";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];

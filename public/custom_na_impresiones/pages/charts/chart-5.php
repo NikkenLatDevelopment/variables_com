@@ -43,7 +43,7 @@ $dataBonificacionessuma = array();
 
 //Consulta
 	// $sql = "EXEC Bonificaciones_SD_usa $codeUser, $periodoPost";
-	$sql = "EXEC LAT_MyNIKKEN.dbo.varCom_bonificaciones_usa_24m $codeUser, $periodoPost;";
+	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.varCom_bonificaciones_usa_24m $codeUser, $periodoPost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];

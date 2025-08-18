@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 composer.lock
 public/custom_na_impresiones/pages/charts/chart
+/public/custom_na_impresiones/pages/charts/chart
