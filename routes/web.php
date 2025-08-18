@@ -20,3 +20,5 @@ Route::post('/guardar-imagen', [TuControlador::class, 'guardarImagen']);
 
 Route::get("varcomusa",  [varComUsa::class, 'varcomusa'])->name('varcomusa');
 Route::get("varcomusa12",  [varComUsa::class, 'varcomusa12'])->name('varcomusa12');
+
+Route::get("varcomusa_impresiones",  [varComUsa::class, 'varcomusa_impresiones'])->name('varcomusa_impresiones');

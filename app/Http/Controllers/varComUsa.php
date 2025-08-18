@@ -133,4 +133,47 @@ class varComUsa extends Controller{
             return "Informes Seminario Diamante MyNIKKEN";
         }
     }
+
+    public function varcomusa_impresiones(){
+        $core = new coreCms();
+        if(empty(request()->code)){
+            return "Informes Seminario Diamante MyNIKKEN";
+        }
+        try{
+            $code = request()->code;
+            $period = request()->period;
+            $lang = request()->lang;
+            App::setLocale($lang);
+            $ciinfo = $core->execSQLQuery("EXEC LAT_MyNIKKEN.dbo.reporteBoss_datosGenerales $code;", "SQL73");
+            $data_gral = [];
+            $data_gral['name_user'] = $ciinfo[0]->name_user;
+            $data_gral['code'] = $code;
+            $data_gral['countrie_user'] = $core->define_country($ciinfo[0]->countrie_user);
+            $data_gral['rank_user'] = $core->define_rank($ciinfo[0]->rank_user);
+            $data_gral['period_i'] = $core->getMontPeriodPast($period);
+            $data_gral['period_f'] = $core->getMontPeriod($period);
+            $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
+            $compras_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Compras_usa $code, $period", 'SQL73');
+            $incorporaciones_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $code, $period", 'SQL73');
+            $ConteoComercial_usa = $portada;
+            return view('varcomusa_impresiones.index', compact(
+                'core',
+                'code', 
+                'period', 
+                'data_gral', 
+                'portada',
+                'compras_usa',
+                'incorporaciones_usa',
+                'ConteoComercial_usa',
+                'lang'
+            ));
+        }
+        catch (Exception $e){
+            //Guardar mensaje de error
+            $this->aveLogError($e, "Informes Seminario Diamante MyNIKKEN");
+            //Guardar mensaje de error
+        
+            return $e;
+        }
+    }
 }
