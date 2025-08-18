@@ -154,19 +154,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <script src="{{ asset('custom_na/js/main.js?v=' . Date('YmdHis')) }}"></script>
     <!-- Librerías adicionales -->
-    <input type="text" id="codeUser" value="{{ $data_gral['code'] }}" readonly >
-    <input type="text" id="nameUser" value="{{ $data_gral['name_user'] }}" readonly >
-    <input type="text" id="countrieUser" value="{{ $data_gral['countrie_user'] }}" readonly >
-    <input type="text" id="rankUser" value="{{ $data_gral['rank_user'] }}" readonly >
-    <input type="text" id="periodoQuery" value="{{ $period }}" readonly >
-    <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly >
+    <input type="text" id="codeUser" value="{{ $data_gral['code'] }}" readonly hidden>
+    <input type="text" id="nameUser" value="{{ $data_gral['name_user'] }}" readonly hidden>
+    <input type="text" id="countrieUser" value="{{ $data_gral['countrie_user'] }}" readonly hidden>
+    <input type="text" id="rankUser" value="{{ $data_gral['rank_user'] }}" readonly hidden>
+    <input type="text" id="periodoQuery" value="{{ $period }}" readonly hidden>
+    <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
     
     <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
-    {{-- <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>chart2($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
-    {{-- <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>chart2($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
 </html>

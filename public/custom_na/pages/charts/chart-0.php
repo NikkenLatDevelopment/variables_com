@@ -99,6 +99,11 @@ $ranks_number = [
 	"Royal Diamond" => 9,
 ];
 
+$countrieUser_short = [
+	"Canada" => 'CA',
+	"USA" => 'USA',
+];
+
 //Generar imagen de Influencer
 if (file_exists('../../img/codes/' . $codeUser . '-min.jpg')) {
 	//Obtener medidas de la imagen
@@ -116,7 +121,7 @@ if (file_exists('../../img/codes/' . $codeUser . '-min.jpg')) {
 	imagefill($template, 0, 0, $color);
 
 	$photo = imagescale(imagecreatefromjpeg('../../img/codes/' . $codeUser . '-min.jpg'), $newImgWidth, $newImgHeight);
-	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser . '.png');
+	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser_short[$countrieUser] . '.png');
 
 	imagecopy($template, $photo, 0, 0, 0, 0, $newImgWidth, 800);
 	imagecopy($template, $templatePhoto, 0, 0, 0, 0, 800, 800);
@@ -133,7 +138,7 @@ else{
 	$color = imagecolorallocatealpha($template, 0, 0, 0, 127);
 	imagefill($template, 0, 0, $color);
 
-	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser . '.png');
+	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser_short[$countrieUser] . '.png');
 
 	imagecopy($template, $templatePhoto, 0, 0, 0, 0, 800, 800);
 	//Unir plantilla y foto
