@@ -1,9 +1,15 @@
 <?php require_once("../../functions.php"); //Funciones
 
-//Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$prod = $_POST["prod"];
+
+if(trim($prod) === 'NO'){
+	$serverName75 = "172.24.16.75";
+}
+else{
+	$serverName75 = "104.130.46.73";
+}
+
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -13,8 +19,6 @@ $nameUser = $_POST["nameUser"];
 $countrieUser = letterCountrie($_POST["countrieUser"]);
 $rankUser = $_POST["rankUser"];
 $periodoPost = $_POST["periodo"];
-$lang = $_POST["lang"];
-// $periodoPost = 202310;
 //Vars
 
 //Others
@@ -27,7 +31,8 @@ $dataVolumenesVoldpys = array();
 //Others
 
 //Consulta
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Sp_Volumenes_usa_24 $codeUser, '$periodoPost'";
+	// $sql = "EXEC LAT_MyNIKKEN.dbo.Sp_Volumenes_usa $codeUser, '$periodoPost'";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Sp_Volumenes_usa_24 $codeUser, '$periodoPost'";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
@@ -48,6 +53,12 @@ $dataVolumenesVoldpys = array();
 		$dataVolumenes[$periodo] = array("vp" => $vp, "vgp" => $vgp, "vo" => $vo, "voldp" => $voldp, "voldpys" => $voldpys);
 		//Guardar datos en array
 	}
+	// sqlsrv_free_stmt($recordSet);
+
+	// echo "<pre>";
+	// print_r($dataVolumenes);
+	// echo "</pre>";
+	// exit;
 
 	//Cerrar conexión
 	sqlsrv_close($conn75);
@@ -55,71 +66,70 @@ $dataVolumenesVoldpys = array();
 //Consulta
 
 //Graficas
-	$count = 0;
+	// $count = 0;
 
-	//Periodo inicial de consulta
-	$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
-	$period = new DateTime("$periodoIni");
-	//Periodo inicial de consulta
+	// //Periodo inicial de consulta
+	// $periodoIni = $periodMonthsByGraph[$monthToShow[24]];
+	// $period = new DateTime("$periodoIni");
+	// //Periodo inicial de consulta
 
-	while($count < 24){
-		$periodQuery = $period->format('Ym');
+	// while($count < 24){
+	// 	$periodQuery = $period->format('Ym');
 
-		//Guardar vp
-		$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["vp"] : 0;
-		$dataVolumenesVp = array_merge($dataVolumenesVp, array($price));
-		//Guardar vp
+	// 	//Guardar vp
+	// 	$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["vp"] : 0;
+	// 	$dataVolumenesVp = array_merge($dataVolumenesVp, array($price));
+	// 	//Guardar vp
 
-		//Guardar vgp
-		$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["vgp"] : 0;
-		$dataVolumenesVgp = array_merge($dataVolumenesVgp, array($price));
-		//Guardar vgp
+	// 	//Guardar vgp
+	// 	$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["vgp"] : 0;
+	// 	$dataVolumenesVgp = array_merge($dataVolumenesVgp, array($price));
+	// 	//Guardar vgp
 
-		//Guardar vo
-		$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["vo"] : 0;
-		$dataVolumenesVo = array_merge($dataVolumenesVo, array($price));
-		//Guardar vo
+	// 	//Guardar vo
+	// 	$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["vo"] : 0;
+	// 	$dataVolumenesVo = array_merge($dataVolumenesVo, array($price));
+	// 	//Guardar vo
 
-		//Guardar voldp
-		$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["voldp"] : 0;
-		$dataVolumenesVoldp = array_merge($dataVolumenesVoldp, array($price));
-		//Guardar voldp
+	// 	//Guardar voldp
+	// 	$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["voldp"] : 0;
+	// 	$dataVolumenesVoldp = array_merge($dataVolumenesVoldp, array($price));
+	// 	//Guardar voldp
 
-		//Guardar voldpys
-		$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["voldpys"] : 0;
-		$dataVolumenesVoldpys = array_merge($dataVolumenesVoldpys, array($price));
-		//Guardar voldpys
+	// 	//Guardar voldpys
+	// 	$price = isset($dataVolumenes[$periodQuery]) ? $dataVolumenes[$periodQuery]["voldpys"] : 0;
+	// 	$dataVolumenesVoldpys = array_merge($dataVolumenesVoldpys, array($price));
+	// 	//Guardar voldpys
 
-	    //Cambiar a periodo siguiente
-		$period->modify('+1 month');
-		$period = $period->format('Y-m-01');
-		$period = new DateTime($period);
-		//Cambiar a periodo siguiente
+	//     //Cambiar a periodo siguiente
+	// 	$period->modify('+1 month');
+	// 	$period = $period->format('Y-m-01');
+	// 	$period = new DateTime($period);
+	// 	//Cambiar a periodo siguiente
 
-		$count++;
-	}
+	// 	$count++;
+	// }
 //Graficas
 
 ?>
 
 <!-- Mostrar logo -->
- <hr>
-<img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="https://mi.nikkenlatam.com/custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->
 	<div class="row mb-3">
 		<div class="col-auto">
-			<div class="h5 fw-bold mb-1"><?php echo $laguaje[$lang]['Variables de negocio Informe del consultor']; ?></div>
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Periodo de medición']; ?>:</span> <?php echo getMontPeriodPast($periodoPost) . " " . $laguaje[$lang]['a'] .  " " .getMontPeriod($periodoPost); ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['País']; ?>:</span> <?php echo $countrieUser ?></div>
+			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> September 2022 to August 2024</div>
+			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
 		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Código']; ?>:</span> <?php echo $codeUser ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['Rango']; ?>:</span> <?php echo $rangos_usa[$rankUser] ?></div>
+			<div class="h6 mb-0"><span class="fw-bold">Code:</span> <?php echo $codeUser ?></div>
+			<div class="h6"><span class="fw-bold">Rank:</span> <?php echo $rangos_usa[$rankUser] ?></div>
 		</div>
 	</div>
 <!-- Cabecera -->
@@ -135,6 +145,19 @@ $dataVolumenesVoldpys = array();
 
 	<?php
 		$jsonVp = [
+			$dataVolumenes[$monthToShow[24]]["vp"],
+			$dataVolumenes[$monthToShow[23]]["vp"],
+			$dataVolumenes[$monthToShow[22]]["vp"],
+			$dataVolumenes[$monthToShow[21]]["vp"],
+			$dataVolumenes[$monthToShow[20]]["vp"],
+			$dataVolumenes[$monthToShow[19]]["vp"],
+			$dataVolumenes[$monthToShow[18]]["vp"],
+			$dataVolumenes[$monthToShow[17]]["vp"],
+			$dataVolumenes[$monthToShow[16]]["vp"],
+			$dataVolumenes[$monthToShow[15]]["vp"],
+			$dataVolumenes[$monthToShow[14]]["vp"],
+			$dataVolumenes[$monthToShow[13]]["vp"],
+
 			$dataVolumenes[$monthToShow[12]]["vp"],
 			$dataVolumenes[$monthToShow[11]]["vp"],
 			$dataVolumenes[$monthToShow[10]]["vp"],
@@ -150,6 +173,19 @@ $dataVolumenesVoldpys = array();
 		];
 		
 		$jsonVgp = [
+			$dataVolumenes[$monthToShow[24]]["vgp"],
+			$dataVolumenes[$monthToShow[23]]["vgp"],
+			$dataVolumenes[$monthToShow[22]]["vgp"],
+			$dataVolumenes[$monthToShow[21]]["vgp"],
+			$dataVolumenes[$monthToShow[20]]["vgp"],
+			$dataVolumenes[$monthToShow[19]]["vgp"],
+			$dataVolumenes[$monthToShow[18]]["vgp"],
+			$dataVolumenes[$monthToShow[17]]["vgp"],
+			$dataVolumenes[$monthToShow[16]]["vgp"],
+			$dataVolumenes[$monthToShow[15]]["vgp"],
+			$dataVolumenes[$monthToShow[14]]["vgp"],
+			$dataVolumenes[$monthToShow[13]]["vgp"],
+
 			$dataVolumenes[$monthToShow[12]]["vgp"],
 			$dataVolumenes[$monthToShow[11]]["vgp"],
 			$dataVolumenes[$monthToShow[10]]["vgp"],
@@ -179,6 +215,19 @@ $dataVolumenesVoldpys = array();
 
 	<?php 
 		$jsonVo = [
+			$dataVolumenes[$monthToShow[24]]["vo"],
+			$dataVolumenes[$monthToShow[23]]["vo"],
+			$dataVolumenes[$monthToShow[22]]["vo"],
+			$dataVolumenes[$monthToShow[21]]["vo"],
+			$dataVolumenes[$monthToShow[20]]["vo"],
+			$dataVolumenes[$monthToShow[19]]["vo"],
+			$dataVolumenes[$monthToShow[18]]["vo"],
+			$dataVolumenes[$monthToShow[17]]["vo"],
+			$dataVolumenes[$monthToShow[16]]["vo"],
+			$dataVolumenes[$monthToShow[15]]["vo"],
+			$dataVolumenes[$monthToShow[14]]["vo"],
+			$dataVolumenes[$monthToShow[13]]["vo"],
+
 			$dataVolumenes[$monthToShow[12]]["vo"],
 			$dataVolumenes[$monthToShow[11]]["vo"],
 			$dataVolumenes[$monthToShow[10]]["vo"],
@@ -194,6 +243,19 @@ $dataVolumenesVoldpys = array();
 		];
 
 		$jsonvoldp = [
+			$dataVolumenes[$monthToShow[24]]["voldp"],
+			$dataVolumenes[$monthToShow[23]]["voldp"],
+			$dataVolumenes[$monthToShow[22]]["voldp"],
+			$dataVolumenes[$monthToShow[21]]["voldp"],
+			$dataVolumenes[$monthToShow[20]]["voldp"],
+			$dataVolumenes[$monthToShow[19]]["voldp"],
+			$dataVolumenes[$monthToShow[18]]["voldp"],
+			$dataVolumenes[$monthToShow[17]]["voldp"],
+			$dataVolumenes[$monthToShow[16]]["voldp"],
+			$dataVolumenes[$monthToShow[15]]["voldp"],
+			$dataVolumenes[$monthToShow[14]]["voldp"],
+			$dataVolumenes[$monthToShow[13]]["voldp"],
+
 			$dataVolumenes[$monthToShow[12]]["voldp"],
 			$dataVolumenes[$monthToShow[11]]["voldp"],
 			$dataVolumenes[$monthToShow[10]]["voldp"],
@@ -209,6 +271,19 @@ $dataVolumenesVoldpys = array();
 		];
 
 		$jsonvoldpys = [
+			$dataVolumenes[$monthToShow[24]]["voldpys"],
+			$dataVolumenes[$monthToShow[23]]["voldpys"],
+			$dataVolumenes[$monthToShow[22]]["voldpys"],
+			$dataVolumenes[$monthToShow[21]]["voldpys"],
+			$dataVolumenes[$monthToShow[20]]["voldpys"],
+			$dataVolumenes[$monthToShow[19]]["voldpys"],
+			$dataVolumenes[$monthToShow[18]]["voldpys"],
+			$dataVolumenes[$monthToShow[17]]["voldpys"],
+			$dataVolumenes[$monthToShow[16]]["voldpys"],
+			$dataVolumenes[$monthToShow[15]]["voldpys"],
+			$dataVolumenes[$monthToShow[14]]["voldpys"],
+			$dataVolumenes[$monthToShow[13]]["voldpys"],
+
 			$dataVolumenes[$monthToShow[12]]["voldpys"],
 			$dataVolumenes[$monthToShow[11]]["voldpys"],
 			$dataVolumenes[$monthToShow[10]]["voldpys"],
@@ -228,27 +303,53 @@ $dataVolumenesVoldpys = array();
 	<table class="table align-middle table-bordered">
 		<thead>
 			<tr class="text-center">
-				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Puntos']; ?></th>
-				<th scope="col"><span id="txtMont13"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont14"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont15"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont16"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont17"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont18"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont19"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont20"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont21"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont22"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont23"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont24"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></span></th>
-				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Media 12 meses']; ?></th>
+				<th scope="col" class="c-mw-1">POINTS</th>
+				<th scope="col"><span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span></th>
+				<th scope="col"><span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span></th>
+				<th scope="col"><span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span></th>
+				<th scope="col"><span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span></th>
+				<th scope="col"><span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span></th>
+				<th scope="col"><span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span></th>
+				<th scope="col"><span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span></th>
+				<th scope="col"><span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span></th>
+				<th scope="col"><span id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span></th>
+				<th scope="col"><span id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span></th>
+				<th scope="col"><span id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span></th>
+				<th scope="col"><span id="txtMont12"><?php echo $shortMonthYear[$monthToShow[13]] ?></span></th>
+
+				<th scope="col"><span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
+				<th scope="col"><span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
+				<th scope="col"><span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
+				<th scope="col"><span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
+				<th scope="col"><span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
+				<th scope="col"><span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
+				<th scope="col"><span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
+				<th scope="col"><span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
+				<th scope="col"><span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span></th>
+				<th scope="col"><span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
+				<th scope="col"><span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
+				<th scope="col"><span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
+				<th scope="col" class="c-mw-2">Average 24<br/>Months</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- VP (Volumen Personal) -->
 				<tr>
-					<th scope="row">PPV <?php echo $laguaje[$lang]['Volumen de puntos personales']; ?></th>
+					<th scope="row">PPV Personal Point Volume</th>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[24]]) ? number_format($dataVolumenes[$monthToShow[24]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[23]]) ? number_format($dataVolumenes[$monthToShow[23]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[22]]) ? number_format($dataVolumenes[$monthToShow[22]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[21]]) ? number_format($dataVolumenes[$monthToShow[21]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[20]]) ? number_format($dataVolumenes[$monthToShow[20]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[19]]) ? number_format($dataVolumenes[$monthToShow[19]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[18]]) ? number_format($dataVolumenes[$monthToShow[18]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[17]]) ? number_format($dataVolumenes[$monthToShow[17]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[16]]) ? number_format($dataVolumenes[$monthToShow[16]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[15]]) ? number_format($dataVolumenes[$monthToShow[15]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[14]]) ? number_format($dataVolumenes[$monthToShow[14]]["vp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[13]]) ? number_format($dataVolumenes[$monthToShow[13]]["vp"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[12]]) ? number_format($dataVolumenes[$monthToShow[12]]["vp"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[11]]) ? number_format($dataVolumenes[$monthToShow[11]]["vp"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[10]]) ? number_format($dataVolumenes[$monthToShow[10]]["vp"], 0) : 0 ?></td>
@@ -266,6 +367,19 @@ $dataVolumenesVoldpys = array();
 
 						$total = 0;
 
+						$total += $dataVolumenes[$monthToShow[24]]["vp"];
+						$total += $dataVolumenes[$monthToShow[23]]["vp"];
+						$total += $dataVolumenes[$monthToShow[22]]["vp"];
+						$total += $dataVolumenes[$monthToShow[21]]["vp"];
+						$total += $dataVolumenes[$monthToShow[20]]["vp"];
+						$total += $dataVolumenes[$monthToShow[19]]["vp"];
+						$total += $dataVolumenes[$monthToShow[18]]["vp"];
+						$total += $dataVolumenes[$monthToShow[17]]["vp"];
+						$total += $dataVolumenes[$monthToShow[16]]["vp"];
+						$total += $dataVolumenes[$monthToShow[15]]["vp"];
+						$total += $dataVolumenes[$monthToShow[14]]["vp"];
+						$total += $dataVolumenes[$monthToShow[13]]["vp"];
+
 						$total += $dataVolumenes[$monthToShow[12]]["vp"];
 						$total += $dataVolumenes[$monthToShow[11]]["vp"];
 						$total += $dataVolumenes[$monthToShow[10]]["vp"];
@@ -279,7 +393,7 @@ $dataVolumenesVoldpys = array();
 						$total += $dataVolumenes[$monthToShow[2]]["vp"];
 						$total += $dataVolumenes[$monthToShow[1]]["vp"];
 
-						echo number_format($total / 12, 2);
+						echo number_format($total / 24, 2);
 
 						?>
 					</td>
@@ -288,7 +402,20 @@ $dataVolumenesVoldpys = array();
 
 			<!-- VGP (Volumen Grupo Personal) -->
 				<tr>
-					<th scope="row">PGPV <?php echo $laguaje[$lang]['Volumen personal de puntos de grupo']; ?></th>
+					<th scope="row">PGPV Personal Group Point Volume</th>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[24]]) ? number_format($dataVolumenes[$monthToShow[24]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[23]]) ? number_format($dataVolumenes[$monthToShow[23]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[22]]) ? number_format($dataVolumenes[$monthToShow[22]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[21]]) ? number_format($dataVolumenes[$monthToShow[21]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[20]]) ? number_format($dataVolumenes[$monthToShow[20]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[19]]) ? number_format($dataVolumenes[$monthToShow[19]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[18]]) ? number_format($dataVolumenes[$monthToShow[18]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[17]]) ? number_format($dataVolumenes[$monthToShow[17]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[16]]) ? number_format($dataVolumenes[$monthToShow[16]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[15]]) ? number_format($dataVolumenes[$monthToShow[15]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[14]]) ? number_format($dataVolumenes[$monthToShow[14]]["vgp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[13]]) ? number_format($dataVolumenes[$monthToShow[13]]["vgp"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[12]]) ? number_format($dataVolumenes[$monthToShow[12]]["vgp"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[11]]) ? number_format($dataVolumenes[$monthToShow[11]]["vgp"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[10]]) ? number_format($dataVolumenes[$monthToShow[10]]["vgp"], 0) : 0 ?></td>
@@ -306,6 +433,19 @@ $dataVolumenesVoldpys = array();
 
 						$total = 0;
 						
+						$total += $dataVolumenes[$monthToShow[24]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[23]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[22]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[21]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[20]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[19]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[18]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[17]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[16]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[15]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[14]]["vgp"];
+						$total += $dataVolumenes[$monthToShow[13]]["vgp"];
+
 						$total += $dataVolumenes[$monthToShow[12]]["vgp"];
 						$total += $dataVolumenes[$monthToShow[11]]["vgp"];
 						$total += $dataVolumenes[$monthToShow[10]]["vgp"];
@@ -319,7 +459,7 @@ $dataVolumenesVoldpys = array();
 						$total += $dataVolumenes[$monthToShow[2]]["vgp"];
 						$total += $dataVolumenes[$monthToShow[1]]["vgp"];
 
-						echo number_format($total / 12, 2);
+						echo number_format($total / 24, 2);
 
 						?>
 					</td>
@@ -328,7 +468,20 @@ $dataVolumenesVoldpys = array();
 
 			<!-- VO (Volumen Organizacional) -->
 				<tr>
-					<th scope="row">OPV <?php echo $laguaje[$lang]['Volumen de puntos de la organización']; ?></th>
+					<th scope="row">OPV Organizational Point Volume</th>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[24]]) ? number_format($dataVolumenes[$monthToShow[24]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[23]]) ? number_format($dataVolumenes[$monthToShow[23]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[22]]) ? number_format($dataVolumenes[$monthToShow[22]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[21]]) ? number_format($dataVolumenes[$monthToShow[21]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[20]]) ? number_format($dataVolumenes[$monthToShow[20]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[19]]) ? number_format($dataVolumenes[$monthToShow[19]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[18]]) ? number_format($dataVolumenes[$monthToShow[18]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[17]]) ? number_format($dataVolumenes[$monthToShow[17]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[16]]) ? number_format($dataVolumenes[$monthToShow[16]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[15]]) ? number_format($dataVolumenes[$monthToShow[15]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[14]]) ? number_format($dataVolumenes[$monthToShow[14]]["vo"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[13]]) ? number_format($dataVolumenes[$monthToShow[13]]["vo"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[12]]) ? number_format($dataVolumenes[$monthToShow[12]]["vo"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[11]]) ? number_format($dataVolumenes[$monthToShow[11]]["vo"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[10]]) ? number_format($dataVolumenes[$monthToShow[10]]["vo"], 0) : 0 ?></td>
@@ -346,6 +499,19 @@ $dataVolumenesVoldpys = array();
 
 						$total = 0;
 
+						$total += $dataVolumenes[$monthToShow[24]]["vo"];
+						$total += $dataVolumenes[$monthToShow[23]]["vo"];
+						$total += $dataVolumenes[$monthToShow[22]]["vo"];
+						$total += $dataVolumenes[$monthToShow[21]]["vo"];
+						$total += $dataVolumenes[$monthToShow[20]]["vo"];
+						$total += $dataVolumenes[$monthToShow[19]]["vo"];
+						$total += $dataVolumenes[$monthToShow[18]]["vo"];
+						$total += $dataVolumenes[$monthToShow[17]]["vo"];
+						$total += $dataVolumenes[$monthToShow[16]]["vo"];
+						$total += $dataVolumenes[$monthToShow[15]]["vo"];
+						$total += $dataVolumenes[$monthToShow[14]]["vo"];
+						$total += $dataVolumenes[$monthToShow[13]]["vo"];
+
 						$total += $dataVolumenes[$monthToShow[12]]["vo"];
 						$total += $dataVolumenes[$monthToShow[11]]["vo"];
 						$total += $dataVolumenes[$monthToShow[10]]["vo"];
@@ -359,7 +525,7 @@ $dataVolumenesVoldpys = array();
 						$total += $dataVolumenes[$monthToShow[2]]["vo"];
 						$total += $dataVolumenes[$monthToShow[1]]["vo"];
 
-						echo number_format($total / 12, 2);
+						echo number_format($total / 24, 2);
 
 						?>
 					</td>
@@ -368,7 +534,20 @@ $dataVolumenesVoldpys = array();
 
 			<!-- VO-LDP (Volumen Organizacional Línea Diferente a la Primaria) -->
 				<tr>
-					<th scope="row">OPV-OPL <?php echo $laguaje[$lang]['Volumen de puntos de la organización fuera del tramo primario']; ?></th>
+					<th scope="row">OPV-OPL Organizational Point Volume Outside Primary Leg</th>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[24]]) ? number_format($dataVolumenes[$monthToShow[24]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[23]]) ? number_format($dataVolumenes[$monthToShow[23]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[22]]) ? number_format($dataVolumenes[$monthToShow[22]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[21]]) ? number_format($dataVolumenes[$monthToShow[21]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[20]]) ? number_format($dataVolumenes[$monthToShow[20]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[19]]) ? number_format($dataVolumenes[$monthToShow[19]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[18]]) ? number_format($dataVolumenes[$monthToShow[18]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[17]]) ? number_format($dataVolumenes[$monthToShow[17]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[16]]) ? number_format($dataVolumenes[$monthToShow[16]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[15]]) ? number_format($dataVolumenes[$monthToShow[15]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[14]]) ? number_format($dataVolumenes[$monthToShow[14]]["voldp"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[13]]) ? number_format($dataVolumenes[$monthToShow[13]]["voldp"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[12]]) ? number_format($dataVolumenes[$monthToShow[12]]["voldp"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[11]]) ? number_format($dataVolumenes[$monthToShow[11]]["voldp"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[10]]) ? number_format($dataVolumenes[$monthToShow[10]]["voldp"], 0) : 0 ?></td>
@@ -386,6 +565,19 @@ $dataVolumenesVoldpys = array();
 
 						$total = 0;
 
+						$total += $dataVolumenes[$monthToShow[24]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[23]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[22]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[21]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[20]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[19]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[18]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[17]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[16]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[15]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[14]]["voldp"];
+						$total += $dataVolumenes[$monthToShow[13]]["voldp"];
+
 						$total += $dataVolumenes[$monthToShow[12]]["voldp"];
 						$total += $dataVolumenes[$monthToShow[11]]["voldp"];
 						$total += $dataVolumenes[$monthToShow[10]]["voldp"];
@@ -399,7 +591,7 @@ $dataVolumenesVoldpys = array();
 						$total += $dataVolumenes[$monthToShow[2]]["voldp"];
 						$total += $dataVolumenes[$monthToShow[1]]["voldp"];
 
-						echo number_format($total / 12, 2);
+						echo number_format($total / 24, 2);
 
 						?>
 					</td>
@@ -408,7 +600,20 @@ $dataVolumenesVoldpys = array();
 
 			<!-- VO-LDPYS (Volumen Organizacional Línea Diferente a la Primaria y Secundaria) -->
 				<tr>
-					<th scope="row">OPV-OP&SL <?php echo $laguaje[$lang]['Volumen de puntos de la organización fuera del tramo primario y secundario']; ?></th>
+					<th scope="row">OPV-OP&SL Organizational Point Volume Outside<br> Primary & Secondary Leg Leg</th>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[24]]) ? number_format($dataVolumenes[$monthToShow[24]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[23]]) ? number_format($dataVolumenes[$monthToShow[23]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[22]]) ? number_format($dataVolumenes[$monthToShow[22]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[21]]) ? number_format($dataVolumenes[$monthToShow[21]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[20]]) ? number_format($dataVolumenes[$monthToShow[20]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[19]]) ? number_format($dataVolumenes[$monthToShow[19]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[18]]) ? number_format($dataVolumenes[$monthToShow[18]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[17]]) ? number_format($dataVolumenes[$monthToShow[17]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[16]]) ? number_format($dataVolumenes[$monthToShow[16]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[15]]) ? number_format($dataVolumenes[$monthToShow[15]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[14]]) ? number_format($dataVolumenes[$monthToShow[14]]["voldpys"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[13]]) ? number_format($dataVolumenes[$monthToShow[13]]["voldpys"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[12]]) ? number_format($dataVolumenes[$monthToShow[12]]["voldpys"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[11]]) ? number_format($dataVolumenes[$monthToShow[11]]["voldpys"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataVolumenes[$monthToShow[10]]) ? number_format($dataVolumenes[$monthToShow[10]]["voldpys"], 0) : 0 ?></td>
@@ -426,6 +631,19 @@ $dataVolumenesVoldpys = array();
 
 						$total = 0;
 
+						$total += $dataVolumenes[$monthToShow[24]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[23]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[22]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[21]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[20]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[19]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[18]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[17]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[16]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[15]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[14]]["voldpys"];
+						$total += $dataVolumenes[$monthToShow[13]]["voldpys"];
+
 						$total += $dataVolumenes[$monthToShow[12]]["voldpys"];
 						$total += $dataVolumenes[$monthToShow[11]]["voldpys"];
 						$total += $dataVolumenes[$monthToShow[10]]["voldpys"];
@@ -439,7 +657,7 @@ $dataVolumenesVoldpys = array();
 						$total += $dataVolumenes[$monthToShow[2]]["voldpys"];
 						$total += $dataVolumenes[$monthToShow[1]]["voldpys"];
 
-						echo number_format($total / 12, 2);
+						echo number_format($total / 24, 2);
 
 						?>
 					</td>
@@ -451,8 +669,21 @@ $dataVolumenesVoldpys = array();
 
 <script>
 	//Fuente de la gráfica
-	Chart.defaults.font.size = 13;
+	Chart.defaults.font.size = 11;
 	//Fuente de la gráfica
+
+	txtMont1 = $("#txtMont1").text();
+	txtMont2 = $("#txtMont2").text();
+	txtMont3 = $("#txtMont3").text();
+	txtMont4 = $("#txtMont4").text();
+	txtMont5 = $("#txtMont5").text();
+	txtMont6 = $("#txtMont6").text();
+	txtMont7 = $("#txtMont7").text();
+	txtMont8 = $("#txtMont8").text();
+	txtMont9 = $("#txtMont9").text();
+	txtMont10 = $("#txtMont10").text();
+	txtMont11 = $("#txtMont11").text();
+	txtMont12 = $("#txtMont12").text();
 
 	txtMont13 = $("#txtMont13").text();
 	txtMont14 = $("#txtMont14").text();
@@ -472,7 +703,7 @@ $dataVolumenesVoldpys = array();
 		var chart4Graph1Detail = new Chart(chart4Graph1, {
 		    type: 'line',
 		    data: {
-		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
+		        labels: [txtMont1, txtMont2, txtMont3, txtMont4, txtMont5, txtMont6, txtMont7, txtMont8, txtMont9, txtMont10, txtMont11, txtMont12, txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
 			            label: 'PPV',
@@ -497,7 +728,7 @@ $dataVolumenesVoldpys = array();
 		var chart4Graph2Detail = new Chart(chart4Graph2, {
 		    type: 'line',
 		    data: {
-		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
+		        labels: [txtMont1, txtMont2, txtMont3, txtMont4, txtMont5, txtMont6, txtMont7, txtMont8, txtMont9, txtMont10, txtMont11, txtMont12, txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
 			            label: 'OPV',

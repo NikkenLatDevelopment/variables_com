@@ -1,9 +1,15 @@
 <?php require_once("../../functions.php"); //Funciones
 
-//Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$prod = $_POST["prod"];
+
+if(trim($prod) === 'NO'){
+	$serverName75 = "172.24.16.75";
+}
+else{
+	$serverName75 = "104.130.46.73";
+}
+
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -13,7 +19,6 @@ $nameUser = $_POST["nameUser"];
 $countrieUser = letterCountrie($_POST["countrieUser"]);
 $rankUser = $_POST["rankUser"];
 $periodoPost = $_POST["periodo"];
-$lang = $_POST["lang"];
 // $periodoPost = 202310;
 //Vars
 
@@ -33,7 +38,7 @@ $dataIncorporacionActividad2022 = array();
 
 //Consulta
 	//$sql = "EXEC Compras $codeUser, $periodoPost";
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Compras_org_anual_usa $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Compras_org_anual_usa $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoSho = "";
 	$aniosDif = [];
@@ -54,9 +59,10 @@ $dataIncorporacionActividad2022 = array();
 	}
 
 	$aniosDif = array_unique($aniosDif);
+	$aniosDif = array_values($aniosDif);
 	$i = 1;
 
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa_24m $codeUser, $periodoPost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_usa_24m $codeUser, $periodoPost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$incorporacionesCisFrontales = trim($rowSap[1]);
@@ -70,7 +76,7 @@ $dataIncorporacionActividad2022 = array();
 	}
 
 	//$sql = "SELECT Periodo, Conteo from TotalORG_ReporteVariables where asociateid = $codeUser";
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_aual_parametrizacion_usa $codeUser, $periodoPost;";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_aual_parametrizacion_usa $codeUser, $periodoPost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$periodoGenealogia = trim($rowSap[2]);
@@ -80,7 +86,6 @@ $dataIncorporacionActividad2022 = array();
 		$dataGenealogia[$periodoGenealogia] = array("periodo" => $periodoGenealogia, "total" => $totalGenealogia);
 		//Guardar datos en array
 	}
-	
 
 	//Cerrar conexión
 	sqlsrv_close($conn75);
@@ -117,18 +122,18 @@ $monthLabelGraph = array();
 (intval($monthToShow[1]) <= intval($periodoPost)) ? $classDic = "" : $classDic = "hidden";
 
 //Graficas
-	// if($classEne == ""){$price = isset($dataCompras[$monthToShow[24]]) ? $dataCompras[$monthToShow[24]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classFeb == ""){$price = isset($dataCompras[$monthToShow[23]]) ? $dataCompras[$monthToShow[23]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classMar == ""){$price = isset($dataCompras[$monthToShow[22]]) ? $dataCompras[$monthToShow[22]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classAbr == ""){$price = isset($dataCompras[$monthToShow[21]]) ? $dataCompras[$monthToShow[21]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classMay == ""){$price = isset($dataCompras[$monthToShow[20]]) ? $dataCompras[$monthToShow[20]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classJun == ""){$price = isset($dataCompras[$monthToShow[19]]) ? $dataCompras[$monthToShow[19]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classJul == ""){$price = isset($dataCompras[$monthToShow[18]]) ? $dataCompras[$monthToShow[18]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classAgo == ""){$price = isset($dataCompras[$monthToShow[17]]) ? $dataCompras[$monthToShow[17]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classSep == ""){$price = isset($dataCompras[$monthToShow[16]]) ? $dataCompras[$monthToShow[16]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classOct == ""){$price = isset($dataCompras[$monthToShow[15]]) ? $dataCompras[$monthToShow[15]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classNov == ""){$price = isset($dataCompras[$monthToShow[14]]) ? $dataCompras[$monthToShow[14]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
-	// if($classDic == ""){$price = isset($dataCompras[$monthToShow[13]]) ? $dataCompras[$monthToShow[13]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classEne == ""){$price = isset($dataCompras[$monthToShow[24]]) ? $dataCompras[$monthToShow[24]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classFeb == ""){$price = isset($dataCompras[$monthToShow[23]]) ? $dataCompras[$monthToShow[23]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classMar == ""){$price = isset($dataCompras[$monthToShow[22]]) ? $dataCompras[$monthToShow[22]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classAbr == ""){$price = isset($dataCompras[$monthToShow[21]]) ? $dataCompras[$monthToShow[21]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classMay == ""){$price = isset($dataCompras[$monthToShow[20]]) ? $dataCompras[$monthToShow[20]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classJun == ""){$price = isset($dataCompras[$monthToShow[19]]) ? $dataCompras[$monthToShow[19]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classJul == ""){$price = isset($dataCompras[$monthToShow[18]]) ? $dataCompras[$monthToShow[18]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classAgo == ""){$price = isset($dataCompras[$monthToShow[17]]) ? $dataCompras[$monthToShow[17]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classSep == ""){$price = isset($dataCompras[$monthToShow[16]]) ? $dataCompras[$monthToShow[16]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classOct == ""){$price = isset($dataCompras[$monthToShow[15]]) ? $dataCompras[$monthToShow[15]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classNov == ""){$price = isset($dataCompras[$monthToShow[14]]) ? $dataCompras[$monthToShow[14]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
+	if($classDic == ""){$price = isset($dataCompras[$monthToShow[13]]) ? $dataCompras[$monthToShow[13]]["compraTotal"] : 0; $dataComprasOrganizacion2021 = array_merge($dataComprasOrganizacion2021, array($price));}
 
 	if($classEne == ""){$price = isset($dataCompras[$monthToShow[12]]) ? $dataCompras[$monthToShow[12]]["compraTotal"] : 0; $dataComprasOrganizacion2022 = array_merge($dataComprasOrganizacion2022, array($price));}
 	if($classFeb == ""){$price = isset($dataCompras[$monthToShow[11]]) ? $dataCompras[$monthToShow[11]]["compraTotal"] : 0; $dataComprasOrganizacion2022 = array_merge($dataComprasOrganizacion2022, array($price));}
@@ -143,18 +148,18 @@ $monthLabelGraph = array();
 	if($classNov == ""){$price = isset($dataCompras[$monthToShow[2]]) ? $dataCompras[$monthToShow[2]]["compraTotal"] : 0; $dataComprasOrganizacion2022 = array_merge($dataComprasOrganizacion2022, array($price));}
 	if($classDic == ""){$price = isset($dataCompras[$monthToShow[1]]) ? $dataCompras[$monthToShow[1]]["compraTotal"] : 0; $dataComprasOrganizacion2022 = array_merge($dataComprasOrganizacion2022, array($price));}
 
-	// if($classEne == ""){$price = isset($dataIncorporaciones[$monthToShow[24]]) ? $dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classFeb == ""){$price = isset($dataIncorporaciones[$monthToShow[23]]) ? $dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classMar == ""){$price = isset($dataIncorporaciones[$monthToShow[22]]) ? $dataIncorporaciones[$monthToShow[22]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classAbr == ""){$price = isset($dataIncorporaciones[$monthToShow[21]]) ? $dataIncorporaciones[$monthToShow[21]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classMay == ""){$price = isset($dataIncorporaciones[$monthToShow[20]]) ? $dataIncorporaciones[$monthToShow[20]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classJun == ""){$price = isset($dataIncorporaciones[$monthToShow[19]]) ? $dataIncorporaciones[$monthToShow[19]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classJul == ""){$price = isset($dataIncorporaciones[$monthToShow[18]]) ? $dataIncorporaciones[$monthToShow[18]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classAgo == ""){$price = isset($dataIncorporaciones[$monthToShow[17]]) ? $dataIncorporaciones[$monthToShow[17]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classSep == ""){$price = isset($dataIncorporaciones[$monthToShow[16]]) ? $dataIncorporaciones[$monthToShow[16]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classOct == ""){$price = isset($dataIncorporaciones[$monthToShow[15]]) ? $dataIncorporaciones[$monthToShow[15]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classNov == ""){$price = isset($dataIncorporaciones[$monthToShow[14]]) ? $dataIncorporaciones[$monthToShow[14]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
-	// if($classDic == ""){$price = isset($dataIncorporaciones[$monthToShow[13]]) ? $dataIncorporaciones[$monthToShow[13]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classEne == ""){$price = isset($dataIncorporaciones[$monthToShow[24]]) ? $dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classFeb == ""){$price = isset($dataIncorporaciones[$monthToShow[23]]) ? $dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classMar == ""){$price = isset($dataIncorporaciones[$monthToShow[22]]) ? $dataIncorporaciones[$monthToShow[22]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classAbr == ""){$price = isset($dataIncorporaciones[$monthToShow[21]]) ? $dataIncorporaciones[$monthToShow[21]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classMay == ""){$price = isset($dataIncorporaciones[$monthToShow[20]]) ? $dataIncorporaciones[$monthToShow[20]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classJun == ""){$price = isset($dataIncorporaciones[$monthToShow[19]]) ? $dataIncorporaciones[$monthToShow[19]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classJul == ""){$price = isset($dataIncorporaciones[$monthToShow[18]]) ? $dataIncorporaciones[$monthToShow[18]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classAgo == ""){$price = isset($dataIncorporaciones[$monthToShow[17]]) ? $dataIncorporaciones[$monthToShow[17]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classSep == ""){$price = isset($dataIncorporaciones[$monthToShow[16]]) ? $dataIncorporaciones[$monthToShow[16]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classOct == ""){$price = isset($dataIncorporaciones[$monthToShow[15]]) ? $dataIncorporaciones[$monthToShow[15]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classNov == ""){$price = isset($dataIncorporaciones[$monthToShow[14]]) ? $dataIncorporaciones[$monthToShow[14]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
+	if($classDic == ""){$price = isset($dataIncorporaciones[$monthToShow[13]]) ? $dataIncorporaciones[$monthToShow[13]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2021 = array_merge($dataIncorporacionOrganizacion2021, array($price));}
 
 	if($classEne == ""){$price = isset($dataIncorporaciones[$monthToShow[12]]) ? $dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2022 = array_merge($dataIncorporacionOrganizacion2022, array($price));}
 	if($classFeb == ""){$price = isset($dataIncorporaciones[$monthToShow[11]]) ? $dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2022 = array_merge($dataIncorporacionOrganizacion2022, array($price));}
@@ -169,18 +174,18 @@ $monthLabelGraph = array();
 	if($classNov == ""){$price = isset($dataIncorporaciones[$monthToShow[2]]) ? $dataIncorporaciones[$monthToShow[2]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2022 = array_merge($dataIncorporacionOrganizacion2022, array($price));}
 	if($classDic == ""){$price = isset($dataIncorporaciones[$monthToShow[1]]) ? $dataIncorporaciones[$monthToShow[1]]["inscripcionesTotales"] : 0; $dataIncorporacionOrganizacion2022 = array_merge($dataIncorporacionOrganizacion2022, array($price));}
 
-	// if($classEne == ""){$price = isset($dataIncorporaciones[$monthToShow[24]]) ? $dataIncorporaciones[$monthToShow[24]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classFeb == ""){$price = isset($dataIncorporaciones[$monthToShow[23]]) ? $dataIncorporaciones[$monthToShow[23]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classMar == ""){$price = isset($dataIncorporaciones[$monthToShow[22]]) ? $dataIncorporaciones[$monthToShow[22]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classAbr == ""){$price = isset($dataIncorporaciones[$monthToShow[21]]) ? $dataIncorporaciones[$monthToShow[21]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classMay == ""){$price = isset($dataIncorporaciones[$monthToShow[20]]) ? $dataIncorporaciones[$monthToShow[20]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classJun == ""){$price = isset($dataIncorporaciones[$monthToShow[19]]) ? $dataIncorporaciones[$monthToShow[19]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classJul == ""){$price = isset($dataIncorporaciones[$monthToShow[18]]) ? $dataIncorporaciones[$monthToShow[18]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classAgo == ""){$price = isset($dataIncorporaciones[$monthToShow[17]]) ? $dataIncorporaciones[$monthToShow[17]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classSep == ""){$price = isset($dataIncorporaciones[$monthToShow[16]]) ? $dataIncorporaciones[$monthToShow[16]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classOct == ""){$price = isset($dataIncorporaciones[$monthToShow[15]]) ? $dataIncorporaciones[$monthToShow[15]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classNov == ""){$price = isset($dataIncorporaciones[$monthToShow[14]]) ? $dataIncorporaciones[$monthToShow[14]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
-	// if($classDic == ""){$price = isset($dataIncorporaciones[$monthToShow[13]]) ? $dataIncorporaciones[$monthToShow[13]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classEne == ""){$price = isset($dataIncorporaciones[$monthToShow[24]]) ? $dataIncorporaciones[$monthToShow[24]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classFeb == ""){$price = isset($dataIncorporaciones[$monthToShow[23]]) ? $dataIncorporaciones[$monthToShow[23]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classMar == ""){$price = isset($dataIncorporaciones[$monthToShow[22]]) ? $dataIncorporaciones[$monthToShow[22]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classAbr == ""){$price = isset($dataIncorporaciones[$monthToShow[21]]) ? $dataIncorporaciones[$monthToShow[21]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classMay == ""){$price = isset($dataIncorporaciones[$monthToShow[20]]) ? $dataIncorporaciones[$monthToShow[20]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classJun == ""){$price = isset($dataIncorporaciones[$monthToShow[19]]) ? $dataIncorporaciones[$monthToShow[19]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classJul == ""){$price = isset($dataIncorporaciones[$monthToShow[18]]) ? $dataIncorporaciones[$monthToShow[18]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classAgo == ""){$price = isset($dataIncorporaciones[$monthToShow[17]]) ? $dataIncorporaciones[$monthToShow[17]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classSep == ""){$price = isset($dataIncorporaciones[$monthToShow[16]]) ? $dataIncorporaciones[$monthToShow[16]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classOct == ""){$price = isset($dataIncorporaciones[$monthToShow[15]]) ? $dataIncorporaciones[$monthToShow[15]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classNov == ""){$price = isset($dataIncorporaciones[$monthToShow[14]]) ? $dataIncorporaciones[$monthToShow[14]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
+	if($classDic == ""){$price = isset($dataIncorporaciones[$monthToShow[13]]) ? $dataIncorporaciones[$monthToShow[13]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2021 = array_merge($dataIncorporacionActividad2021, array($price));}
 
 	if($classEne == ""){$price = isset($dataIncorporaciones[$monthToShow[12]]) ? $dataIncorporaciones[$monthToShow[12]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2022 = array_merge($dataIncorporacionActividad2022, array($price));}
 	if($classFeb == ""){$price = isset($dataIncorporaciones[$monthToShow[11]]) ? $dataIncorporaciones[$monthToShow[11]]["totalActivosMensuales"] : 0; $dataIncorporacionActividad2022 = array_merge($dataIncorporacionActividad2022, array($price));}
@@ -199,23 +204,22 @@ $monthLabelGraph = array();
 ?>
 
 <!-- Mostrar logo -->
-<hr>
-<img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="https://mi.nikkenlatam.com/custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->
 	<div class="row mb-3">
 		<div class="col-auto">
-			<div class="h5 fw-bold mb-1"><?php echo $laguaje[$lang]['Variables de negocio Informe del consultor']; ?></div>
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Periodo de medición']; ?>:</span> <?php echo getMontPeriodPast($periodoPost) . " " . $laguaje[$lang]['a'] .  " " .getMontPeriod($periodoPost); ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['País']; ?>:</span> <?php echo $countrieUser ?></div>
+			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> January 2023 to August 2024</div>
+			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
 		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Código']; ?>:</span> <?php echo $codeUser ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['Rango']; ?>:</span> <?php echo $rangos_usa[$rankUser] ?></div>
+			<div class="h6 mb-0"><span class="fw-bold">Code:</span> <?php echo $codeUser ?></div>
+			<div class="h6"><span class="fw-bold">Rank:</span> <?php echo $rangos_usa[$rankUser] ?></div>
 		</div>
 	</div>
 <!-- Cabecera -->
@@ -234,7 +238,7 @@ $monthLabelGraph = array();
 	<table class="table align-middle table-bordered">
 		<thead>
 			<tr class="text-center">
-				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Compras de la organización']; ?></th>
+				<th scope="col" class="c-mw-1">Organization Purchases</th>
 
 				<?php
 					(intval($monthToShow[12]) <= intval($periodoPost)) ? $classEne = "" : $classEne = "hidden";
@@ -264,14 +268,14 @@ $monthLabelGraph = array();
 				<?php if($classNov == "") { ?><th scope="col">Nov</th><?php } ?>
 				<?php if($classDic == "") { ?><th scope="col">Dec</th><?php } ?>
 
-				<th scope="col"><?php echo $laguaje[$lang]['Total']; ?></th>
+				<th scope="col">Total</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- Compras Organización 2021 -->
 				<tr>
-					<th scope="row"><span id="mes2"><?php echo $aniosDif[$i + 12]; ?></span></th>
+					<th scope="row"><span id="mes2"><?php echo $aniosDif[1]; ?></span></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[24]]) ? number_format($dataCompras[$monthToShow[24]]["compraTotal"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[23]]) ? number_format($dataCompras[$monthToShow[23]]["compraTotal"], 0) : 0 ?></td><?php } ?>
@@ -313,7 +317,7 @@ $monthLabelGraph = array();
 
 			<!-- Compras Organización 2022 -->
 				<tr>
-					<th scope="row"><span id="mes1"><?php echo $aniosDif[$i]; ?></th>
+					<th scope="row"><span id="mes1"><?php echo $aniosDif[0]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[12]]) ? number_format($dataCompras[$monthToShow[12]]["compraTotal"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataCompras[$monthToShow[11]]) ? number_format($dataCompras[$monthToShow[11]]["compraTotal"], 0) : 0 ?></td><?php } ?>
@@ -355,7 +359,7 @@ $monthLabelGraph = array();
 
 			<!-- Compras Organización 2021 - 2022 -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['% de crecimiento de las compras de la organización']; ?></th>
+					<th scope="row">Organization Purchases Growth %</th>
 
 					<?php if($classEne == "") { ?><td class="text-center">
 						<?php
@@ -505,7 +509,7 @@ $monthLabelGraph = array();
 	<table class="table align-middle table-bordered">
 		<thead>
 			<tr class="text-center">
-				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Inscripciones (Consultores y Clientes)']; ?></th>
+				<th scope="col" class="c-mw-1">Sign Ups (Consultants and Customers)</th>
 
 				<?php
 					(intval($monthToShow[12]) <= intval($periodoPost)) ? $classEne = "" : $classEne = "hidden";
@@ -535,14 +539,14 @@ $monthLabelGraph = array();
 				<?php if($classNov == "") { ?><th scope="col">Nov</th><?php } ?>
 				<?php if($classDic == "") { ?><th scope="col">Dec</th><?php } ?>
 
-				<th scope="col"><?php echo $laguaje[$lang]['Total']; ?></th>
+				<th scope="col">Total</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- Incorporaciones Organización 2021 -->
 				<tr>
-					<th scope="row"><?php echo $aniosDif[$i + 12]; ?></th>
+					<th scope="row"><?php echo $aniosDif[1]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
@@ -584,7 +588,7 @@ $monthLabelGraph = array();
 
 			<!-- Incorporaciones Organización 2022 -->
 				<tr>
-					<th scope="row"><?php echo $aniosDif[$i]; ?></th>
+					<th scope="row"><?php echo $aniosDif[0]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"], 0) : 0 ?></td><?php } ?>
@@ -763,23 +767,22 @@ $monthLabelGraph = array();
 </div>
 
 <!-- Mostrar logo -->
-<hr>
-<img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->
 	<div class="row mb-3">
 		<div class="col-auto">
-			<div class="h5 fw-bold mb-1"><?php echo $laguaje[$lang]['Variables de negocio Informe del consultor']; ?></div>
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Periodo de medición']; ?>:</span> <?php echo getMontPeriodPast($periodoPost) . " " . $laguaje[$lang]['a'] .  " " .getMontPeriod($periodoPost); ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['País']; ?>:</span> <?php echo $countrieUser ?></div>
+			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> January 2023 to August 2024</div>
+			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
 		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Código']; ?>:</span> <?php echo $codeUser ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['Rango']; ?>:</span> <?php echo $rangos_usa[$rankUser] ?></div>
+			<div class="h6 mb-0"><span class="fw-bold">Code:</span> <?php echo $codeUser ?></div>
+			<div class="h6"><span class="fw-bold">Rank:</span> <?php echo $rangos_usa[$rankUser] ?></div>
 		</div>
 	</div>
 <!-- Cabecera -->
@@ -798,7 +801,7 @@ $monthLabelGraph = array();
 	<table class="table align-middle table-bordered">
 		<thead>
 			<tr class="text-center">
-				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Organización Activos']; ?></th>
+				<th scope="col" class="c-mw-1">Organization Actives</th>
 
 				<?php
 					(intval($monthToShow[12]) <= intval($periodoPost)) ? $classEne = "" : $classEne = "hidden";
@@ -828,14 +831,14 @@ $monthLabelGraph = array();
 				<?php if($classNov == "") { ?><th scope="col">Nov</th><?php } ?>
 				<?php if($classDic == "") { ?><th scope="col">Dec</th><?php } ?>
 
-				<th scope="col"><?php echo $laguaje[$lang]['Average']; ?></th>
+				<th scope="col">Average</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- Actividad 2021 -->
 				<tr>
-					<th scope="row" id="lasrYearLastGraph"><?php echo $aniosDif[$i + 12]; ?></th>
+					<th scope="row" id="lasrYearLastGraph"><?php echo $aniosDif[1]; ?></th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
@@ -877,7 +880,7 @@ $monthLabelGraph = array();
 
 			<!-- Actividad 2022 -->
 				<tr>
-					<th scope="row" id="curYearLastGraph"><?php echo $aniosDif[$i]; ?></th>
+					<th scope="row" id="curYearLastGraph"><?php echo $aniosDif[0]; ?></th>
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
 					<?php if($classMar == "") { ?><td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["totalActivosMensuales"], 0) : 0 ?></td><?php } ?>
@@ -918,7 +921,7 @@ $monthLabelGraph = array();
 
 			<!-- Actividad 2021 - 2022 -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Monthly Actives Growth %']; ?></th>
+					<th scope="row">Monthly Actives Growth %</th>
 					<?php $months = 0; ?>
 					<?php if($classEne == "") { ?><td class="text-center">
 						<?php
@@ -1127,14 +1130,14 @@ $monthLabelGraph = array();
 				<?php if($classNov == "") { ?><th scope="col">Nov</th><?php } ?>
 				<?php if($classDic == "") { ?><th scope="col">Dec</th><?php } ?>
 
-				<th scope="col"><?php echo $laguaje[$lang]['Average']; ?></th>
+				<th scope="col">Average</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- No. de Influencers -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Total Organización (Consultores y Clientes)']; ?></th>
+					<th scope="row">Total Organization (Consultants and Customers)</th>
 
 					<?php if($classEne == "") { ?><td class="text-center">
 						<?php
@@ -1299,7 +1302,7 @@ $monthLabelGraph = array();
 
 			<!-- Activos Mensuales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Activos Mensuales (Consultores y Clientes)']; ?></th>
+					<th scope="row">Monthly Actives (Consultant and Customers)</th>
 
 					<?php if($classEne == "") { ?><td class="text-center">
 						<?php
@@ -1440,7 +1443,7 @@ $monthLabelGraph = array();
 
 			<!-- No. de Influencers - Activos Mensuales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['% Actividad de la Organización']; ?></th>
+					<th scope="row">% Organization Activity</th>
 
 					<?php if($classEne == "") { ?><td class="text-center">
 						<?php
@@ -1552,7 +1555,7 @@ $monthLabelGraph = array();
 
 			<!-- Optimo (30%) -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Óptimo (30%) de la Organización']; ?></th>
+					<th scope="row">Optimal (30%) of the Organization</th>
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo number_format($totalInfluencersOptimoEne, 0); ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo number_format($totalInfluencersOptimoFeb, 0); ?></td><?php } ?>
 					<?php if($classMar == "") { ?><td class="text-center"><?php echo number_format($totalInfluencersOptimoMar, 0); ?></td><?php } ?>
@@ -1581,7 +1584,7 @@ $monthLabelGraph = array();
 
 			<!-- Activos que Faltaron -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Activos que no alcanzaron el Óptimo ']; ?></th>
+					<th scope="row">Actives thath did not reach the Optimum</th>
 
 					<?php if($classEne == "") { ?><td class="text-center"><?php echo number_format($totalInfluencersOptimoEne - $totalActivosEne < 0 ? 0 : $totalInfluencersOptimoEne - $totalActivosEne, 0); ?></td><?php } ?>
 					<?php if($classFeb == "") { ?><td class="text-center"><?php echo number_format($totalInfluencersOptimoFeb - $totalActivosFeb < 0 ? 0 : $totalInfluencersOptimoFeb - $totalActivosFeb, 0); ?></td><?php } ?>
@@ -1612,40 +1615,7 @@ $monthLabelGraph = array();
 	</table>
 </div>
 
-<?php
-	$graphTexts = [
-		'es' => [
-			'Organization Purchases' => 'Compras Organización',
-			'Organization Sign Ups' => 'Incorporación Organización',
-			'Actives' => 'Actividad',
-			'No. of Sign Ups' => 'No. de Incorporaciones',
-		],
-		'en' => [
-			'Organization Purchases' => 'Organization Purchases',
-			'Organization Sign Ups' => 'Organization Sign Ups',
-			'Actives' => 'Actives',
-			'No. of Sign Ups' => 'No. of Sign Ups',
-		],
-		'fr' => [
-			'Organization Purchases' => 'Achats d\'organisation',
-			'Organization Sign Ups' => 'Inscriptions à l\'organisation',
-			'Actives' => 'Actifs',
-			'No. of Sign Ups' => 'Nombre d\'inscriptions',
-		],
-	];
-?>
-
-<input type="hidden" id="Organization_Purchases">
-<input type="hidden" id="Organization_Sign_Ups">
-<input type="hidden" id="Actives">
-<input type="hidden" id="No_of_Sign_Ups">
-
 <script>
-	var Organization_Purchases = $("#Organization_Purchases").val();
-	var Organization_Sign_Ups = $("#Organization_Sign_Ups").val();
-	var Actives = $("#Actives").val();
-	var No_of_Sign_Ups = $("#No_of_Sign_Ups").val();
-
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
 	//Fuente de la gráfica
@@ -1677,7 +1647,7 @@ $monthLabelGraph = array();
 				plugins: {
 					title: {
 						display: true,
-						text: Organization_Purchases
+						text: 'Organization Purchases'
 					},
 				},
 				scales: {
@@ -1720,7 +1690,7 @@ $monthLabelGraph = array();
 				plugins: {
 					title: {
 						display: true,
-						text: Organization_Sign_Ups
+						text: 'Organization Sign Ups'
 					},
 				},
 				scales: {
@@ -1728,7 +1698,7 @@ $monthLabelGraph = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: No_of_Sign_Ups
+			          		text: 'No. of Sign Ups'
 			        	},
 			        	beginAtZero: true
 			      	}
@@ -1763,7 +1733,7 @@ $monthLabelGraph = array();
 				plugins: {
 					title: {
 						display: true,
-						text: Actives
+						text: 'Actives'
 					},
 				},
 				scales: {
@@ -1771,7 +1741,7 @@ $monthLabelGraph = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: Actives
+			          		text: 'Actives'
 			        	},
 			        	beginAtZero: true
 			      	}

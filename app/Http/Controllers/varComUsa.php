@@ -135,38 +135,47 @@ class varComUsa extends Controller{
     }
 
     public function varcomusa_impresiones(){
-        $core = new coreCms();
         if(empty(request()->code)){
             return "Informes Seminario Diamante MyNIKKEN";
         }
         try{
             $code = request()->code;
             $period = request()->period;
-            $lang = request()->lang;
-            App::setLocale($lang);
-            $ciinfo = $core->execSQLQuery("EXEC LAT_MyNIKKEN.dbo.reporteBoss_datosGenerales $code;", "SQL73");
-            $data_gral = [];
-            $data_gral['name_user'] = $ciinfo[0]->name_user;
-            $data_gral['code'] = $code;
-            $data_gral['countrie_user'] = $core->define_country($ciinfo[0]->countrie_user);
-            $data_gral['rank_user'] = $core->define_rank($ciinfo[0]->rank_user);
-            $data_gral['period_i'] = $core->getMontPeriodPast($period);
-            $data_gral['period_f'] = $core->getMontPeriod($period);
-            $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
-            $compras_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Compras_usa $code, $period", 'SQL73');
-            $incorporaciones_usa = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $code, $period", 'SQL73');
-            $ConteoComercial_usa = $portada;
-            return view('varcomusa_impresiones.index', compact(
-                'core',
-                'code', 
-                'period', 
-                'data_gral', 
-                'portada',
-                'compras_usa',
-                'incorporaciones_usa',
-                'ConteoComercial_usa',
-                'lang'
-            ));
+            if(!is_numeric($code)){
+                $code = base64_decode($code);
+            }
+            $codeUser = $code;
+
+            $conection = \DB::connection('SQL73');
+                $response = $conection->select("SELECT 
+                                                    AssociateName as name_user, 
+                                                    Country as countrie_user, 
+                                                    MAX(b.Rango) as rank_user 
+                                                FROM LAT_MyNIKKEN.dbo.Distributors_MD a WITH(NOLOCK) 
+                                                JOIN LAT_MyNIKKEN_TEST.dbo.Rangos_Avance_USA b WITH(NOLOCK) ON 
+                                                    a.AssociateID = b.numci 
+                                                WHERE Distributor_Status='D' 
+                                                AND AssociateID = $codeUser
+                                                GROUP BY AssociateName, Country;");
+            \DB::disconnect('SQL73');
+
+            if(sizeof($response) < 1){
+                $conection = \DB::connection('nikkenla_office');
+                    $response = $conection->select("SELECT T0.nombre as name_user, T0.rango as rank_user, T0.pais as countrie_user FROM nikkenla_marketing.control_ci T0 WHERE T0.codigo = $codeUser AND T0.estatus = 1 AND T0.b1 = 1;");
+                \DB::disconnect('nikkenla_office');
+            }
+
+            if(sizeof($response) > 0){
+                $nameUser = $response[0]->name_user;
+                $rankUser = $response[0]->rank_user;
+                $countrieUser = $response[0]->countrie_user;
+
+                if($codeUser == "28162400"){ $rankUser = "Diamante Real"; }
+            }
+            else{
+                return "lo sentimos, el código $codeUser no existe o se encuentra inactivo"; 
+            }
+            return view('varcomusa_impresiones.index', compact('code', 'nameUser', 'rankUser', 'countrieUser', 'codeUser', 'period'));
         }
         catch (Exception $e){
             //Guardar mensaje de error

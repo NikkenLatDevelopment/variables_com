@@ -1,9 +1,15 @@
 <?php require_once("../../functions.php"); //Funciones
 
-//Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$prod = $_POST["prod"];
+
+if(trim($prod) === 'NO'){
+	$serverName75 = "172.24.16.75";
+}
+else{
+	$serverName75 = "104.130.46.73";
+}
+
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -13,8 +19,6 @@ $nameUser = $_POST["nameUser"];
 $countrieUser = letterCountrie($_POST["countrieUser"]);
 $rankUser = $_POST["rankUser"];
 $periodopost = $_POST["periodo"];
-$lang = $_POST["lang"];
-// $periodopost = 202310;
 //Vars
 
 //Others
@@ -28,7 +32,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 //Others
 
 //Consulta
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_usa $codeUser, $periodopost";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_usa_24m $codeUser, $periodopost";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$monthToShow = [];
@@ -67,11 +71,11 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 	$count = 0;
 
 	//Periodo inicial de consulta
-	$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+	$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 	$period = new DateTime("$periodoIni");
 	//Periodo inicial de consulta
 
-	while($count < 12){
+	while($count < 24){
 		$periodQuery = $period->format('Ym');
 
 		//Guardar activos mensuales
@@ -94,7 +98,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		$dataIncorporacionesIncorporaciones = array_merge($dataIncorporacionesIncorporaciones, array($price));
 		//Guardar incorporaciones
 
-		if($count < 12){
+		if($count < 24){
 			//Guardar porcentaje incorporaciones con actividad trimestral
 			$price = isset($dataIncorporaciones[$periodQuery]) ? $dataIncorporaciones[$periodQuery]["porcentajeIncorporacionesActividadTrimestral"] : 0;
 			$dataIncorporacionesPorcentajeIncorporadosActividadTrimestral = array_merge($dataIncorporacionesPorcentajeIncorporadosActividadTrimestral, array($price));
@@ -119,23 +123,22 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 ?>
 
 <!-- Mostrar logo -->
-<hr>
-<img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="https://mi.nikkenlatam.com/custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->
 	<div class="row mb-3">
 		<div class="col-auto">
-			<div class="h5 fw-bold mb-1"><?php echo $laguaje[$lang]['Variables de negocio Informe del consultor']; ?></div>
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Periodo de medición']; ?>:</span> <?php echo getMontPeriodPast($periodopost) . " " . $laguaje[$lang]['a'] .  " " .getMontPeriod($periodopost); ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['País']; ?>:</span> <?php echo $countrieUser ?></div>
+			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> September 2022 to August 2024</div>
+			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
 		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Código']; ?>:</span> <?php echo $codeUser ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['Rango']; ?>:</span> <?php echo $rangos_usa[$rankUser] ?></div>
+			<div class="h6 mb-0"><span class="fw-bold">Code:</span> <?php echo $codeUser ?></div>
+			<div class="h6"><span class="fw-bold">Rank:</span> <?php echo $rangos_usa[$rankUser] ?></div>
 		</div>
 	</div>
 <!-- Cabecera -->
@@ -145,26 +148,52 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><span id="txtMont13"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont14"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont15"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont16"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont17"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont18"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont19"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont20"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont21"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont22"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont23"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></span></th>
-				<th scope="col"><span id="txtMont24"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></span></th>
-				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Total 12 Months']; ?></th>
+				<th scope="col"><span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span></th>
+				<th scope="col"><span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span></th>
+				<th scope="col"><span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span></th>
+				<th scope="col"><span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span></th>
+				<th scope="col"><span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span></th>
+				<th scope="col"><span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span></th>
+				<th scope="col"><span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span></th>
+				<th scope="col"><span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span></th>
+				<th scope="col"><span id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span></th>
+				<th scope="col"><span id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span></th>
+				<th scope="col"><span id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span></th>
+				<th scope="col"><span id="txtMont12"><?php echo $shortMonthYear[$monthToShow[13]] ?></span></th>
+
+				<th scope="col"><span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
+				<th scope="col"><span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
+				<th scope="col"><span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
+				<th scope="col"><span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
+				<th scope="col"><span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
+				<th scope="col"><span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
+				<th scope="col"><span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
+				<th scope="col"><span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
+				<th scope="col"><span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span></th>
+				<th scope="col"><span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
+				<th scope="col"><span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
+				<th scope="col"><span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
+				<th scope="col" class="c-mw-2">Total 24<br/>Months</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- Incorporaciones ABIs Frontales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Inscripciones de Consultores Frontales']; ?></th>
+					<th scope="row">Frontline Consultant Sign Ups</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["incorporacionesCisFrontales"], 0) : 0 ?></td>
@@ -181,6 +210,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						<?php
 
 						$total = 0;
+
+						$total += $dataIncorporaciones[$monthToShow[24]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["incorporacionesCisFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["incorporacionesCisFrontales"];
 
 						$total += $dataIncorporaciones[$monthToShow[12]]["incorporacionesCisFrontales"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["incorporacionesCisFrontales"];
@@ -204,7 +246,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Incorporaciones CPs Frontales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Inscripciones de Clientes Frontales']; ?></th>
+					<th scope="row">Frontline Customer Sign Ups</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["incorporacionesCpsFrontales"], 0) : 0 ?></td>
@@ -222,6 +277,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["incorporacionesCpsFrontales"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["incorporacionesCpsFrontales"];
+						
 						$total += $dataIncorporaciones[$monthToShow[12]]["incorporacionesCpsFrontales"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["incorporacionesCpsFrontales"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["incorporacionesCpsFrontales"];
@@ -244,7 +312,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Incorporaciones ABIs Organización -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Inscripciones de consultores de organizaciones']; ?></th>
+					<th scope="row">Organization Consultant Sign Ups</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["incorporacionesCisOrganizacion"], 0) : 0 ?></td>
@@ -261,6 +342,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						<?php
 
 						$total = 0;
+
+						$total += $dataIncorporaciones[$monthToShow[24]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["incorporacionesCisOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["incorporacionesCisOrganizacion"];
 
 						$total += $dataIncorporaciones[$monthToShow[12]]["incorporacionesCisOrganizacion"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["incorporacionesCisOrganizacion"];
@@ -284,7 +378,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Incorporaciones CPs Organización -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Inscripciones de clientes de la organización']; ?></th>
+					<th scope="row">Organization Customer Sign Ups</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["incorporacionesCpsOrganizacion"], 0) : 0 ?></td>
@@ -301,6 +408,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						<?php
 
 						$total = 0;
+
+						$total += $dataIncorporaciones[$monthToShow[24]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["incorporacionesCpsOrganizacion"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["incorporacionesCpsOrganizacion"];
 
 						$total += $dataIncorporaciones[$monthToShow[12]]["incorporacionesCpsOrganizacion"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["incorporacionesCpsOrganizacion"];
@@ -324,7 +444,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Incorporaciones Totales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Total de inscripciones']; ?> </th>
+					<th scope="row">Total Sign ups</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["inscripcionesTotales"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["inscripcionesTotales"], 0) : 0 ?></td>
@@ -341,6 +474,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						<?php
 
 						$total = 0;
+
+						$total += $dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["inscripcionesTotales"];
 
 						$total += $dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"];
@@ -364,7 +510,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Activos Mensuales ABIs -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Consultores activos mensualmente']; ?></th>
+					<th scope="row">Monthly Active Consultants</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["activosMensualesCis"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["activosMensualesCis"], 0) : 0 ?></td>
+
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["activosMensualesCis"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["activosMensualesCis"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["activosMensualesCis"], 0) : 0 ?></td>
@@ -382,6 +541,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["activosMensualesCis"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["activosMensualesCis"];
+						
 						$total += $dataIncorporaciones[$monthToShow[12]]["activosMensualesCis"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["activosMensualesCis"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["activosMensualesCis"];
@@ -395,7 +567,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						$total += $dataIncorporaciones[$monthToShow[2]]["activosMensualesCis"];
 						$total += $dataIncorporaciones[$monthToShow[1]]["activosMensualesCis"];
 
-						echo number_format($total / 12, 0) . "*";
+						echo number_format($total / 24, 0) . "*";
 
 						?>
 					</td>
@@ -404,7 +576,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Activos Mensuales CPs -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Clientes activos mensuales']; ?></th>
+					<th scope="row">Monthly Active Customers</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["activosMensualesCps"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["activosMensualesCps"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["activosMensualesCps"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["activosMensualesCps"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["activosMensualesCps"], 0) : 0 ?></td>
@@ -422,6 +607,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["activosMensualesCps"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["activosMensualesCps"];
+
 						$total += $dataIncorporaciones[$monthToShow[12]]["activosMensualesCps"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["activosMensualesCps"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["activosMensualesCps"];
@@ -435,7 +633,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						$total += $dataIncorporaciones[$monthToShow[2]]["activosMensualesCps"];
 						$total += $dataIncorporaciones[$monthToShow[1]]["activosMensualesCps"];
 
-						echo number_format($total / 12, 0) . "*";
+						echo number_format($total / 24, 0) . "*";
 
 						?>
 					</td>
@@ -444,7 +642,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Activos Mensuales (ABIs + CPs) -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Activos mensuales (consultores y clientes)']; ?></th>
+					<th scope="row">Monthly Active (Consultants and Customers)</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["totalActivosMensuales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["totalActivosMensuales"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["totalActivosMensuales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["totalActivosMensuales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["totalActivosMensuales"], 0) : 0 ?></td>
@@ -462,6 +673,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["totalActivosMensuales"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["totalActivosMensuales"];
+
 						$total += $dataIncorporaciones[$monthToShow[12]]["totalActivosMensuales"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["totalActivosMensuales"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["totalActivosMensuales"];
@@ -475,7 +699,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						$total += $dataIncorporaciones[$monthToShow[2]]["totalActivosMensuales"];
 						$total += $dataIncorporaciones[$monthToShow[1]]["totalActivosMensuales"];
 
-						echo number_format($total / 12, 0) . "*";
+						echo number_format($total / 24, 0) . "*";
 
 						?>
 					</td>
@@ -484,7 +708,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Activos Trimestrales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Activos Trimestrales (Consultores y Clientes)']; ?></th>
+					<th scope="row">Quarterly Active (Consultants and Customers)</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["activosTrimestrales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["activosTrimestrales"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["activosTrimestrales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["activosTrimestrales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["activosTrimestrales"], 0) : 0 ?></td>
@@ -502,6 +739,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["activosTrimestrales"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["activosTrimestrales"];
+
 						$total += $dataIncorporaciones[$monthToShow[12]]["activosTrimestrales"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["activosTrimestrales"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["activosTrimestrales"];
@@ -515,7 +765,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						$total += $dataIncorporaciones[$monthToShow[2]]["activosTrimestrales"];
 						$total += $dataIncorporaciones[$monthToShow[1]]["activosTrimestrales"];
 
-						echo number_format($total / 12, 0) . "*";
+						echo number_format($total / 24, 0) . "*";
 
 						?>
 					</td>
@@ -524,7 +774,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Reactivaciones -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Reactivaciones (Consultores y Clientes)']; ?></th>
+					<th scope="row">Reactivations (Consultants and Customers)</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["reactivaciones"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["reactivaciones"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["reactivaciones"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["reactivaciones"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["reactivaciones"], 0) : 0 ?></td>
@@ -542,6 +805,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["reactivaciones"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["reactivaciones"];
+
 						$total += $dataIncorporaciones[$monthToShow[12]]["reactivaciones"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["reactivaciones"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["reactivaciones"];
@@ -555,7 +831,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						$total += $dataIncorporaciones[$monthToShow[2]]["reactivaciones"];
 						$total += $dataIncorporaciones[$monthToShow[1]]["reactivaciones"];
 
-						echo number_format($total / 12, 0) . "*";
+						echo number_format($total / 24, 0) . "*";
 
 						?>
 					</td>
@@ -563,9 +839,9 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 			<!-- Reactivaciones -->
 
 			<!-- Otras Variables -->
-				<tr>
-					<td ><strong><?php echo $laguaje[$lang]['Últimos 12 meses Crecimiento de registros personales %']; ?></strong></td>
-					<td colspan="2" class="text-center">
+				<!-- <tr>
+					<td colspan="3"><strong>Last 24 months Personal Sign up Growth %</strong></td>
+					<td colspan="3" class="text-center">
 						<strong>
 							<?php
 
@@ -573,7 +849,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							$count = 0;
 
 							//Periodo inicial de consulta
-							$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+							$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 							$period = new DateTime("$periodoIni");
 							//Periodo inicial de consulta
 
@@ -598,7 +874,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							$count = 0;
 
 							//Periodo inicial de consulta
-							$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+							$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 							$periodoIni = date('Y-m-d', strtotime($periodoIni. ' + 1 years'));
 							$period = new DateTime("$periodoIni");
 							//Periodo inicial de consulta
@@ -627,8 +903,9 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						</strong>
 					</td>
 
-					<td colspan="4"><strong><?php echo $laguaje[$lang]['Contratación por Activo crecimiento %']; ?></strong></td>
-					<td colspan="2" class="text-center">
+					<td colspan="4"></td>
+					<td colspan="4"><strong>Sign up by Active growth %</strong></td>
+					<td colspan="4" class="text-center">
 						<strong>
 							<?php
 
@@ -636,7 +913,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							$count = 0;
 
 							//Periodo inicial de consulta
-							$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+							$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 							$period = new DateTime("$periodoIni");
 							//Periodo inicial de consulta
 
@@ -662,7 +939,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							$count = 0;
 
 							//Periodo inicial de consulta
-							$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+							$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 							$periodoIni = date('Y-m-d', strtotime($periodoIni. ' + 1 years'));
 							$period = new DateTime("$periodoIni");
 							//Periodo inicial de consulta
@@ -692,9 +969,9 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						</strong>
 					</td>
 
-					<td></td>
-					<td colspan="3"><strong><?php echo $laguaje[$lang]['Inscripciones personal Últimos 12 meses']; ?></strong></td>
-					<td colspan="2" class="text-center">
+					<td colspan="2"></td>
+					<td colspan="4"><strong>Personal Sign up Last 24 months</strong></td>
+					<td colspan="4" class="text-center">
 						<strong>
 							<?php
 
@@ -702,7 +979,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 								$count = 0;
 
 								//Periodo inicial de consulta
-								$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+								$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 								$period = new DateTime("$periodoIni");
 								//Periodo inicial de consulta
 
@@ -727,7 +1004,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 								$count = 0;
 
 								//Periodo inicial de consulta
-								$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+								$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 								$periodoIni = date('Y-m-d', strtotime($periodoIni. ' + 1 years'));
 								$period = new DateTime("$periodoIni");
 								//Periodo inicial de consulta
@@ -773,8 +1050,8 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 				</tr>
 
 				<tr>
-					<td><strong><?php echo $laguaje[$lang]['Inscripciones personal Últimos 12 meses %']; ?></strong></td>
-					<td colspan="2" class="text-center">
+					<td colspan="3"><strong>Growth of the Incorporation of the Organization of the <br>Last 24 Months %</strong></td>
+					<td colspan="3" class="text-center">
 						<strong>
 							<?php
 
@@ -782,7 +1059,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							$count = 0;
 
 							//Periodo inicial de consulta
-							$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+							$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 							$period = new DateTime("$periodoIni");
 							//Periodo inicial de consulta
 
@@ -807,7 +1084,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							$count = 0;
 
 							//Periodo inicial de consulta
-							$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+							$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 							$periodoIni = date('Y-m-d', strtotime($periodoIni. ' + 1 years'));
 							$period = new DateTime("$periodoIni");
 							//Periodo inicial de consulta
@@ -836,8 +1113,8 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						</strong>
 					</td>
 
-					<td colspan="6"></td>
-					<td colspan="4"><strong><?php echo $laguaje[$lang]['Inscripciones de organización Últimos 12 meses']; ?></strong></td>
+					<td colspan="14"></td>
+					<td colspan="4"><strong>Organization Sign ups Last 24 montsh</strong></td>
 					<td colspan="2" class="text-center">
 						<strong>
 							<?php
@@ -846,7 +1123,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 								$count = 0;
 
 								//Periodo inicial de consulta
-								$periodoIni = $periodMonthsByGraph[$monthToShow[12]];
+								$periodoIni = $periodMonthsByGraph[$monthToShow[24]];
 								$periodoIni = date('Y-m-d', strtotime($periodoIni. ' + 1 years'));
 								$period = new DateTime("$periodoIni");
 								//Periodo inicial de consulta
@@ -907,7 +1184,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 							?>
 						</strong>
 					</td>
-				</tr>
+				</tr> -->
 			<!-- Otras Variables -->
 		</tbody>
 	</table>
@@ -915,13 +1192,13 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 <!-- Gráficas -->
 	<div class="row">
-		<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+		<div class="col text-center">
 			<!-- Gráfica Comportamiento de Compras e Incorporaciones -->
 			<canvas id="chart2Graph1" class="w-100" height="510"></canvas>
 			<!-- Gráfica Comportamiento de Compras e Incorporaciones -->
 		</div>
 
-		<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+		<div class="col text-center">
 			<!-- Gráfica Comportamiento y Calidad de las Incorporaciones -->
 			<canvas id="chart2Graph2" class="w-100" height="510"></canvas>
 			<!-- Gráfica Comportamiento y Calidad de las Incorporaciones -->
@@ -934,26 +1211,52 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1"></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[12], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[11], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[10], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[9], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[8], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[7], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[6], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[5], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[4], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[3], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[2], $lang) ?></th>
-				<th scope="col"><?php echo getMontPeriodShortLang($monthToShow[1], $lang) ?></th>
-				<th scope="col" class="c-mw-2"><?php echo $laguaje[$lang]['Total 12 Months']; ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[24]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[23]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[22]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[21]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[20]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[19]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[18]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[17]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[16]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[15]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[14]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[13]] ?></th>
+
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[12]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[11]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[10]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[9]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[8]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[7]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[6]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[5]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[4]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[3]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[2]] ?></th>
+				<th scope="col"><?php echo $shortMonthYear[$monthToShow[1]] ?></th>
+				<th scope="col" class="c-mw-2">Total 24 Months</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<!-- Incorporaciones Totales -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Total de inscripciones']; ?></th>
+					<th scope="row">Total Sign Ups</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["inscripcionesTotales"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["inscripcionesTotales"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["inscripcionesTotales"], 0) : 0 ?></td>
@@ -970,6 +1273,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						<?php
 
 						$total = 0;
+
+						$total += $dataIncorporaciones[$monthToShow[24]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["inscripcionesTotales"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["inscripcionesTotales"];
 
 						$total += $dataIncorporaciones[$monthToShow[12]]["inscripcionesTotales"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["inscripcionesTotales"];
@@ -993,7 +1309,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- Incorporaciones con Actividad Trimestral -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['Inscripciones con actividad trimestral']; ?></th>
+					<th scope="row">Sign ups with quarterly <br> activity</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["incorporacionesActividadTrimestral"], 0) : 0 ?></td>
@@ -1010,6 +1339,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						<?php
 
 						$total = 0;
+
+						$total += $dataIncorporaciones[$monthToShow[24]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["incorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["incorporacionesActividadTrimestral"];
 
 						$total += $dataIncorporaciones[$monthToShow[12]]["incorporacionesActividadTrimestral"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["incorporacionesActividadTrimestral"];
@@ -1033,7 +1375,20 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 			<!-- % Incorporados con Actividad Trimestral -->
 				<tr>
-					<th scope="row"><?php echo $laguaje[$lang]['% Sign ups with quarterly activity']; ?></th>
+					<th scope="row">% Sign ups with quarterly <br>activity</th>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[24]]) ? number_format($dataIncorporaciones[$monthToShow[24]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[23]]) ? number_format($dataIncorporaciones[$monthToShow[23]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[22]]) ? number_format($dataIncorporaciones[$monthToShow[22]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[21]]) ? number_format($dataIncorporaciones[$monthToShow[21]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[20]]) ? number_format($dataIncorporaciones[$monthToShow[20]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[19]]) ? number_format($dataIncorporaciones[$monthToShow[19]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[18]]) ? number_format($dataIncorporaciones[$monthToShow[18]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[17]]) ? number_format($dataIncorporaciones[$monthToShow[17]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[16]]) ? number_format($dataIncorporaciones[$monthToShow[16]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[15]]) ? number_format($dataIncorporaciones[$monthToShow[15]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[14]]) ? number_format($dataIncorporaciones[$monthToShow[14]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[13]]) ? number_format($dataIncorporaciones[$monthToShow[13]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
+					
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[12]]) ? number_format($dataIncorporaciones[$monthToShow[12]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[11]]) ? number_format($dataIncorporaciones[$monthToShow[11]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
 					<td class="text-center"><?php echo isset($dataIncorporaciones[$monthToShow[10]]) ? number_format($dataIncorporaciones[$monthToShow[10]]["porcentajeIncorporacionesActividadTrimestral"], 2) : 0 ?>%</td>
@@ -1051,6 +1406,19 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 
 						$total = 0;
 
+						$total += $dataIncorporaciones[$monthToShow[24]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[23]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[22]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[21]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[20]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[19]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[18]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[17]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[16]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[15]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[14]]["porcentajeIncorporacionesActividadTrimestral"];
+						$total += $dataIncorporaciones[$monthToShow[13]]["porcentajeIncorporacionesActividadTrimestral"];
+
 						$total += $dataIncorporaciones[$monthToShow[12]]["porcentajeIncorporacionesActividadTrimestral"];
 						$total += $dataIncorporaciones[$monthToShow[11]]["porcentajeIncorporacionesActividadTrimestral"];
 						$total += $dataIncorporaciones[$monthToShow[10]]["porcentajeIncorporacionesActividadTrimestral"];
@@ -1064,7 +1432,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						$total += $dataIncorporaciones[$monthToShow[2]]["porcentajeIncorporacionesActividadTrimestral"];
 						$total += $dataIncorporaciones[$monthToShow[1]]["porcentajeIncorporacionesActividadTrimestral"];
 
-						echo number_format($total / 12, 2) . "%";
+						echo number_format($total / 24, 2) . "%";
 
 						?>
 					</td>
@@ -1075,77 +1443,27 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 </div>
 
 <!-- Notas -->
-<div class="fw-bold mt-2 mb-4" style="color: red;">* <?php echo $laguaje[$lang]['is calculated Average']; ?></div>
+<div class="fw-bold mt-2 mb-4" style="color: red;">* is calculated Average.</div>
 <!-- Notas -->
 
-<?php
-	$graphTexts = [
-		'es' => [
-			'Monthly Active' => "Activos Mensuales",
-			'Reactivations' => "Reactivaciones",
-			'Quarterly Active' => "Activos Trimestrales",
-			'Sign Ups' => "Incorporaciones",
-			'Purchasing Behaviour and Sign ups' =>	"Comportamiento de Compras e Incorporaciones",
-			'No. of People' => "No. de Personas",
-			'% Sign ups with quarterly activity' => "% de Incorporaciones con Actividad Trimestral",
-			'Sign ups with quarterly activity' => "Incorporaciones con Actividad Trimestral",
-			'Purchasing Behaviour vs Sign ups' => "Comportamiento de Compras vs Incorporaciones",
-			'No. of Sign ups' => "No. de Incorporaciones",
-		],
-		'en' => [
-			'Monthly Active' => "Monthly Active",
-			'Reactivations' => "Reactivations",
-			'Quarterly Active' => "Quarterly Active",
-			'Sign Ups' => "Sign Ups",
-			'Purchasing Behaviour and Sign ups' => "Purchasing Behaviour and Sign ups",
-			'No. of People' => "No. of People",
-			'% Sign ups with quarterly activity' => "% Sign ups with quarterly activity",
-			'Sign ups with quarterly activity' => "Sign ups with quarterly activity",
-			'Purchasing Behaviour vs Sign ups' => "Purchasing Behaviour vs Sign ups",
-			'No. of Sign ups' => "No. of Sign ups",
-		],
-		'fr' => [
-			'Monthly Active' => "Actifs Mensuels",
-			'Reactivations' => "Réactivations",
-			'Quarterly Active' => "Actifs Trimestriels",
-			'Sign Ups' => "Incorporations",
-			'Purchasing Behaviour and Sign ups' => "Comportement d'Achat et Inscription",
-			'No. of People' => "No. de personnes",
-			'% Sign ups with quarterly activity' => "% d'Inscriptions avec Activité Trimestrielle",
-			'Sign ups with quarterly activity' => "Inscriptions avec Activité Trimestrielle",
-			'Purchasing Behaviour vs Sign ups' => "Comportement d'Achat vs Inscriptions",
-			'No. of Sign ups' => "No. d'Inscriptions",
-		],
-	];
-?>
-
-<input type="hidden" id="Monthly_Active" value="<?php echo $graphTexts[$lang]['Monthly Active'];?>">
-<input type="hidden" id="Reactivations" value="<?php echo $graphTexts[$lang]['Reactivations'];?>">
-<input type="hidden" id="Quarterly_Active" value="<?php echo $graphTexts[$lang]['Quarterly Active'];?>">
-<input type="hidden" id="Sign_Ups" value="<?php echo $graphTexts[$lang]['Sign Ups'];?>">
-<input type="hidden" id="Purchasing_Behaviour_and_Sign_ups" value="<?php echo $graphTexts[$lang]['Purchasing Behaviour and Sign ups'];?>">
-<input type="hidden" id="No_of_People" value="<?php echo $graphTexts[$lang]['No. of People'];?>">
-<input type="hidden" id="_Sign_ups_with_quarterly_activity" value="<?php echo $graphTexts[$lang]['% Sign ups with quarterly activity'];?>">
-<input type="hidden" id="Sign_ups_with_quarterly_activity" value="<?php echo $graphTexts[$lang]['Sign ups with quarterly activity'];?>">
-<input type="hidden" id="Purchasing_Behaviour_vs_Sign_ups" value="<?php echo $graphTexts[$lang]['Purchasing Behaviour vs Sign ups'];?>">
-<input type="hidden" id="No_of_Sign_ups" value="<?php echo $graphTexts[$lang]['No. of Sign ups'];?>">
-
 <script>
-	var Monthly_Active = $("#Monthly_Active").val();
-	var Reactivations = $("#Reactivations").val();
-	var Quarterly_Active = $("#Quarterly_Active").val();
-	var Sign_Ups = $("#Sign_Ups").val();
-	var Purchasing_Behaviour_and_Sign_ups = $("#Purchasing_Behaviour_and_Sign_ups").val();
-	var No_of_People = $("#No_of_People").val();
-	var _Sign_ups_with_quarterly_activity = $("#_Sign_ups_with_quarterly_activity").val();
-	var Sign_ups_with_quarterly_activity = $("#Sign_ups_with_quarterly_activity").val();
-	var Purchasing_Behaviour_vs_Sign_ups = $("#Purchasing_Behaviour_vs_Sign_ups").val();
-	var No_of_Sign_ups = $("#No_of_Sign_ups").val();
-
 	//Fuente de la gráfica
-	Chart.defaults.font.size = 13;
+	Chart.defaults.font.size = 12;
 	//Fuente de la gráfica
 
+	txtMont1 = $("#txtMont1").text();
+	txtMont2 = $("#txtMont2").text();
+	txtMont3 = $("#txtMont3").text();
+	txtMont4 = $("#txtMont4").text();
+	txtMont5 = $("#txtMont5").text();
+	txtMont6 = $("#txtMont6").text();
+	txtMont7 = $("#txtMont7").text();
+	txtMont8 = $("#txtMont8").text();
+	txtMont9 = $("#txtMont9").text();
+	txtMont10 = $("#txtMont10").text();
+	txtMont11 = $("#txtMont11").text();
+	txtMont12 = $("#txtMont12").text();
+	
 	txtMont13 = $("#txtMont13").text();
 	txtMont14 = $("#txtMont14").text();
 	txtMont15 = $("#txtMont15").text();
@@ -1164,28 +1482,28 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		var chart2Graph1Detail = new Chart(chart2Graph1, {
 		    type: 'line',
 		    data: {
-		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
+		        labels: [txtMont1, txtMont2, txtMont3, txtMont4, txtMont5, txtMont6, txtMont7, txtMont8, txtMont9, txtMont10, txtMont11, txtMont12, txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 			        {
-			            label: Monthly_Active,
+			            label: 'Monthly Active',
 			            data: <?php echo json_encode($dataIncorporacionesActivosMensuales) ?>,
 			            backgroundColor: [ 'rgba(220, 123, 79, 1)', ],
 			            borderColor: [ 'rgba(220, 123, 79, 1)', ],
 			        },
 			        {
-			            label: Reactivations,
+			            label: 'Reactivations',
 			            data: <?php echo json_encode($dataIncorporacionesReactivaciones) ?>,
 			            backgroundColor: [ 'rgba(51, 51, 153, 1)', ],
 			            borderColor: [ 'rgba(51, 51, 153, 1)', ],
 			        },
 			        {
-			            label: Quarterly_Active,
+			            label: 'Quarterly Active',
 			            data: <?php echo json_encode($dataIncorporacionesActivosTrimestrales) ?>,
 			            backgroundColor: [ 'rgba(102, 153, 102, 1)', ],
 			            borderColor: [ 'rgba(102, 153, 102, 1)', ],
 			        },
 			        {
-			            label: Sign_Ups,
+			            label: 'Sign Ups',
 			            data: <?php echo json_encode($dataIncorporacionesIncorporaciones) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
@@ -1197,7 +1515,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 				plugins: {
 					title: {
 						display: true,
-						text: Purchasing_Behaviour_and_Sign_ups
+						text: 'Purchasing Behaviour and Sign ups'
 					},
 				},
 				scales: {
@@ -1205,7 +1523,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: No_of_People
+			          		text: 'No. of People'
 			        	},
 						beginAtZero: true
 			      	}
@@ -1219,10 +1537,10 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 		var chart2Graph2Detail = new Chart(chart2Graph2, {
 		    type: 'bar',
 		    data: {
-		        labels: [txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
+		        labels: [txtMont1, txtMont2, txtMont3, txtMont4, txtMont5, txtMont6, txtMont7, txtMont8, txtMont9, txtMont10, txtMont11, txtMont12, txtMont13, txtMont14, txtMont15, txtMont16, txtMont17, txtMont18, txtMont19, txtMont20, txtMont21, txtMont22, txtMont23, txtMont24],
 		        datasets: [
 		        	{
-			            label: _Sign_ups_with_quarterly_activity,
+			            label: '% Sign ups with quarterly activity',
 			            data: <?php echo json_encode($dataIncorporacionesPorcentajeIncorporadosActividadTrimestral) ?>,
 			            backgroundColor: [ 'rgba(0, 0, 0, 1)', ],
 			            borderColor: [ 'rgba(0, 0, 0, 1)', ],
@@ -1230,14 +1548,14 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 			            type: 'line',
 			        },
 			        {
-			            label: Sign_Ups,
+			            label: 'Sig Ups',
 			            data: <?php echo json_encode($dataIncorporacionesIncorporaciones) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
 	      				yAxisID: 'y',
 			        },
 			        {
-			            label: Sign_ups_with_quarterly_activity,
+			            label: 'Sign ups with quarterly activity',
 			            data: <?php echo json_encode($dataIncorporacionesIncorporadosActividadTrimestral) ?>,
 			            backgroundColor: [ 'rgba(102, 153, 102, 1)', ],
 			            borderColor: [ 'rgba(102, 153, 102, 1)', ],
@@ -1250,7 +1568,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 				plugins: {
 					title: {
 						display: true,
-						text: Purchasing_Behaviour_vs_Sign_ups
+						text: 'Purchasing Behaviour vs Sign ups'
 					},
 				},
 				scales: {
@@ -1260,7 +1578,7 @@ $dataIncorporacionesIncorporadosActividadTrimestral = array();
 						position: 'left',
 						title: {
 				          	display: true,
-				          	text: No_of_Sign_ups
+				          	text: 'No. of Sign ups'
 				        },
 					},
 					y1: {

@@ -46,7 +46,7 @@
                 border-radius: 10px;
                 width: 100%;
                 margin: auto;
-                margin-top: auto;
+                    margin-top: auto;
                 text-align: center;
                 margin-top: 150px;
                 position: initial;
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <br>
-                    <h2>{{ $data_gral['name_user'] }}</h2>
+                    <h2>{{ $nameUser }}</h2>
                     <h4>Estamos actualizando tus datos, al finalizar podrás ver tu información.</h4>
                     <h6>Tiempo de espera estimado 2 minutos.</h6>
                 </div>
@@ -152,22 +152,21 @@
     <!-- Librerías adicionales -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
-    <script src="{{ asset('custom_na/js/main.js?v=' . Date('YmdHis')) }}"></script>
+    <script src="{{ asset('custom_na_impresiones/js/main.js?v=' . Date('YmdHis')) }}"></script>
     <!-- Librerías adicionales -->
-    <input type="text" id="codeUser" value="{{ $data_gral['code'] }}" readonly hidden>
-    <input type="text" id="nameUser" value="{{ $data_gral['name_user'] }}" readonly hidden>
-    <input type="text" id="countrieUser" value="{{ $data_gral['countrie_user'] }}" readonly hidden>
-    <input type="text" id="rankUser" value="{{ $data_gral['rank_user'] }}" readonly hidden>
-    <input type="text" id="periodoQuery" value="{{ $period }}" readonly hidden>
-    <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
-    <input type="text" id="lang" value="{{ $lang }}" readonly hidden>
+    <input type="text" id="codeUser" value="{{ $codeUser }}" readonly >
+    <input type="text" id="nameUser" value="{{ $nameUser }}" readonly >
+    <input type="text" id="countrieUser" value="{{ $countrieUser }}" readonly >
+    <input type="text" id="rankUser" value="{{ $rankUser }}" readonly >
+    <input type="text" id="periodoQuery" value="{{ $period }}" readonly >
+    <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly >
     
-    <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>chart2($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
-    <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val(), $("#lang").val());</script>
+    <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
+    {{-- <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart2($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart11($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart3($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>volumen($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart5($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
+    {{-- <script>chart6($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script> --}}
 </html>

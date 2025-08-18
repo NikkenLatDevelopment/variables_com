@@ -1,9 +1,15 @@
 <?php require_once("../../functions.php"); //Funciones
 
-//Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$prod = $_POST["prod"];
+
+if(trim($prod) === 'NO'){
+	$serverName75 = "172.24.16.75";
+}
+else{
+	$serverName75 = "104.130.46.73";
+}
+
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -13,10 +19,7 @@ $nameUser = $_POST["nameUser"];
 $countrieUser = trim($_POST["countrieUser"]);
 $rankUser = $_POST["rankUser"];
 $periodoPost = $_POST["periodo"];
-// $periodoPost = 202310;
 $finalName = $_POST["nameUser"];
-//Vars
-// exit($periodoPost);
 
 //Consulta
 $avancesPlata = 0;
@@ -38,41 +41,41 @@ $nivelesProfundidad = 0;
 $comprasUltimoAno = 0;
 
 //$sql = "EXEC ConteoComercialD1_test $codeUser, $periodoPost";
-$sql = "EXEC LAT_MyNIKKEN.dbo.ConteoComercialD1_usa $codeUser, $periodoPost";
+$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa_24m $codeUser, $periodoPost";
 $recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 $periodotoShow = "";
 $monthToShow = [];
 $x = 0;
 $rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC);
 if($rowSap > 0) {
-	$avancesDirecto = @trim($rowSap[1]) == "0" ? "" : @trim($rowSap[1]);
-	$avancesSuperior = @trim($rowSap[2]) == "0" ? "" : @trim($rowSap[2]);
-	$avancesEjecutivo = @trim($rowSap[3]) == "0" ? "" : @trim($rowSap[3]);
-	$avancesPlata = @trim($rowSap[4]) == "0" ? "" : @trim($rowSap[4]);
-	$avancesOro = @trim($rowSap[5]) == "0" ? "" : @trim($rowSap[5]);
-	$avancesPlatino = @trim($rowSap[6]) == "0" ? "" : @trim($rowSap[6]);
-	$avancesDiamante = @trim($rowSap[7]) == "0" ? "" : @trim($rowSap[7]);
-	$avancesDiamanteReal = @trim($rowSap[8]) == "0" ? "" : @trim($rowSap[8]);
-	$lideresPlata = @trim($rowSap[9]);
-	$lideresOro = @trim($rowSap[10]);
-	$lideresPlatino = @trim($rowSap[11]);
-	$lideresDiamante = @trim($rowSap[12]);
-	$lideresDiamanteReal = @trim($rowSap[13]);
-	$numeroInfluencers = @trim($rowSap[14]);
-	$numeroClientesPreferentes = @trim($rowSap[15]);
-	$activosMensuales = @trim($rowSap[16]);
-	$incorporadosMes = @trim($rowSap[17]);
-	$influencersFrontales = @trim($rowSap[18]);
-	$nivelesProfundidad = @trim($rowSap[20]);
-	$comprasUltimoAno = @trim($rowSap[21]) == "" ? 0 : @trim($rowSap[21]);
+	$avancesDirecto = trim($rowSap[1]) == "0" ? "" : trim($rowSap[1]);
+	$avancesSuperior = trim($rowSap[2]) == "0" ? "" : trim($rowSap[2]);
+	$avancesEjecutivo = trim($rowSap[3]) == "0" ? "" : trim($rowSap[3]);
+	$avancesPlata = trim($rowSap[4]) == "0" ? "" : trim($rowSap[4]);
+	$avancesOro = trim($rowSap[5]) == "0" ? "" : trim($rowSap[5]);
+	$avancesPlatino = trim($rowSap[6]) == "0" ? "" : trim($rowSap[6]);
+	$avancesDiamante = trim($rowSap[7]) == "0" ? "" : trim($rowSap[7]);
+	$avancesDiamanteReal = trim($rowSap[8]) == "0" ? "" : trim($rowSap[8]);
+	$lideresPlata = $rowSap[9];
+	$lideresOro = $rowSap[10];
+	$lideresPlatino = $rowSap[11];
+	$lideresDiamante = $rowSap[12];
+	$lideresDiamanteReal = $rowSap[13];
+	$numeroInfluencers = trim($rowSap[14]);
+	$numeroClientesPreferentes = trim($rowSap[15]);
+	$activosMensuales = trim($rowSap[16]);
+	$incorporadosMes = trim($rowSap[17]);
+	$influencersFrontales = trim($rowSap[18]);
+	$nivelesProfundidad = trim($rowSap[20]);
+	$comprasUltimoAno = trim($rowSap[21]) == "" ? 0 : trim($rowSap[21]);
 
-	$monthActiveConsultant = (empty($rowSap[16])) ?0:@trim($rowSap[16]);
-	$monthActiveCustomer = (empty($rowSap[26])) ?0:@trim($rowSap[26]);
-	$monthConsultantSignUps = (empty($rowSap[24])) ?0:@trim($rowSap[24]);
-	$monthCustomerSignUp = (empty($rowSap[25])) ?0:@trim($rowSap[25]);
+	$monthActiveConsultant = trim($rowSap[16]);
+	$monthActiveCustomer = trim($rowSap[26]);
+	$monthConsultantSignUps = trim($rowSap[24]);
+	$monthCustomerSignUp = trim($rowSap[25]);
 
-	$frontLineConsultant = @trim($rowSap[18]);
-	$frontLineCustomers = @trim($rowSap[19]);
+	$frontLineConsultant = trim($rowSap[18]);
+	$frontLineCustomers = trim($rowSap[19]);
 }
 
 //Cerrar conexión
@@ -89,20 +92,6 @@ $templateFontBold = '../../pages/charts/chart/arial_bold.ttf';
 $templateFontRoboto = '../../pages/charts/chart/roboto.ttf';
 $templateFontRobotoBold = '../../pages/charts/chart/roboto_bold.ttf';
 $templateFontLatoBold = '../../pages/charts/chart/Lato-Black.ttf';
-
-$ranks_number = [
-	"Ejecutive" => 4,
-	"Silver" => 5,
-	"Gold" => 6,
-	"Platinum" => 7,
-	"Diamond" => 8,
-	"Royal Diamond" => 9,
-];
-
-$countrieUser_short = [
-	"Canada" => 'CA',
-	"USA" => 'USA',
-];
 
 //Generar imagen de Influencer
 if (file_exists('../../img/codes/' . $codeUser . '-min.jpg')) {
@@ -121,7 +110,7 @@ if (file_exists('../../img/codes/' . $codeUser . '-min.jpg')) {
 	imagefill($template, 0, 0, $color);
 
 	$photo = imagescale(imagecreatefromjpeg('../../img/codes/' . $codeUser . '-min.jpg'), $newImgWidth, $newImgHeight);
-	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser_short[$countrieUser] . '.png');
+	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($rankUser)) . '/' . $countrieUser . '.png');
 
 	imagecopy($template, $photo, 0, 0, 0, 0, $newImgWidth, 800);
 	imagecopy($template, $templatePhoto, 0, 0, 0, 0, 800, 800);
@@ -138,7 +127,7 @@ else{
 	$color = imagecolorallocatealpha($template, 0, 0, 0, 127);
 	imagefill($template, 0, 0, $color);
 
-	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($ranks_number[$rankUser])) . '/' . $countrieUser_short[$countrieUser] . '.png');
+	$templatePhoto = imagecreatefrompng('../../img/ranks/' . str_replace(" ", "-", strtolower($rankUser)) . '/' . $countrieUser . '.png');
 
 	imagecopy($template, $templatePhoto, 0, 0, 0, 0, 800, 800);
 	//Unir plantilla y foto
@@ -169,8 +158,6 @@ if(str_replace(" ", "-", strtolower($rankUser)) == "plata"){ $color = imagecolor
 
 $color = imagecolorallocate($template, 255, 255, 255);
 
-//Simple
-// @imagettftext($template, 25, 0, $widthBoxNameFirst, 43, $color, $templateFontLatoBold, $nameUser);
 @imagettftext($template, 25, 0, $widthBoxNameFirst, 43, $color, $templateFontLatoBold, $nameUser);
 
 imagepng($template, "../../pages/charts/chart/$codeUser-text.png");
@@ -184,7 +171,7 @@ list($imgWidth, $imgHeight) = getimagesize('../../pages/charts/chart/' . $codeUs
 
 $template = imagecreatetruecolor(800, 800);
 imagesavealpha($template, true);
-$color = imagecolorallocatealpha($template, 0, 0, 0, 127);
+$color = imagecolorallocatealpha($template, 255, 255, 255, 127);
 imagefill($template, 0, 0, $color);
 
 $photo = imagecreatefrompng('../../pages/charts/chart/' . $codeUser . '-min.png');
@@ -272,7 +259,7 @@ $logo = imagecreatefromjpeg("../../img/general/logo-nikken.jpg");
 #################################################################################################################################################
 
 // @imagettftext($template, 25, 0, 950, 1250, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Informe Variables Comerciales por Influencer");
-@imagettftext($template, 24, 0, 1350, 270, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, getMontPeriodPast($periodoPost) . " to " . getMontPeriod($periodoPost));
+@imagettftext($template, 24, 0, 1350, 270, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, "September 2022 to August 2024");
 
 imagecopymerge($template, $photo, 830, 470, 0, 0, 800, 800, 100);
 
@@ -280,5 +267,5 @@ imagepng($template, "../../pages/charts/chart/$codeUser.png");
 imagedestroy($template);
 
 ?>
-<img src="custom_na/pages/charts/chart/<?php echo $codeUser ?>.png?v=<?php echo Date('YmdHis') ?>" class="img-fluid mt-4 pt-4">
+<img src="custom_na_impresiones/pages/charts/chart/<?php echo $codeUser ?>.png?v=<?php echo Date('YmdHis') ?>" class="img-fluid mt-4 pt-4">
 

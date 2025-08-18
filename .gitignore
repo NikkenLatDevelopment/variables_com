@@ -18,3 +18,4 @@ yarn-error.log
 /.idea
 /.vscode
 composer.lock
+public/custom_na_impresiones/pages/charts/chart

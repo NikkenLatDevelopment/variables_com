@@ -1,9 +1,15 @@
 <?php require_once("../../functions.php"); //Funciones
 
-//Conexión 75
-$serverName75 = "104.130.46.73";
-// $serverName75 = "172.24.16.75";
-$connectionInfo75 = array("Database" => "LAT_MyNIKKEN_TEST", "UID" => "Latamti", "PWD" => "N1k3N$17!");
+$prod = $_POST["prod"];
+
+if(trim($prod) === 'NO'){
+	$serverName75 = "172.24.16.75";
+}
+else{
+	$serverName75 = "104.130.46.73";
+}
+
+$connectionInfo75 = array("Database" => "LAT_MyNIKKEN", "UID" => "Latamti", "PWD" => "N1k3N$17!");
 $conn75 = sqlsrv_connect($serverName75, $connectionInfo75);
 if(!$conn75){ die(print_r(sqlsrv_errors(), true)); }
 
@@ -13,8 +19,7 @@ $nameUser = $_POST["nameUser"];
 $countrieUser = letterCountrie($_POST["countrieUser"]);
 $rankUser = $_POST["rankUser"];
 $periodopost = $_POST["periodo"];
-$lang = $_POST["lang"];
-// $periodopost = 202310;
+// $periodopost = 202408;
 //Vars
 
 //Others
@@ -28,7 +33,7 @@ $datagraph2 = [];
 //Others
 
 //Consulta
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_anual_usa $codeUser, $periodopost;";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_anual_usa $codeUser, $periodopost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	$periodotoShow = "";
 	$aniosDif = [];
@@ -50,7 +55,7 @@ $datagraph2 = [];
 	$aniosDif = array_unique($aniosDif);
 	$i = 1;
 
-	$sql = "EXEC LAT_MyNIKKEN_TEST.dbo.Incorporaciones_activos_anual_usa $codeUser, $periodopost;";
+	$sql = "EXEC LAT_MyNIKKEN.dbo.Incorporaciones_activos_anual_usa $codeUser, $periodopost;";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) {
 		$activosTotales = trim($rowSap[1]);
@@ -71,23 +76,22 @@ $datagraph2 = [];
 ?>
 
 <!-- Mostrar logo -->
-<hr>
-<img src="src/img/logo-black.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
+<img src="https://mi.nikkenlatam.com/custom/img/general/logo-nikken.png" srcset="custom/img/general/logo-nikken-2x.png 2x" class="img-fluid mt-4 mb-3" alt="NIKKEN Latinoamérica">
 <!-- Mostrar logo -->
 
 <!-- Cabecera -->
 	<div class="row mb-3">
 		<div class="col-auto">
-			<div class="h5 fw-bold mb-1"><?php echo $laguaje[$lang]['Variables de negocio Informe del consultor']; ?></div>
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Periodo de medición']; ?>:</span> <?php echo getMontPeriodPast($periodopost) . " " . $laguaje[$lang]['a'] .  " " .getMontPeriod($periodopost); ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['País']; ?>:</span> <?php echo $countrieUser ?></div>
+			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> January 2020 to August 2024</div>
+			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
 		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
-			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Código']; ?>:</span> <?php echo $codeUser ?></div>
-			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['Rango']; ?>:</span> <?php echo $rangos_usa[$rankUser] ?></div>
+			<div class="h6 mb-0"><span class="fw-bold">Code:</span> <?php echo $codeUser ?></div>
+			<div class="h6"><span class="fw-bold">Rank:</span> <?php echo $rangos_usa[$rankUser] ?></div>
 		</div>
 	</div>
 <!-- Cabecera -->
@@ -105,7 +109,7 @@ $datagraph2 = [];
 	<table class="table align-middle table-bordered">
 		<thead>
 			<tr class="text-center">
-				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Total de inscripciones']; ?></th>
+				<th scope="col" class="c-mw-1">Total Sign ups</th>
 				<?php echo (intval($monthToShow[12]) <= intval($periodopost)) ? '<th scope="col">Jan</th>' : '<th scope="col" hidden>Jan</th>'; ?>
 				<?php echo (intval($monthToShow[11]) <= intval($periodopost)) ? '<th scope="col">Feb</th>' : '<th scope="col" hidden>Feb</th>'; ?>
 				<?php echo (intval($monthToShow[10]) <= intval($periodopost)) ? '<th scope="col">Mar</th>' : '<th scope="col" hidden>Mar</th>'; ?>
@@ -118,7 +122,7 @@ $datagraph2 = [];
 				<?php echo (intval($monthToShow[3]) <= intval($periodopost)) ? '<th scope="col">Oct</th>' : '<th scope="col" hidden>Oct</th>'; ?>
 				<?php echo (intval($monthToShow[2]) <= intval($periodopost)) ? '<th scope="col">Nov</th>' : '<th scope="col" hidden>Nov</th>'; ?>
 				<?php echo (intval($monthToShow[1]) <= intval($periodopost)) ? '<th scope="col">Dec</th>' : '<th scope="col" hidden>Dec</th>'; ?>
-				<th scope="col"><?php echo $laguaje[$lang]['Total']; ?></th>
+				<th scope="col">Total</th>
 			</tr>
 		</thead>
 
@@ -415,7 +419,7 @@ $datagraph2 = [];
 	<table class="table align-middle table-bordered">
 		<thead>
 			<tr class="text-center">
-				<th scope="col" class="c-mw-1"><?php echo $laguaje[$lang]['Activos mensuales (consultores y clientes)']; ?></th>
+				<th scope="col" class="c-mw-1">Monthly Active (Consultants and Customers)</th>
 				<?php echo (intval($monthToShow[12]) <= intval($periodopost)) ? '<th scope="col">Jan</th>' : '<th scope="col" hidden>Jan</th>'; ?>
 				<?php echo (intval($monthToShow[11]) <= intval($periodopost)) ? '<th scope="col">Feb</th>' : '<th scope="col" hidden>Feb</th>'; ?>
 				<?php echo (intval($monthToShow[10]) <= intval($periodopost)) ? '<th scope="col">Mar</th>' : '<th scope="col" hidden>Mar</th>'; ?>
@@ -428,7 +432,7 @@ $datagraph2 = [];
 				<?php echo (intval($monthToShow[3]) <= intval($periodopost)) ? '<th scope="col">Oct</th>' : '<th scope="col" hidden>Oct</th>'; ?>
 				<?php echo (intval($monthToShow[2]) <= intval($periodopost)) ? '<th scope="col">Nov</th>' : '<th scope="col" hidden>Nov</th>'; ?>
 				<?php echo (intval($monthToShow[1]) <= intval($periodopost)) ? '<th scope="col">Dec</th>' : '<th scope="col" hidden>Dec</th>'; ?>
-				<th scope="col"><?php echo $laguaje[$lang]['Average']; ?></th>
+				<th scope="col">Promedio</th>
 			</tr>
 		</thead>
 
@@ -706,34 +710,6 @@ $datagraph2 = [];
 	</table>
 </div>
 
-<?php
-	$graphTexts = [
-		'es' => [
-			'Total Sign ups' => "Total de Inscripciones",
-			'No. Total Sign ups' => "No. Total de Inscripciones",
-			'Monthly Active (Consultants and Customers)' => "Activos Mensuales (Consultores y Clientes)",
-			'No. Monthly Active (Consultants and Customers)' => "No. Activos Mensuales (Consultores y Clientes)",
-		],
-		'en' => [
-			'Total Sign ups' => "Total Sign ups",
-			'No. Total Sign ups' => "No. Total Sign ups",
-			'Monthly Active (Consultants and Customers)' => "Monthly Active (Consultants and Customers)",
-			'No. Monthly Active (Consultants and Customers)' => "No. Monthly Active (Consultants and Customers)",
-		],
-		'fr' => [
-			'Total Sign ups' => "Inscriptions Totales",
-			'No. Total Sign ups' => "Non. Inscriptions Totales",
-			'Monthly Active (Consultants and Customers)' => "Actifs Mensuels (Consultants et Clients)",
-			'No. Monthly Active (Consultants and Customers)' => "Non. Actifs Mensuels (Consultants et Clients)",
-		],
-	];
-?>
-
-<input type="hidden" id="Total_Sign_ups" value="<?php echo $graphTexts[$lang]['Total Sign ups']?>">
-<input type="hidden" id="No_Total_Sign_ups" value="<?php echo $graphTexts[$lang]['No. Total Sign ups']?>">
-<input type="hidden" id="Monthly_Active_Consultants_and_Customers" value="<?php echo $graphTexts[$lang]['Monthly Active (Consultants and Customers)']?>">
-<input type="hidden" id="No_Monthly_Active_Consultants_and_Customers" value="<?php echo $graphTexts[$lang]['No. Monthly Active (Consultants and Customers)']?>">
-
 <script>
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
@@ -745,11 +721,6 @@ $datagraph2 = [];
 	var txtMes4 = $("#mes4").text();
 	var txtMes5 = $("#mes5").text();
 
-	var Total_Sign_ups = $("#Total_Sign_ups").val();
-	var No_Total_Sign_ups = $("#No_Total_Sign_ups").val();
-	var Monthly_Active_Consultants_and_Customers = $("#Monthly_Active_Consultants_and_Customers").val();
-	var No_Monthly_Active_Consultants_and_Customers = $("#No_Monthly_Active_Consultants_and_Customers").val();
-
 	//Gráfica Totales
 		var chart11Graph1 = document.getElementById('chart11Graph1').getContext('2d');
 		var chart11Graph1Detail = new Chart(chart11Graph1, {
@@ -758,7 +729,7 @@ $datagraph2 = [];
 		        labels: [txtMes5, txtMes4, txtMes3, txtMes2, txtMes1],
 		        datasets: [
 			        {
-			            label: Total_Sign_ups,
+			            label: 'Total Sign ups',
 			            data: <?php echo /*json_encode($dataIncorporacionesInscripciones)*/ json_encode($datagraph1) ?>,
 			            backgroundColor: [ 'rgba(220, 123, 79, 1)', ],
 			            borderColor: [ 'rgba(220, 123, 79, 1)', ],
@@ -770,7 +741,7 @@ $datagraph2 = [];
 				plugins: {
 					title: {
 						display: true,
-						text: Total_Sign_ups
+						text: 'Total Sign ups'
 					},
 				},
 				scales: {
@@ -778,7 +749,7 @@ $datagraph2 = [];
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: No_Total_Sign_ups
+			          		text: 'No. Total Sign ups'
 			        	},
 						beginAtZero: true
 			      	}
@@ -795,7 +766,7 @@ $datagraph2 = [];
 		        labels: [txtMes5, txtMes4, txtMes3, txtMes2, txtMes1],
 		        datasets: [
 			        {
-			            label: Monthly_Active_Consultants_and_Customers,
+			            label: 'Monthly Active (Consultants and Customers)',
 			            data: <?php echo /*json_encode($dataIncorporacionesActivos)*/ json_encode($datagraph2) ?>,
 			            backgroundColor: [ 'rgba(241, 185, 42, 1)', ],
 			            borderColor: [ 'rgba(241, 185, 42, 1)', ],
@@ -807,7 +778,7 @@ $datagraph2 = [];
 				plugins: {
 					title: {
 						display: true,
-						text: Monthly_Active_Consultants_and_Customers
+						text: 'Monthly Active (Consultants and Customers)'
 					},
 				},
 				scales: {
@@ -815,7 +786,7 @@ $datagraph2 = [];
 			        	display: true,
 			        	title: {
 			          		display: true,
-			          		text: No_Monthly_Active_Consultants_and_Customers
+			          		text: 'No. Monthly Active (Consultants and Customers)'
 			        	},
 						beginAtZero: true
 			      	}
