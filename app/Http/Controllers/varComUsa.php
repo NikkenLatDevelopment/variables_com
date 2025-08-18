@@ -45,6 +45,7 @@ class varComUsa extends Controller{
                 'compras_usa',
                 'incorporaciones_usa',
                 'ConteoComercial_usa',
+                'lang'
             ));
         }
         catch (Exception $e){

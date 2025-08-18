@@ -1,5 +1,5 @@
 //Mostrar información general
-    function chart0(codeUser, nameUser, countrieUser, rankUser){
+    function chart0(codeUser, nameUser, countrieUser, rankUser, lang){
         var divMensaje = $("#chart-0");
         divMensaje.html('<div class="text-center"><div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div></div>');
 
@@ -13,7 +13,7 @@
 
                 //Mostrar información genealogía
                 setTimeout(function(){ 
-                    // chart10(codeUser, nameUser, countrieUser, rankUser); 
+                    chart10(codeUser, nameUser, countrieUser, rankUser); 
                 });
                 //Mostrar información genealogía
             }, error: function(){}
@@ -38,7 +38,7 @@ window.miTimeout = setTimeout(function() {
 // mostrar/ocultar div loader
 
 //Mostrar información compras
-    function ventas(codeUser, nameUser, countrieUser, rankUser, lang){
+    function ventas(codeUser, nameUser, countrieUser, rankUser, lang, lang){
         var divMensaje = $("#chart-1");
         requestCount++;
         if (requestCount >= 1) {
@@ -66,7 +66,7 @@ window.miTimeout = setTimeout(function() {
 //Mostrar información compras
 
 //Mostrar información inscripciones
-    function chart2(codeUser, nameUser, countrieUser, rankUser, lang){
+    function chart2(codeUser, nameUser, countrieUser, rankUser, lang, lang){
         var divMensaje = $("#chart-2");
         requestCount++;
         if (requestCount >= 1) {
