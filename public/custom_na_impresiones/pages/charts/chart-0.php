@@ -191,75 +191,59 @@ $template = imagecreatefrompng('../../img/general/plantilla.png');
 $photo = imagecreatefrompng("../../pages/charts/chart/$codeUser-min.png");
 $logo = imagecreatefromjpeg("../../img/general/logo-nikken.jpg");
 
-@imagettftext($template, 16, 0, 250, 170, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesDirecto));
+@imagettftext($template, 16, 0, 250, 170, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesDirecto));
 
-@imagettftext($template, 16, 0, 250, 205, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesSuperior));
+@imagettftext($template, 16, 0, 250, 205, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesSuperior));
 
-@imagettftext($template, 16, 0, 250, 240, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesEjecutivo));
+@imagettftext($template, 16, 0, 250, 240, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesEjecutivo));
 
-@imagettftext($template, 16, 0, 250, 275, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesPlata));
+@imagettftext($template, 16, 0, 250, 275, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesPlata));
 
-@imagettftext($template, 16, 0, 250, 310, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesOro));
+@imagettftext($template, 16, 0, 250, 310, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesOro));
 
-@imagettftext($template, 16, 0, 250, 345, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesPlatino));
+@imagettftext($template, 16, 0, 250, 345, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesPlatino));
 
-@imagettftext($template, 16, 0, 250, 380, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesDiamante));
+@imagettftext($template, 16, 0, 250, 380, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesDiamante));
 
-@imagettftext($template, 16, 0, 250, 415, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, reformatDate($avancesDiamanteReal));
-
-#################################################################################################################################################
-
-// @imagettftext($template, 25, 0, 440, 559, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Plata:");
-@imagettftext($template, 18, 0, 250, 599, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($lideresPlata, 0));
-
-// @imagettftext($template, 25, 0, 458, 601, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Oro:");
-@imagettftext($template, 18, 0, 250, 636, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($lideresOro, 0));
-
-// @imagettftext($template, 25, 0, 408, 645, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Platino:");
-@imagettftext($template, 18, 0, 250, 670, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($lideresPlatino, 0));
-
-// @imagettftext($template, 25, 0, 370, 687, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Diamante:");
-@imagettftext($template, 18, 0, 250, 707, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($lideresDiamante, 0));
-
-// @imagettftext($template, 25, 0, 294, 727, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Diamante Real:");
-@imagettftext($template, 18, 0, 250, 743, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($lideresDiamanteReal, 0));
+@imagettftext($template, 16, 0, 250, 415, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, reformatDate($avancesDiamanteReal));
 
 #################################################################################################################################################
 
-// @imagettftext($template, 25, 0, 360, 963, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "No. de Influencer:");
-@imagettftext($template, 16, 0, 455, 933, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($numeroInfluencers, 0));
+@imagettftext($template, 18, 0, 250, 599, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($lideresPlata, 0));
 
-// @imagettftext($template, 25, 0, 200, 1014, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "No. de Clientes Preferentes:");
-@imagettftext($template, 16, 0, 455, 970, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($numeroClientesPreferentes, 0));
+@imagettftext($template, 18, 0, 250, 636, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($lideresOro, 0));
 
-// @imagettftext($template, 25, 0, 147, 1065, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Activos Mensuales (Promedio):");
-@imagettftext($template, 16, 0, 455, 1005, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($monthActiveConsultant, 0));
+@imagettftext($template, 18, 0, 250, 670, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($lideresPlatino, 0));
 
-// @imagettftext($template, 25, 0, 147, 1065, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Activos Mensuales (Promedio):");
-@imagettftext($template, 16, 0, 455, 1040, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($monthActiveCustomer, 0));
+@imagettftext($template, 18, 0, 250, 707, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($lideresDiamante, 0));
 
-// @imagettftext($template, 25, 0, 147, 1065, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Activos Mensuales (Promedio):");
-@imagettftext($template, 16, 0, 455, 1075, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($monthConsultantSignUps, 0));
-
-// @imagettftext($template, 25, 0, 160, 1114, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Incorporados Mes (Promedio):");
-@imagettftext($template, 16, 0, 455, 1110, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($monthCustomerSignUp, 0));
-
-// @imagettftext($template, 25, 0, 293, 1165, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Influencers Frontales:");
-@imagettftext($template, 16, 0, 455, 1143, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($frontLineConsultant, 0));
-
-// @imagettftext($template, 25, 0, 293, 1165, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Influencers Frontales:");
-@imagettftext($template, 16, 0, 455, 1178, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($frontLineCustomers, 0));
-
-// @imagettftext($template, 25, 0, 262, 1214, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Niveles de Profundidad:");
-@imagettftext($template, 16, 0, 455, 1214, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, number_format($nivelesProfundidad, 0));
-
-// @imagettftext($template, 25, 0, 99, 1265, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Compras del Último Año (Dólares):");
-@imagettftext($template, 16, 0, 455, 1249, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, '$' . number_format($comprasUltimoAno, 0) . ' USD');
+@imagettftext($template, 18, 0, 250, 743, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($lideresDiamanteReal, 0));
 
 #################################################################################################################################################
 
-// @imagettftext($template, 25, 0, 950, 1250, imagecolorallocate($template, 102, 51, 102), $templateFontRobotoBold, "Informe Variables Comerciales por Influencer");
-@imagettftext($template, 24, 0, 1350, 270, imagecolorallocate($template, 102, 51, 102), $templateFontRoboto, "September 2022 to August 2024");
+@imagettftext($template, 16, 0, 455, 933, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($numeroInfluencers, 0));
+
+@imagettftext($template, 16, 0, 455, 970, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($numeroClientesPreferentes, 0));
+
+@imagettftext($template, 16, 0, 455, 1005, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($monthActiveConsultant, 0));
+
+@imagettftext($template, 16, 0, 455, 1040, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($monthActiveCustomer, 0));
+
+@imagettftext($template, 16, 0, 455, 1075, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($monthConsultantSignUps, 0));
+
+@imagettftext($template, 16, 0, 455, 1110, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($monthCustomerSignUp, 0));
+
+@imagettftext($template, 16, 0, 455, 1143, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($frontLineConsultant, 0));
+
+@imagettftext($template, 16, 0, 455, 1178, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($frontLineCustomers, 0));
+
+@imagettftext($template, 16, 0, 455, 1214, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, number_format($nivelesProfundidad, 0));
+
+@imagettftext($template, 16, 0, 455, 1249, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, '$' . number_format($comprasUltimoAno, 0) . ' USD');
+
+#################################################################################################################################################
+
+@imagettftext($template, 24, 0, 1350, 270, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, "September 2022 to August 2024");
 
 imagecopymerge($template, $photo, 830, 470, 0, 0, 800, 800, 100);
 
