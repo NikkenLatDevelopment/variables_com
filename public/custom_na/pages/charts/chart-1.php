@@ -118,7 +118,7 @@ $dataComprasCompraPromedio = array();
 			<div class="h6"><span class="fw-bold"><?php echo $laguaje[$lang]['País']; ?>:</span> <?php echo $countrieUser ?></div>
 		</div>
 
-		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?> | lang: <?php echo $lang ?> </div></div>
+		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
 			<div class="h6 mb-0"><span class="fw-bold"><?php echo $laguaje[$lang]['Código']; ?>:</span> <?php echo $codeUser ?></div>

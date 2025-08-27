@@ -38,7 +38,7 @@ window.miTimeout = setTimeout(function() {
 // mostrar/ocultar div loader
 
 //Mostrar información compras
-    function ventas(codeUser, nameUser, countrieUser, rankUser, lang, lang){
+    function ventas(codeUser, nameUser, countrieUser, rankUser, lang){
         var divMensaje = $("#chart-1");
         requestCount++;
         if (requestCount >= 1) {
@@ -66,7 +66,7 @@ window.miTimeout = setTimeout(function() {
 //Mostrar información compras
 
 //Mostrar información inscripciones
-    function chart2(codeUser, nameUser, countrieUser, rankUser, lang, lang){
+    function chart2(codeUser, nameUser, countrieUser, rankUser, lang){
         var divMensaje = $("#chart-2");
         requestCount++;
         if (requestCount >= 1) {
