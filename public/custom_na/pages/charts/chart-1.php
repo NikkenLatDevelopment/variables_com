@@ -14,7 +14,6 @@ $countrieUser = letterCountrie($_GET["countrieUser"]);
 $rankUser = $_GET["rankUser"];
 $periodopost = $_GET["periodo"];
 $lang = $_GET["lang"];
-echo $lang;
 //Vars
 
 //Others
