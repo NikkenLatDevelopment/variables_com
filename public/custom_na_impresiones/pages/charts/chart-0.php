@@ -243,7 +243,7 @@ $logo = imagecreatefromjpeg("../../img/general/logo-nikken.jpg");
 
 #################################################################################################################################################
 
-@imagettftext($template, 24, 0, 1350, 270, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, "September 2023 to August 2025");
+@imagettftext($template, 24, 0, 1350, 270, imagecolorallocate($template, 0, 36, 93), $templateFontRoboto, "Sep 2023 to Aug 2025");
 
 imagecopymerge($template, $photo, 830, 470, 0, 0, 800, 800, 100);
 
