@@ -195,7 +195,7 @@ $dataBonificacionessuma = array();
 		<div class="col-auto"><div class="h2 fw-bold px-5 mx-5"><?php echo $nameUser ?></div></div>
 
 		<div class="col-auto">
-			<div class="h6 mb-0"><span class="fw-bold">Code:</span> <?php echo $codeUser ?></div>
+			<div class="h6 mb-0"><span class="fw-bold">ID:</span> <?php echo $codeUser ?></div>
 			<div class="h6"><span class="fw-bold">Rank:</span> <?php echo $rangos_usa[$rankUser] ?></div>
 		</div>
 	</div>
