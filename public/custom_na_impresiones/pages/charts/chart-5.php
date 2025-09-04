@@ -211,32 +211,31 @@ $dataBonificacionessuma = array();
 	</div>
 <!-- Gráficas -->
 
-<hr>
-<input id="txtMont1_chart5" value="<?php echo $shortMonthYear[$monthToShow[24]] ?>" type="text">
-<input id="txtMont2_chart5" value="<?php echo $shortMonthYear[$monthToShow[23]] ?>" type="text">
-<input id="txtMont3_chart5" value="<?php echo $shortMonthYear[$monthToShow[22]] ?>" type="text">
-<input id="txtMont4_chart5" value="<?php echo $shortMonthYear[$monthToShow[21]] ?>" type="text">
-<input id="txtMont5_chart5" value="<?php echo $shortMonthYear[$monthToShow[20]] ?>" type="text">
-<input id="txtMont6_chart5" value="<?php echo $shortMonthYear[$monthToShow[19]] ?>" type="text">
-<input id="txtMont7_chart5" value="<?php echo $shortMonthYear[$monthToShow[18]] ?>" type="text">
-<input id="txtMont8_chart5" value="<?php echo $shortMonthYear[$monthToShow[17]] ?>" type="text">
-<input id="txtMont9_chart5" value="<?php echo $shortMonthYear[$monthToShow[16]] ?>" type="text">
-<input id="txtMont10_chart5" value="<?php echo $shortMonthYear[$monthToShow[15]] ?>" type="text">
-<input id="txtMont11_chart5" value="<?php echo $shortMonthYear[$monthToShow[14]] ?>" type="text">
-<input id="txtMont12_chart5" value="<?php echo $shortMonthYear[$monthToShow[13]] ?>" type="text">
+<input hidden id="txtMont1_chart5" value="<?php echo $shortMonthYear[$monthToShow[24]] ?>" type="text">
+<input hidden id="txtMont2_chart5" value="<?php echo $shortMonthYear[$monthToShow[23]] ?>" type="text">
+<input hidden id="txtMont3_chart5" value="<?php echo $shortMonthYear[$monthToShow[22]] ?>" type="text">
+<input hidden id="txtMont4_chart5" value="<?php echo $shortMonthYear[$monthToShow[21]] ?>" type="text">
+<input hidden id="txtMont5_chart5" value="<?php echo $shortMonthYear[$monthToShow[20]] ?>" type="text">
+<input hidden id="txtMont6_chart5" value="<?php echo $shortMonthYear[$monthToShow[19]] ?>" type="text">
+<input hidden id="txtMont7_chart5" value="<?php echo $shortMonthYear[$monthToShow[18]] ?>" type="text">
+<input hidden id="txtMont8_chart5" value="<?php echo $shortMonthYear[$monthToShow[17]] ?>" type="text">
+<input hidden id="txtMont9_chart5" value="<?php echo $shortMonthYear[$monthToShow[16]] ?>" type="text">
+<input hidden id="txtMont10_chart5" value="<?php echo $shortMonthYear[$monthToShow[15]] ?>" type="text">
+<input hidden id="txtMont11_chart5" value="<?php echo $shortMonthYear[$monthToShow[14]] ?>" type="text">
+<input hidden id="txtMont12_chart5" value="<?php echo $shortMonthYear[$monthToShow[13]] ?>" type="text">
 
-<input id="txtMont13_chart5" value="<?php echo $shortMonthYear[$monthToShow[12]] ?>" type="text">
-<input id="txtMont14_chart5" value="<?php echo $shortMonthYear[$monthToShow[11]] ?>" type="text">
-<input id="txtMont15_chart5" value="<?php echo $shortMonthYear[$monthToShow[10]] ?>" type="text">
-<input id="txtMont16_chart5" value="<?php echo $shortMonthYear[$monthToShow[9]] ?>" type="text">
-<input id="txtMont17_chart5" value="<?php echo $shortMonthYear[$monthToShow[8]] ?>" type="text">
-<input id="txtMont18_chart5" value="<?php echo $shortMonthYear[$monthToShow[7]] ?>" type="text">
-<input id="txtMont19_chart5" value="<?php echo $shortMonthYear[$monthToShow[6]] ?>" type="text">
-<input id="txtMont20_chart5" value="<?php echo $shortMonthYear[$monthToShow[5]] ?>" type="text">
-<input id="txtMont21_chart5" value="<?php echo $shortMonthYear[$monthToShow[4]] ?>" type="text">
-<input id="txtMont22_chart5" value="<?php echo $shortMonthYear[$monthToShow[3]] ?>" type="text">
-<input id="txtMont23_chart5" value="<?php echo $shortMonthYear[$monthToShow[2]] ?>" type="text">
-<input id="txtMont24_chart5" value="<?php echo $shortMonthYear[$monthToShow[1]] ?>" type="text">
+<input hidden id="txtMont13_chart5" value="<?php echo $shortMonthYear[$monthToShow[12]] ?>" type="text">
+<input hidden id="txtMont14_chart5" value="<?php echo $shortMonthYear[$monthToShow[11]] ?>" type="text">
+<input hidden id="txtMont15_chart5" value="<?php echo $shortMonthYear[$monthToShow[10]] ?>" type="text">
+<input hidden id="txtMont16_chart5" value="<?php echo $shortMonthYear[$monthToShow[9]] ?>" type="text">
+<input hidden id="txtMont17_chart5" value="<?php echo $shortMonthYear[$monthToShow[8]] ?>" type="text">
+<input hidden id="txtMont18_chart5" value="<?php echo $shortMonthYear[$monthToShow[7]] ?>" type="text">
+<input hidden id="txtMont19_chart5" value="<?php echo $shortMonthYear[$monthToShow[6]] ?>" type="text">
+<input hidden id="txtMont20_chart5" value="<?php echo $shortMonthYear[$monthToShow[5]] ?>" type="text">
+<input hidden id="txtMont21_chart5" value="<?php echo $shortMonthYear[$monthToShow[4]] ?>" type="text">
+<input hidden id="txtMont22_chart5" value="<?php echo $shortMonthYear[$monthToShow[3]] ?>" type="text">
+<input hidden id="txtMont23_chart5" value="<?php echo $shortMonthYear[$monthToShow[2]] ?>" type="text">
+<input hidden id="txtMont24_chart5" value="<?php echo $shortMonthYear[$monthToShow[1]] ?>" type="text">
 
 <?php echo $periodoPost ?>
 

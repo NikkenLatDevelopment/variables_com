@@ -304,31 +304,31 @@ $dataVolumenesVoldpys = array();
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="c-mw-1">POINTS</th>
-				<th scope="col"><span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span></th>
-				<th scope="col"><span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span></th>
-				<th scope="col"><span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span></th>
-				<th scope="col"><span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span></th>
-				<th scope="col"><span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span></th>
-				<th scope="col"><span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span></th>
-				<th scope="col"><span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span></th>
-				<th scope="col"><span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span></th>
-				<th scope="col"><span id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span></th>
-				<th scope="col"><span id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span></th>
-				<th scope="col"><span id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span></th>
-				<th scope="col"><span id="txtMont12"><?php echo $shortMonthYear[$monthToShow[13]] ?></span></th>
+				<th scope="col"><span id="txtMont1_chart4"><?php echo $shortMonthYear[$monthToShow[24]] ?></span></th>
+				<th scope="col"><span id="txtMont2_chart4"><?php echo $shortMonthYear[$monthToShow[23]] ?></span></th>
+				<th scope="col"><span id="txtMont3_chart4"><?php echo $shortMonthYear[$monthToShow[22]] ?></span></th>
+				<th scope="col"><span id="txtMont4_chart4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span></th>
+				<th scope="col"><span id="txtMont5_chart4"><?php echo $shortMonthYear[$monthToShow[20]] ?></span></th>
+				<th scope="col"><span id="txtMont6_chart4"><?php echo $shortMonthYear[$monthToShow[19]] ?></span></th>
+				<th scope="col"><span id="txtMont7_chart4"><?php echo $shortMonthYear[$monthToShow[18]] ?></span></th>
+				<th scope="col"><span id="txtMont8_chart4"><?php echo $shortMonthYear[$monthToShow[17]] ?></span></th>
+				<th scope="col"><span id="txtMont9_chart4"><?php echo $shortMonthYear[$monthToShow[16]] ?></span></th>
+				<th scope="col"><span id="txtMont10_chart4"><?php echo $shortMonthYear[$monthToShow[15]] ?></span></th>
+				<th scope="col"><span id="txtMont11_chart4"><?php echo $shortMonthYear[$monthToShow[14]] ?></span></th>
+				<th scope="col"><span id="txtMont12_chart4"><?php echo $shortMonthYear[$monthToShow[13]] ?></span></th>
 
-				<th scope="col"><span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
-				<th scope="col"><span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
-				<th scope="col"><span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
-				<th scope="col"><span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
-				<th scope="col"><span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
-				<th scope="col"><span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
-				<th scope="col"><span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
-				<th scope="col"><span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
-				<th scope="col"><span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span></th>
-				<th scope="col"><span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
-				<th scope="col"><span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
-				<th scope="col"><span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
+				<th scope="col"><span id="txtMont13_chart4"><?php echo $shortMonthYear[$monthToShow[12]] ?></span></th>
+				<th scope="col"><span id="txtMont14_chart4"><?php echo $shortMonthYear[$monthToShow[11]] ?></span></th>
+				<th scope="col"><span id="txtMont15_chart4"><?php echo $shortMonthYear[$monthToShow[10]] ?></span></th>
+				<th scope="col"><span id="txtMont16_chart4"><?php echo $shortMonthYear[$monthToShow[9]] ?></span></th>
+				<th scope="col"><span id="txtMont17_chart4"><?php echo $shortMonthYear[$monthToShow[8]] ?></span></th>
+				<th scope="col"><span id="txtMont18_chart4"><?php echo $shortMonthYear[$monthToShow[7]] ?></span></th>
+				<th scope="col"><span id="txtMont19_chart4"><?php echo $shortMonthYear[$monthToShow[6]] ?></span></th>
+				<th scope="col"><span id="txtMont20_chart4"><?php echo $shortMonthYear[$monthToShow[5]] ?></span></th>
+				<th scope="col"><span id="txtMont21_chart4"><?php echo $shortMonthYear[$monthToShow[4]] ?></span></th>
+				<th scope="col"><span id="txtMont22_chart4"><?php echo $shortMonthYear[$monthToShow[3]] ?></span></th>
+				<th scope="col"><span id="txtMont23_chart4"><?php echo $shortMonthYear[$monthToShow[2]] ?></span></th>
+				<th scope="col"><span id="txtMont24_chart4"><?php echo $shortMonthYear[$monthToShow[1]] ?></span></th>
 				<th scope="col" class="c-mw-2">Average 24<br/>Months</th>
 			</tr>
 		</thead>
@@ -672,31 +672,31 @@ $dataVolumenesVoldpys = array();
 	Chart.defaults.font.size = 11;
 	//Fuente de la gráfica
 
-	txtMont1 = $("#txtMont1").text();
-	txtMont2 = $("#txtMont2").text();
-	txtMont3 = $("#txtMont3").text();
-	txtMont4 = $("#txtMont4").text();
-	txtMont5 = $("#txtMont5").text();
-	txtMont6 = $("#txtMont6").text();
-	txtMont7 = $("#txtMont7").text();
-	txtMont8 = $("#txtMont8").text();
-	txtMont9 = $("#txtMont9").text();
-	txtMont10 = $("#txtMont10").text();
-	txtMont11 = $("#txtMont11").text();
-	txtMont12 = $("#txtMont12").text();
+	txtMont1 = $("#txtMont1_chart4").text();
+	txtMont2 = $("#txtMont2_chart4").text();
+	txtMont3 = $("#txtMont3_chart4").text();
+	txtMont4 = $("#txtMont4_chart4").text();
+	txtMont5 = $("#txtMont5_chart4").text();
+	txtMont6 = $("#txtMont6_chart4").text();
+	txtMont7 = $("#txtMont7_chart4").text();
+	txtMont8 = $("#txtMont8_chart4").text();
+	txtMont9 = $("#txtMont9_chart4").text();
+	txtMont10 = $("#txtMont10_chart4").text();
+	txtMont11 = $("#txtMont11_chart4").text();
+	txtMont12 = $("#txtMont12_chart4").text();
 
-	txtMont13 = $("#txtMont13").text();
-	txtMont14 = $("#txtMont14").text();
-	txtMont15 = $("#txtMont15").text();
-	txtMont16 = $("#txtMont16").text();
-	txtMont17 = $("#txtMont17").text();
-	txtMont18 = $("#txtMont18").text();
-	txtMont19 = $("#txtMont19").text();
-	txtMont20 = $("#txtMont20").text();
-	txtMont21 = $("#txtMont21").text();
-	txtMont22 = $("#txtMont22").text();
-	txtMont23 = $("#txtMont23").text();
-	txtMont24 = $("#txtMont24").text();
+	txtMont13 = $("#txtMont13_chart4").text();
+	txtMont14 = $("#txtMont14_chart4").text();
+	txtMont15 = $("#txtMont15_chart4").text();
+	txtMont16 = $("#txtMont16_chart4").text();
+	txtMont17 = $("#txtMont17_chart4").text();
+	txtMont18 = $("#txtMont18_chart4").text();
+	txtMont19 = $("#txtMont19_chart4").text();
+	txtMont20 = $("#txtMont20_chart4").text();
+	txtMont21 = $("#txtMont21_chart4").text();
+	txtMont22 = $("#txtMont22_chart4").text();
+	txtMont23 = $("#txtMont23_chart4").text();
+	txtMont24 = $("#txtMont24_chart4").text();
 
 	//Gráfica Volúmenes
 		var chart4Graph1 = document.getElementById('chart4Graph1').getContext('2d');
