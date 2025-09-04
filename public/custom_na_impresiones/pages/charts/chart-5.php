@@ -212,31 +212,31 @@ $dataBonificacionessuma = array();
 <!-- Gráficas -->
 
 <hr>
-<span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span>
-<span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span>
-<span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span>
-<span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span>
-<span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span>
-<span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span>
-<span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span>
-<span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span>
-<span id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span>
-<span id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span>
-<span id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span>
-<span id="txtMont12"><?php echo $shortMonthYear[$monthToShow[13]] ?></span>
+<input id="txtMont1" value="<?php echo $shortMonthYear[$monthToShow[24]] ?>" type="text">
+<input id="txtMont2" value="<?php echo $shortMonthYear[$monthToShow[23]] ?>" type="text">
+<input id="txtMont3" value="<?php echo $shortMonthYear[$monthToShow[22]] ?>" type="text">
+<input id="txtMont4" value="<?php echo $shortMonthYear[$monthToShow[21]] ?>" type="text">
+<input id="txtMont5" value="<?php echo $shortMonthYear[$monthToShow[20]] ?>" type="text">
+<input id="txtMont6" value="<?php echo $shortMonthYear[$monthToShow[19]] ?>" type="text">
+<input id="txtMont7" value="<?php echo $shortMonthYear[$monthToShow[18]] ?>" type="text">
+<input id="txtMont8" value="<?php echo $shortMonthYear[$monthToShow[17]] ?>" type="text">
+<input id="txtMont9" value="<?php echo $shortMonthYear[$monthToShow[16]] ?>" type="text">
+<input id="txtMont10" value="<?php echo $shortMonthYear[$monthToShow[15]] ?>" type="text">
+<input id="txtMont11" value="<?php echo $shortMonthYear[$monthToShow[14]] ?>" type="text">
+<input id="txtMont12" value="<?php echo $shortMonthYear[$monthToShow[13]] ?>" type="text">
 
-<span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span>
-<span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span>
-<span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span>
-<span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span>
-<span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span>
-<span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span>
-<span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span>
-<span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span>
-<span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span>
-<span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span>
-<span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span>
-<span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span>
+<input id="txtMont13" value="<?php echo $shortMonthYear[$monthToShow[12]] ?>" type="text">
+<input id="txtMont14" value="<?php echo $shortMonthYear[$monthToShow[11]] ?>" type="text">
+<input id="txtMont15" value="<?php echo $shortMonthYear[$monthToShow[10]] ?>" type="text">
+<input id="txtMont16" value="<?php echo $shortMonthYear[$monthToShow[9]] ?>" type="text">
+<input id="txtMont17" value="<?php echo $shortMonthYear[$monthToShow[8]] ?>" type="text">
+<input id="txtMont18" value="<?php echo $shortMonthYear[$monthToShow[7]] ?>" type="text">
+<input id="txtMont19" value="<?php echo $shortMonthYear[$monthToShow[6]] ?>" type="text">
+<input id="txtMont20" value="<?php echo $shortMonthYear[$monthToShow[5]] ?>" type="text">
+<input id="txtMont21" value="<?php echo $shortMonthYear[$monthToShow[4]] ?>" type="text">
+<input id="txtMont22" value="<?php echo $shortMonthYear[$monthToShow[3]] ?>" type="text">
+<input id="txtMont23" value="<?php echo $shortMonthYear[$monthToShow[2]] ?>" type="text">
+<input id="txtMont24" value="<?php echo $shortMonthYear[$monthToShow[1]] ?>" type="text">
 
 <?php echo $periodoPost ?>
 
