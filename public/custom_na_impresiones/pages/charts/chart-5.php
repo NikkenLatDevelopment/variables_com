@@ -237,8 +237,6 @@ $dataBonificacionessuma = array();
 <input hidden id="txtMont23_chart5" value="<?php echo $shortMonthYear[$monthToShow[2]] ?>" type="text">
 <input hidden id="txtMont24_chart5" value="<?php echo $shortMonthYear[$monthToShow[1]] ?>" type="text">
 
-<?php echo $periodoPost ?>
-
 <script>
 	//Fuente de la gráfica
 	Chart.defaults.font.size = 13;
