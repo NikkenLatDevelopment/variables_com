@@ -211,7 +211,7 @@ $monthLabelGraph = array();
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
-			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> September 2023 to August 2025</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> January 2025 to August 2025</div>
 			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
@@ -774,7 +774,7 @@ $monthLabelGraph = array();
 	<div class="row mb-3">
 		<div class="col-auto">
 			<div class="h5 fw-bold mb-1">Business Variables Report By Consultant</div>
-			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> January 2023 to August 2024</div>
+			<div class="h6 mb-0"><span class="fw-bold">Measurement Period:</span> January 2025 to August 2025</div>
 			<div class="h6"><span class="fw-bold">Country:</span> <?php echo $countrieUser ?></div>
 		</div>
 
