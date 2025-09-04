@@ -211,31 +211,34 @@ $dataBonificacionessuma = array();
 	</div>
 <!-- Gráficas -->
 
-<span style="display: none;" id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span>
-<span style="display: none;" id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span>
-<span style="display: none;" id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span>
-<span style="display: none;" id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span>
-<span style="display: none;" id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span>
-<span style="display: none;" id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span>
-<span style="display: none;" id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span>
-<span style="display: none;" id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span>
-<span style="display: none;" id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span>
-<span style="display: none;" id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span>
-<span style="display: none;" id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span>
-<span style="display: none;" id="txtMont12"><?php echo $shortMonthYear[$monthToShow[13]] ?></span>
+<hr>
+<span id="txtMont1"><?php echo $shortMonthYear[$monthToShow[24]] ?></span>
+<span id="txtMont2"><?php echo $shortMonthYear[$monthToShow[23]] ?></span>
+<span id="txtMont3"><?php echo $shortMonthYear[$monthToShow[22]] ?></span>
+<span id="txtMont4"><?php echo $shortMonthYear[$monthToShow[21]] ?></span>
+<span id="txtMont5"><?php echo $shortMonthYear[$monthToShow[20]] ?></span>
+<span id="txtMont6"><?php echo $shortMonthYear[$monthToShow[19]] ?></span>
+<span id="txtMont7"><?php echo $shortMonthYear[$monthToShow[18]] ?></span>
+<span id="txtMont8"><?php echo $shortMonthYear[$monthToShow[17]] ?></span>
+<span id="txtMont9"><?php echo $shortMonthYear[$monthToShow[16]] ?></span>
+<span id="txtMont10"><?php echo $shortMonthYear[$monthToShow[15]] ?></span>
+<span id="txtMont11"><?php echo $shortMonthYear[$monthToShow[14]] ?></span>
+<span id="txtMont12"><?php echo $shortMonthYear[$monthToShow[13]] ?></span>
 
-<span style="display: none;" id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span>
-<span style="display: none;" id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span>
-<span style="display: none;" id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span>
-<span style="display: none;" id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span>
-<span style="display: none;" id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span>
-<span style="display: none;" id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span>
-<span style="display: none;" id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span>
-<span style="display: none;" id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span>
-<span style="display: none;" id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span>
-<span style="display: none;" id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span>
-<span style="display: none;" id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span>
-<span style="display: none;" id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span>
+<span id="txtMont13"><?php echo $shortMonthYear[$monthToShow[12]] ?></span>
+<span id="txtMont14"><?php echo $shortMonthYear[$monthToShow[11]] ?></span>
+<span id="txtMont15"><?php echo $shortMonthYear[$monthToShow[10]] ?></span>
+<span id="txtMont16"><?php echo $shortMonthYear[$monthToShow[9]] ?></span>
+<span id="txtMont17"><?php echo $shortMonthYear[$monthToShow[8]] ?></span>
+<span id="txtMont18"><?php echo $shortMonthYear[$monthToShow[7]] ?></span>
+<span id="txtMont19"><?php echo $shortMonthYear[$monthToShow[6]] ?></span>
+<span id="txtMont20"><?php echo $shortMonthYear[$monthToShow[5]] ?></span>
+<span id="txtMont21"><?php echo $shortMonthYear[$monthToShow[4]] ?></span>
+<span id="txtMont22"><?php echo $shortMonthYear[$monthToShow[3]] ?></span>
+<span id="txtMont23"><?php echo $shortMonthYear[$monthToShow[2]] ?></span>
+<span id="txtMont24"><?php echo $shortMonthYear[$monthToShow[1]] ?></span>
+
+<?php echo $periodoPost ?>
 
 <script>
 	//Fuente de la gráfica
