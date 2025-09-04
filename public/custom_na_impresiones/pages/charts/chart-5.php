@@ -212,31 +212,31 @@ $dataBonificacionessuma = array();
 <!-- Gráficas -->
 
 <hr>
-<input id="txtMont1" value="<?php echo $shortMonthYear[$monthToShow[24]] ?>" type="text">
-<input id="txtMont2" value="<?php echo $shortMonthYear[$monthToShow[23]] ?>" type="text">
-<input id="txtMont3" value="<?php echo $shortMonthYear[$monthToShow[22]] ?>" type="text">
-<input id="txtMont4" value="<?php echo $shortMonthYear[$monthToShow[21]] ?>" type="text">
-<input id="txtMont5" value="<?php echo $shortMonthYear[$monthToShow[20]] ?>" type="text">
-<input id="txtMont6" value="<?php echo $shortMonthYear[$monthToShow[19]] ?>" type="text">
-<input id="txtMont7" value="<?php echo $shortMonthYear[$monthToShow[18]] ?>" type="text">
-<input id="txtMont8" value="<?php echo $shortMonthYear[$monthToShow[17]] ?>" type="text">
-<input id="txtMont9" value="<?php echo $shortMonthYear[$monthToShow[16]] ?>" type="text">
-<input id="txtMont10" value="<?php echo $shortMonthYear[$monthToShow[15]] ?>" type="text">
-<input id="txtMont11" value="<?php echo $shortMonthYear[$monthToShow[14]] ?>" type="text">
-<input id="txtMont12" value="<?php echo $shortMonthYear[$monthToShow[13]] ?>" type="text">
+<input id="txtMont1_chart5" value="<?php echo $shortMonthYear[$monthToShow[24]] ?>" type="text">
+<input id="txtMont2_chart5" value="<?php echo $shortMonthYear[$monthToShow[23]] ?>" type="text">
+<input id="txtMont3_chart5" value="<?php echo $shortMonthYear[$monthToShow[22]] ?>" type="text">
+<input id="txtMont4_chart5" value="<?php echo $shortMonthYear[$monthToShow[21]] ?>" type="text">
+<input id="txtMont5_chart5" value="<?php echo $shortMonthYear[$monthToShow[20]] ?>" type="text">
+<input id="txtMont6_chart5" value="<?php echo $shortMonthYear[$monthToShow[19]] ?>" type="text">
+<input id="txtMont7_chart5" value="<?php echo $shortMonthYear[$monthToShow[18]] ?>" type="text">
+<input id="txtMont8_chart5" value="<?php echo $shortMonthYear[$monthToShow[17]] ?>" type="text">
+<input id="txtMont9_chart5" value="<?php echo $shortMonthYear[$monthToShow[16]] ?>" type="text">
+<input id="txtMont10_chart5" value="<?php echo $shortMonthYear[$monthToShow[15]] ?>" type="text">
+<input id="txtMont11_chart5" value="<?php echo $shortMonthYear[$monthToShow[14]] ?>" type="text">
+<input id="txtMont12_chart5" value="<?php echo $shortMonthYear[$monthToShow[13]] ?>" type="text">
 
-<input id="txtMont13" value="<?php echo $shortMonthYear[$monthToShow[12]] ?>" type="text">
-<input id="txtMont14" value="<?php echo $shortMonthYear[$monthToShow[11]] ?>" type="text">
-<input id="txtMont15" value="<?php echo $shortMonthYear[$monthToShow[10]] ?>" type="text">
-<input id="txtMont16" value="<?php echo $shortMonthYear[$monthToShow[9]] ?>" type="text">
-<input id="txtMont17" value="<?php echo $shortMonthYear[$monthToShow[8]] ?>" type="text">
-<input id="txtMont18" value="<?php echo $shortMonthYear[$monthToShow[7]] ?>" type="text">
-<input id="txtMont19" value="<?php echo $shortMonthYear[$monthToShow[6]] ?>" type="text">
-<input id="txtMont20" value="<?php echo $shortMonthYear[$monthToShow[5]] ?>" type="text">
-<input id="txtMont21" value="<?php echo $shortMonthYear[$monthToShow[4]] ?>" type="text">
-<input id="txtMont22" value="<?php echo $shortMonthYear[$monthToShow[3]] ?>" type="text">
-<input id="txtMont23" value="<?php echo $shortMonthYear[$monthToShow[2]] ?>" type="text">
-<input id="txtMont24" value="<?php echo $shortMonthYear[$monthToShow[1]] ?>" type="text">
+<input id="txtMont13_chart5" value="<?php echo $shortMonthYear[$monthToShow[12]] ?>" type="text">
+<input id="txtMont14_chart5" value="<?php echo $shortMonthYear[$monthToShow[11]] ?>" type="text">
+<input id="txtMont15_chart5" value="<?php echo $shortMonthYear[$monthToShow[10]] ?>" type="text">
+<input id="txtMont16_chart5" value="<?php echo $shortMonthYear[$monthToShow[9]] ?>" type="text">
+<input id="txtMont17_chart5" value="<?php echo $shortMonthYear[$monthToShow[8]] ?>" type="text">
+<input id="txtMont18_chart5" value="<?php echo $shortMonthYear[$monthToShow[7]] ?>" type="text">
+<input id="txtMont19_chart5" value="<?php echo $shortMonthYear[$monthToShow[6]] ?>" type="text">
+<input id="txtMont20_chart5" value="<?php echo $shortMonthYear[$monthToShow[5]] ?>" type="text">
+<input id="txtMont21_chart5" value="<?php echo $shortMonthYear[$monthToShow[4]] ?>" type="text">
+<input id="txtMont22_chart5" value="<?php echo $shortMonthYear[$monthToShow[3]] ?>" type="text">
+<input id="txtMont23_chart5" value="<?php echo $shortMonthYear[$monthToShow[2]] ?>" type="text">
+<input id="txtMont24_chart5" value="<?php echo $shortMonthYear[$monthToShow[1]] ?>" type="text">
 
 <?php echo $periodoPost ?>
 
@@ -245,32 +245,32 @@ $dataBonificacionessuma = array();
 	Chart.defaults.font.size = 13;
 	//Fuente de la gráfica
 
-	txtMont1 = $("#txtMont1").text();
-	txtMont2 = $("#txtMont2").text();
-	txtMont3 = $("#txtMont3").text();
-	txtMont4 = $("#txtMont4").text();
-	txtMont5 = $("#txtMont5").text();
-	txtMont6 = $("#txtMont6").text();
-	txtMont7 = $("#txtMont7").text();
-	txtMont8 = $("#txtMont8").text();
-	txtMont9 = $("#txtMont9").text();
-	txtMont10 = $("#txtMont10").text();
-	txtMont10 = $("#txtMont10").text();
-	txtMont11 = $("#txtMont11").text();
-	txtMont12 = $("#txtMont12").text();
+	txtMont1 = $("#txtMont1_chart5").val();
+	txtMont2 = $("#txtMont2_chart5").val();
+	txtMont3 = $("#txtMont3_chart5").val();
+	txtMont4 = $("#txtMont4_chart5").val();
+	txtMont5 = $("#txtMont5_chart5").val();
+	txtMont6 = $("#txtMont6_chart5").val();
+	txtMont7 = $("#txtMont7_chart5").val();
+	txtMont8 = $("#txtMont8_chart5").val();
+	txtMont9 = $("#txtMont9_chart5").val();
+	txtMont10 = $("#txtMont10_chart5").val();
+	txtMont10 = $("#txtMont10_chart5").val();
+	txtMont11 = $("#txtMont11_chart5").val();
+	txtMont12 = $("#txtMont12_chart5").val();
 
-	txtMont13 = $("#txtMont13").text();
-	txtMont14 = $("#txtMont14").text();
-	txtMont15 = $("#txtMont15").text();
-	txtMont16 = $("#txtMont16").text();
-	txtMont17 = $("#txtMont17").text();
-	txtMont18 = $("#txtMont18").text();
-	txtMont19 = $("#txtMont19").text();
-	txtMont20 = $("#txtMont20").text();
-	txtMont21 = $("#txtMont21").text();
-	txtMont22 = $("#txtMont22").text();
-	txtMont23 = $("#txtMont23").text();
-	txtMont24 = $("#txtMont24").text();
+	txtMont13 = $("#txtMont13_chart5").val();
+	txtMont14 = $("#txtMont14_chart5").val();
+	txtMont15 = $("#txtMont15_chart5").val();
+	txtMont16 = $("#txtMont16_chart5").val();
+	txtMont17 = $("#txtMont17_chart5").val();
+	txtMont18 = $("#txtMont18_chart5").val();
+	txtMont19 = $("#txtMont19_chart5").val();
+	txtMont20 = $("#txtMont20_chart5").val();
+	txtMont21 = $("#txtMont21_chart5").val();
+	txtMont22 = $("#txtMont22_chart5").val();
+	txtMont23 = $("#txtMont23_chart5").val();
+	txtMont24 = $("#txtMont24_chart5").val();
 
 	//Gráfica bonificaciones
 		var chart5Graph1 = document.getElementById('chart5Graph1').getContext('2d');
