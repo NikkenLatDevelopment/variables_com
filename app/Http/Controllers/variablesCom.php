@@ -260,6 +260,20 @@ class variablesCom extends Controller{
         $rankUser = session('rankUser');
         $countrieUser = session('countrieUser');
         $correo = session('correo');
+
+        $paises = [
+            1 => 'Colombia',
+            2 => 'México',
+            3 => 'Perú',
+            4 => 'Ecuador',
+            5 => 'Panamá',
+            6 => 'Guatemala',
+            7 => 'El Salvador',
+            8 => 'Costa Rica',
+            9 => 'Latinoamérica',
+            10 => 'Chile',
+        ];
+        $countrieUser = $paises[$countrieUser];
         
         $target = "https://informescom.nikkenlatam.com/report?code=$codeUser&country=$countrieUser&email=$correo&name=$nameUser&period=2023-01&rank=$rankUser&signature=1181ef301faaa22bd0add30db9d6addd05f753c6ce69fb4b355ea419aee83055&expires=1756785818";
         return $target;
