@@ -160,6 +160,8 @@
         <input type="text" id="rankUser" value="{{ $rankUser }}" readonly hidden>
         <input type="text" id="periodoQuery" value="{{ $period }}" readonly hidden>
         <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
+
+        <button class="btn btn-secondary btn-float btn-sm" type="button"><i class="material-icons">favorite_border</i></button>
         
         <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
         <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
