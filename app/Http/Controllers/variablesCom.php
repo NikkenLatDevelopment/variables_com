@@ -253,6 +253,20 @@ class variablesCom extends Controller{
         return $pdf->download($fileName);
     }
 
+    private function generateSignature($url, $secret) {
+        return hash_hmac('sha256', $url, $secret);
+    }
+
+    private function generateSignedUrl($baseUrl, $params) {
+        $secret = config('app.CUSTOM_API_KEY');
+        $expiration = now()->addMinutes(24)->timestamp;
+        $params['expires'] = $expiration;
+        $queryString = http_build_query($params);
+        $url = $baseUrl . '?' . $queryString;
+        $signature = $this->generateSignature($url, $secret);
+        return $url . '&signature=' . $signature;
+    }
+
     public function printPdf(){
         $period = session('period'); $period = substr($period, 0, 4) . '-' . substr($period, 4, 2);
         $codeUser = session('code');
@@ -260,7 +274,6 @@ class variablesCom extends Controller{
         $rankUser = session('rankUser');
         $countrieUser = session('countrieUser');
         $correo = session('correo');
-
         $paises = [
             1 => 'Colombia',
             2 => 'México',
@@ -274,8 +287,15 @@ class variablesCom extends Controller{
             10 => 'Chile',
         ];
         $countrieUser = $paises[$countrieUser];
-        
-        $target = "https://informescom.nikkenlatam.com/report?code=$codeUser&country=$countrieUser&email=$correo&name=$nameUser&period=2023-01&rank=$rankUser&signature=1181ef301faaa22bd0add30db9d6addd05f753c6ce69fb4b355ea419aee83055&expires=1756785818";
+        $target = [
+            'code' => $codeUser,
+            'country' => $countrieUser,
+            'email' => $correo,
+            'name' => $nameUser,
+            'period' => $period,
+            'rank' => $rankUser,
+        ];
+        $target = $this->generateSignedUrl('https://informescom.nikkenlatam.com/report', $target);
         return $target;
     }
 }
