@@ -296,6 +296,6 @@ class variablesCom extends Controller{
             'rank' => $rankUser,
         ];
         $target = $this->generateSignedUrl('https://informescom.nikkenlatam.com/report', $target);
-        return $target;
+        return redirect($target);
     }
 }
