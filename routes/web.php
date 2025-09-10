@@ -8,11 +8,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("varcomusa24",  [variablesCom::class, 'varcomusa24'])->name('varcomusa24');
-Route::get("varcomusa24nalat",  [variablesCom::class, 'varcomusa24nalat'])->name('varcomusa24nalat');
+Route::get("varcomusa24", [variablesCom::class, 'varcomusa24'])->name('varcomusa24');
+Route::get("varcomusa24nalat", [variablesCom::class, 'varcomusa24nalat'])->name('varcomusa24nalat');
 
-Route::get("accesVariablesCom",  [variablesCom::class, 'accesVariablesCom'])->name('accesVariablesCom');
-Route::get("varcomlat24",  [variablesCom::class, 'varcomlat24'])->name('varcomlat24');
+Route::get("accesVariablesCom", [variablesCom::class, 'accesVariablesCom'])->name('accesVariablesCom');
+Route::get("varcomlat24", [variablesCom::class, 'varcomlat24'])->name('varcomlat24');
+Route::get("printPdf", [variablesCom::class, 'printPdf'])->name('printPdf');
 
 Route::get('/reporte/{variable}', [variablesCom::class, 'mostrarReporte']);
 Route::get('/reporte-pdf/{variable}', [variablesCom::class, 'generarPDF'])->name('reporte.pdf');
