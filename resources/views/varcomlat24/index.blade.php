@@ -51,6 +51,24 @@
                 margin-top: 150px;
                 position: initial;
             }
+
+            .btn-fab {
+                position: fixed !important;
+                right: 20px;
+                bottom: 20px;
+                border-radius: 50%;
+                padding: 10px;
+            }
+
+            .btn-edit .glyphicon {
+                font-size: 24px;
+                padding: 5px;
+            }
+
+            textarea {
+                width: 100%;
+                height: 100px;
+            }
         </style>
     </head>
 
@@ -161,7 +179,9 @@
         <input type="text" id="periodoQuery" value="{{ $period }}" readonly hidden>
         <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
 
-        <button class="btn btn-secondary btn-float btn-sm" type="button"><i class="material-icons">favorite_border</i></button>
+        <a href="javascript:void(0)" class="btn btn-success btn-fab btn-edit">
+            <i class="glyphicon glyphicon-pencil"></i>
+        </a>
         
         <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
         <script>ventas($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
