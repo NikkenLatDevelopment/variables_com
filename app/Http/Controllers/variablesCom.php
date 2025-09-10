@@ -154,7 +154,7 @@ class variablesCom extends Controller{
             $codeUser = $code;
 
             $conection = \DB::connection('nikkenla_office');
-                $response = $conection->select("SELECT T0.nombre as name_user, T0.rango as rank_user, T0.pais as countrie_user 
+                $response = $conection->select("SELECT T0.nombre as name_user, T0.rango as rank_user, T0.pais as countrie_user, correo
                                                 FROM nikkenla_marketing.control_ci T0 
                                                 WHERE T0.codigo = $codeUser AND T0.estatus = 1 AND T0.b1 = 1;");
             \DB::disconnect('nikkenla_office');
@@ -163,6 +163,14 @@ class variablesCom extends Controller{
                 $nameUser = $response[0]->name_user;
                 $rankUser = $response[0]->rank_user;
                 $countrieUser = $response[0]->countrie_user;
+                $correo = $response[0]->countrcorreoie_user;
+
+                session([
+                    'nameUser' => $response[0]->name_user,
+                    'rankUser' => $response[0]->rank_user,
+                    'countrieUser' => $response[0]->countrie_user,
+                    'correo' => $response[0]->correo,
+                ]);
             }
             else{
                 return "lo sentimos, el cógigo $codeUser no existe o se encuentra inactivo"; 
@@ -243,5 +251,17 @@ class variablesCom extends Controller{
         
 
         return $pdf->download($fileName);
+    }
+
+    public function printPdf(){
+        $period = session('period'); $period = substr($period, 0, 4) . '-' . substr($period, 4, 2);
+        $codeUser = session('code');
+        $nameUser = session('nameUser');
+        $rankUser = session('rankUser');
+        $countrieUser = session('countrieUser');
+        $correo = session('correo');
+        
+        $target = "https://informescom.nikkenlatam.com/report?code=$codeUser&country=$countrieUser&email=$correo&name=$nameUser&period=2023-01&rank=$rankUser&signature=1181ef301faaa22bd0add30db9d6addd05f753c6ce69fb4b355ea419aee83055&expires=1756785818";
+        return $target;
     }
 }
