@@ -18,6 +18,7 @@
         <link rel="mask-icon" href="{{ asset('custom/img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#00aba9">
         <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <!-- Favicon -->
 
         <!-- Librerías nativas -->
@@ -180,7 +181,7 @@
         <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
 
         <a href="javascript:void(0)" class="btn btn-success btn-fab btn-edit">
-            <i class="glyphicon glyphicon-pencil"></i>
+            <i class="bi bi-printer-fill h4"></i>
         </a>
         
         <script>chart0($("#codeUser").val(), $("#nameUser").val(), $("#countrieUser").val(), $("#rankUser").val(), $("#prod").val());</script>
