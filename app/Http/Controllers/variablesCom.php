@@ -163,7 +163,7 @@ class variablesCom extends Controller{
                 $nameUser = $response[0]->name_user;
                 $rankUser = $response[0]->rank_user;
                 $countrieUser = $response[0]->countrie_user;
-                $correo = $response[0]->countrcorreoie_user;
+                $correo = $response[0]->correo;
 
                 session([
                     'nameUser' => $response[0]->name_user,
