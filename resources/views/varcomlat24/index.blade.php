@@ -180,7 +180,7 @@
         <input type="text" id="periodoQuery" value="{{ $period }}" readonly hidden>
         <input type="text" id="prod" value="{{ config('app.PROD') }}" readonly hidden>
 
-        <a href="/printPdf" class="btn btn-success btn-fab btn-edit">
+        <a href="/printPdf" class="btn btn-success btn-fab btn-edit" target="_new">
             <i class="bi bi-printer-fill h4"></i>
         </a>
         
