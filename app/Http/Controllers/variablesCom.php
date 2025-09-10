@@ -287,7 +287,7 @@ class variablesCom extends Controller{
             10 => 'Chile',
         ];
         $countrieUser = $paises[$countrieUser];
-        $target = [
+        $array = [
             'code' => $codeUser,
             'country' => $countrieUser,
             'email' => $correo,
@@ -295,7 +295,7 @@ class variablesCom extends Controller{
             'period' => $period,
             'rank' => $rankUser,
         ];
-        $target = $this->generateSignedUrl('https://informescom.nikkenlatam.com/report', $target);
+        $target = $this->generateSignedUrl('https://informescom.nikkenlatam.com/report', $array);
         return redirect($target);
     }
 }
