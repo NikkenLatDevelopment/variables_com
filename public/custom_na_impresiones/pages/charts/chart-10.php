@@ -25,25 +25,7 @@ $periodoPost = $_POST["periodo"];
 //Consulta
 	$countries = "";
 
-	// $sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) from TreePerId_ORG_PER_Comercial_gen ($codeUser,$periodoPost) ORDER BY  ltrim(rtrim(country)) ASC";
-	// $sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) from [genealogias_datos-usa] where variable= $codeUser ORDER BY  ltrim(rtrim(country)) ASC";
-	$sql = "SELECT 
-				CASE
-					WHEN LTRIM(RTRIM(MainCountry)) = 'CA' THEN 'CAN'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'CL' THEN 'CHL'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'CO' THEN 'COL'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'CR' THEN 'CRI'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'EC' THEN 'ECU'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'GT' THEN 'GTM'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'MX' THEN 'MEX'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'PA' THEN 'PAN'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'PE' THEN 'PER'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'SV' THEN 'SLV'
-					WHEN LTRIM(RTRIM(MainCountry)) = 'US' THEN 'USA'
-				END Country 
-			FROM LAT_MyNIKKEN.dbo.customers_exigo WITH(NOLOCK)
-			WHERE CustomerID = $codeUser 
-			ORDER BY ltrim(rtrim(MainCountry)) ASC";
+	$sql = "SELECT DISTINCT LTRIM(RTRIM (Country)) Country FROM LAT_MyNIKKEN_TEST.dbo.[genealogias_datos-usa] where variable= $codeUser ORDER BY  ltrim(rtrim(country)) ASC";
 	$recordSet = sqlsrv_query($conn75, $sql) or die( print_r( sqlsrv_errors(), true));
 	while($rowSap = sqlsrv_fetch_array($recordSet, SQLSRV_FETCH_NUMERIC)) { 
 		if(letterCountrieGenealogy(trim($rowSap[0])) != ""){

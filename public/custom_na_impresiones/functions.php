@@ -31,27 +31,29 @@
 
 //Paises en letras por genealogía
 function letterCountrieGenealogy($countrie){
-	if($countrie == "MX"){ return "Mexico";
-	}elseif($countrie == "CL"){ return "Chile";
-	}elseif($countrie == "CO"){ return "Colombia";
-	}elseif($countrie == "CA"){ return "Canada";
-	}elseif($countrie == "BE"){ return "Belgium";
-	}elseif($countrie == "US"){ return "USA";
-	}elseif($countrie == "PA"){ return "Panama";
-	}elseif($countrie == "PE"){ return "Peru";
-	}elseif($countrie == "CR"){ return "Costa Rica";
-	}elseif($countrie == "DE"){ return "Germany";
-	}elseif($countrie == "EC"){ return "Ecuador";
-	}elseif($countrie == "GT"){ return "Guatemala";
-	}elseif($countrie == "SV"){ return "El Salvador";
-	}elseif($countrie == "FR"){ return "France";
-	}elseif($countrie == "GB"){ return "United Kingdom";
-	}elseif($countrie == "UK"){ return "United Kingdom";
-	}elseif($countrie == "HU"){ return "Hungary";
-	}elseif($countrie == "JP"){ return "Japan";
-	}elseif($countrie == "ES"){ return "Spain";
-	}elseif($countrie == "AT"){ return "Austria";
-	}else{ return ""; }
+    switch(trim($countrie)){
+        case "MX": return "Mexico";
+        case "CL": return "Chile";
+        case "CO": return "Colombia";
+        case "CA": return "Canada";
+        case "BE": return "Belgium";
+        case "US": return "USA";
+        case "PA": return "Panama";
+        case "PE": return "Peru";
+        case "CR": return "Costa Rica";
+        case "DE": return "Germany";
+        case "EC": return "Ecuador";
+        case "GT": return "Guatemala";
+        case "SV": return "El Salvador";
+        case "FR": return "France";
+        case "GB": return "United Kingdom";
+        case "UK": return "United Kingdom";
+        case "HU": return "Hungary";
+        case "JP": return "Japan";
+        case "ES": return "Spain";
+        case "AT": return "Austria";
+        default: return "";
+    }
 }
 //Paises en letras por genealogía
 
