@@ -290,7 +290,7 @@ class variablesCom extends Controller{
         $array = [
             'code' => $codeUser,
             'country' => $countrieUser,
-            // 'email' => $correo,
+            'email' => $correo,
             'name' => $nameUser,
             // 'period' => $period,
             // 'rank' => $rankUser,
