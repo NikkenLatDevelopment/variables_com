@@ -288,13 +288,14 @@ class variablesCom extends Controller{
         ];
         $countrieUser = $paises[$countrieUser];
         $array = [
-            'country' => $countrieUser,
-            'email' => $correo,
-            'name' => $nameUser,
-            'period' => $period,
-            'rank' => $rankUser,
             'code' => $codeUser,
+            'country' => $countrieUser,
+            // 'email' => $correo,
+            // 'name' => $nameUser,
+            // 'period' => $period,
+            // 'rank' => $rankUser,
         ];
+        https://informescom.nikkenlatam.com/report?code=474503&country=M%C3%A9xico&email=arturo.soltero%40gmail.com&name=SOLTERO+CURIEL%2C+JOSE+ARTURO&period=2025-07&rank=Diamante+Real&expires=1757533322&signature=902d139290ad6bd5e293d76b5bf169ff01dfbe651e5d9a98bf65bbe888f5d833 
         $target = $this->generateSignedUrl('https://informescom.nikkenlatam.com/report', $array);
         return redirect($target);
     }
