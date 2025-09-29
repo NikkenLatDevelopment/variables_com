@@ -14,7 +14,12 @@
                 //Mostrar información genealogía
                 setTimeout(function(){ chart10(codeUser, nameUser, countrieUser, rankUser, prod); });
                 //Mostrar información genealogía
-            }, error: function(){}
+            }, error: function(xhr){
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMsg = '❌ ' + xhr.responseJSON.message;
+                }
+                divMensaje.html('<p style="color:red;">' + errorMsg + '</p>');
+            }
         });
     }
 //Mostrar información general
