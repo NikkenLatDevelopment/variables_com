@@ -291,7 +291,7 @@ class variablesCom extends Controller{
             'code' => $codeUser,
             'country' => $countrieUser,
             'email' => $correo,
-            'name' => $nameUser,
+            // 'name' => $nameUser,
             // 'period' => $period,
             // 'rank' => $rankUser,
         ];
