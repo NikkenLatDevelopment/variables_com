@@ -270,28 +270,10 @@ class variablesCom extends Controller{
     public function printPdf(){
         $period = session('period'); $period = substr($period, 0, 4) . '-' . substr($period, 4, 2);
         $codeUser = session('code');
-        $nameUser = session('nameUser');
-        $rankUser = session('rankUser');
-        $countrieUser = session('countrieUser');
-        $correo = session('correo');
-        $paises = [
-            1 => 'Colombia',
-            2 => 'México',
-            3 => 'Perú',
-            4 => 'Ecuador',
-            5 => 'Panamá',
-            6 => 'Guatemala',
-            7 => 'El Salvador',
-            8 => 'Costa Rica',
-            9 => 'Latinoamérica',
-            10 => 'Chile',
-        ];
-        $countrieUser = $paises[$countrieUser];
         $array = [
             'code' => $codeUser,
             'period' => $period,
         ];
-        
         $target = $this->generateSignedUrl('https://informescom.nikkenlatam.com/report', $array);
         return redirect($target);
     }
