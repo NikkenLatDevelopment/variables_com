@@ -53,7 +53,7 @@ $periodoPost = $_POST["periodo"];
 <div style="padding-top: 100px;">
 	<div style="width: 100%; height: 1300px; position: relative;">
 		<!-- <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: transparent;"></div> -->
-		<iframe src="https://testmy.nikkenlatam.com/getRadialGen/<?php echo base64_encode($codeUser) ?>/<?php echo $periodoPost ?>" frameborder="0" style="width: 90%; height: 1300px; margin-left: 10%;" id="radialGraph"></iframe>
+		<iframe src="https://mi.nikkenlatam.com/getRadialGen/<?php echo base64_encode($codeUser) ?>/<?php echo $periodoPost ?>" frameborder="0" style="width: 90%; height: 1300px; margin-left: 10%;" id="radialGraph"></iframe>
 		
 		<div style="position: absolute; bottom: 150px; left: 50px; max-width: 450px;">
 			<img src="custom_lat/pages/charts/chart/<?php echo $codeUser ?>-min.png?<?php echo date("YmdHis") ?>" class="img-fluid mt-2">

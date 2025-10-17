@@ -56,7 +56,7 @@ $periodoPost = $_POST["periodo"];
 				echo '<img src="' . $img . '" style="width: 90%; margin-left: 10%;" id="radialGraph">';
 			}
 			else{
-				echo '<iframe src="https://testmy.nikkenlatam.com/getRadialGen_usa/' . base64_encode($codeUser) . '/202310" frameborder="0" style="width: 90%; height: 1300px; margin-left: 10%;" id="radialGraph"></iframe>';
+				echo '<iframe src="https://mi.nikkenlatam.com/getRadialGen_usa/' . base64_encode($codeUser) . '/202310" frameborder="0" style="width: 90%; height: 1300px; margin-left: 10%;" id="radialGraph"></iframe>';
 			}
 		?>
 		
