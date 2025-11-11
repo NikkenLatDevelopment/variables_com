@@ -98,14 +98,14 @@ class varComUsa extends Controller{
                 "username" => $EXIGO_SRV_USER,
                 "password" => $EXIGO_SRV_PASS,
             ];
-            $login_pwp = $client->post('https://store.nikken.com/api/auth/login', [
+            $login_pwp = $client->post('https://apisjwtprod.nikken.com/api/auth/login', [
                 'json' => $body
             ]);
             $login_pwp = $login_pwp->getBody();
             $login_pwp = json_decode($login_pwp);
             $login_pwp = $login_pwp->token;
             # Obtener la foto del usuario
-            $user_picture = $client->get("https://store.nikken.com/api/user/$pwp", [
+            $user_picture = $client->get("https://apisjwtprod.nikken.com/api/user/$pwp", [
                 'headers' => [
                     'NikkenExigo-Signature' => "$login_pwp",
                 ],
