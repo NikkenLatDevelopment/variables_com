@@ -57,6 +57,24 @@ class varComUsa extends Controller{
         }
     }
 
+    public function pwp_login(){
+        $JWT_USER = config('app.EXIGO_SRV_USER');
+        $JWT_PSWD = config('app.EXIGO_SRV_PASS');
+        
+        $body = [
+            "email" => "$JWT_USER",
+            "password" => "$JWT_PSWD"
+        ];
+        $client = new Client();
+        $data = $client->post('https://apijwt.mynikken.com/api/v1/login', [
+            'json' => $body 
+        ]);
+        $data = $data->getBody();
+        $data = json_decode($data, true);
+        $jwt_token = $data['token'];
+        return $jwt_token;
+    }
+
     public function varcomusa12(){
         $core = new coreCms();
         $jwt_token = $core->getJWTToken();
@@ -80,44 +98,40 @@ class varComUsa extends Controller{
             $data_gral['period_i'] = $core->getMontPeriodPast($period);
             $data_gral['period_f'] = $core->getMontPeriod($period);
             $portada = $core->execSQLQuery("EXEC LAT_MyNIKKEN_TEST.dbo.ConteoComercialD1_usa $code, $period;", "SQL73");
+            
+            // $jwt_token = $this->pwp_login();
+            // return $jwt_token;
+
             # obtener pwp del usuario segun Exigo
-            $client = new Client();
-            $autorization_exigo = base64_encode(config('app.API_EXIGO_USER') . '@nikken:' . config('app.API_EXIGO_PASS'));
-            $data = $client->get(config('app.API_EXIGO_ENV') . "3.0/customers/site?customerID=$code", [
-                'headers' => [
-                    'Authorization' => "Basic $autorization_exigo",
-                ],
-            ]);
-            $result = $data->getBody();
-            $result = json_decode($result);
-            $pwp = $result->webAlias;
-            # obtener el token para poder extraer la foto del usuario
-            $EXIGO_SRV_USER = config('app.EXIGO_SRV_USER');
-            $EXIGO_SRV_PASS = config('app.EXIGO_SRV_PASS');
-            $body = [
-                "username" => $EXIGO_SRV_USER,
-                "password" => $EXIGO_SRV_PASS,
-            ];
-            $login_pwp = $client->post('https://store.nikken.com/api/auth/login', [
-                'json' => $body
-            ]);
-            $login_pwp = $login_pwp->getBody();
-            $login_pwp = json_decode($login_pwp);
-            $login_pwp = $login_pwp->token;
+            // $client = new Client();
+            // $autorization_exigo = base64_encode(config('app.API_EXIGO_USER') . '@nikken:' . config('app.API_EXIGO_PASS'));
+            // $data = $client->get(config('app.API_EXIGO_ENV') . "3.0/customers/site?customerID=$code", [
+            //     'headers' => [
+            //         'Authorization' => "Basic $autorization_exigo",
+            //     ],
+            // ]);
+            // $result = $data->getBody();
+            // $result = json_decode($result);
+            // $pwp = $result->webAlias;
+            $pwp = "";
+
+            
             # Obtener la foto del usuario
-            $user_picture = $client->get("https://store.nikken.com/api/user/$pwp", [
-                'headers' => [
-                    'NikkenExigo-Signature' => "$login_pwp",
-                ],
-            ]);
-            $user_picture = $user_picture->getBody();
-            $user_picture = json_decode($user_picture);
-            $user_picture = $user_picture->data;
-            $user_picture = $user_picture->user_picture;
-            if(trim($user_picture) == ''){
-                $user_picture = "https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png";
-            }
-            $data_gral['pwp'] = "https://$pwp.devlivenikken.net/$pwp/Shopping/ItemList";
+            // $user_picture = $client->get("https://store.nikken.com/api/user/$pwp", [
+            //     'headers' => [
+            //         'NikkenExigo-Signature' => "$login_pwp",
+            //     ],
+            // ]);
+            // $user_picture = $user_picture->getBody();
+            // $user_picture = json_decode($user_picture);
+            // $user_picture = $user_picture->data;
+            // $user_picture = $user_picture->user_picture;
+            // if(trim($user_picture) == ''){
+            //     $user_picture = "https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png";
+            // }
+            // $data_gral['pwp'] = "https://$pwp.devlivenikken.net/$pwp/Shopping/ItemList";
+            $user_picture = "https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png";
+            $data_gral['pwp'] = "";
             if(sizeof($response) > 0){
                 $nameUser = $response[0]->name_user;
                 $rankUser = $response[0]->rank_user;
