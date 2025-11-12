@@ -113,7 +113,7 @@ class varComUsa extends Controller{
             // $result = $data->getBody();
             // $result = json_decode($result);
             // $pwp = $result->webAlias;
-            $pwp = "";
+            $pwp = "https://nikken.com/es";
 
             
             # Obtener la foto del usuario
@@ -131,7 +131,7 @@ class varComUsa extends Controller{
             // }
             // $data_gral['pwp'] = "https://$pwp.devlivenikken.net/$pwp/Shopping/ItemList";
             $user_picture = "https://daea.ulpgc.es/wp-content/themes/daea-child/images/avatar.png";
-            $data_gral['pwp'] = "";
+            $data_gral['pwp'] = "https://nikken.com/es";
             if(sizeof($response) > 0){
                 $nameUser = $response[0]->name_user;
                 $rankUser = $response[0]->rank_user;
